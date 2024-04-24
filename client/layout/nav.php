@@ -8,6 +8,10 @@ function getActive($amenu, $tmenu)
     .top-nav>ul li ul {
         width: 16rem;
     }
+    .dropdown-submenu {
+    max-height: 200px; /* Set the maximum height of the dropdown */
+    overflow-y: auto; /* Add vertical scrollbar when content overflows */
+}
 </style>
 
 <nav class="top-nav">
@@ -23,42 +27,66 @@ function getActive($amenu, $tmenu)
                 <div class="top-menu__icon"> <i data-lucide="list"></i> </div>
                 <div class="top-menu__title"> Master <i data-lucide="chevron-down" class="top-menu__sub-icon"></i> </div>
             </a>
-            <ul class="">
+            <ul class="dropdown-submenu">
                 <li>
                     <a href="bank.php" class="top-menu">
                         <div class="top-menu__icon"> <i data-lucide="briefcase"></i> </div>
-                        <div class="top-menu__title"> CURRENCY </div>
+                        <div class="top-menu__title"> Currency </div>
                     </a>
                 </li>
                 <li>
                     <a href="branch.php
                     " class="top-menu">
                         <div class="top-menu__icon"> <i data-lucide="layers"></i> </div>
-                        <div class="top-menu__title">Brnch Detail</div>
+                        <div class="top-menu__title">Location</div>
                     </a>
                 </li>
                 <li>
                     <a href="item.php" class="top-menu">
                         <div class="top-menu__icon"> <i data-lucide="scissors"></i> </div>
-                        <div class="top-menu__title"> Product </div>
+                        <div class="top-menu__title"> Bank </div>
                     </a>
                 </li>
                 <li>
                     <a href="mfg_company.php" class="top-menu">
                         <div class="top-menu__icon"> <i data-lucide="bar-chart-2"></i> </div>
-                        <div class="top-menu__title"> Manufacturing Company </div>
+                        <div class="top-menu__title"> Vendor </div>
                     </a>
                 </li>
                 <li>
                     <a href="customer.php" class="top-menu">
                         <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
-                        <div class="top-menu__title">Customer</div>
+                        <div class="top-menu__title">HSN/SAC</div>
                     </a>
                 </li>
                 <li>
                     <a href="supplier.php" class="top-menu">
                         <div class="top-menu__icon"> <i data-lucide="edit"></i> </div>
-                        <div class="top-menu__title"> Supplier </div>
+                        <div class="top-menu__title"> Unit </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="supplier.php" class="top-menu">
+                        <div class="top-menu__icon"> <i data-lucide="edit"></i> </div>
+                        <div class="top-menu__title"> Material</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="supplier.php" class="top-menu">
+                        <div class="top-menu__icon"> <i data-lucide="edit"></i> </div>
+                        <div class="top-menu__title"> Department </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="supplier.php" class="top-menu">
+                        <div class="top-menu__icon"> <i data-lucide="edit"></i> </div>
+                        <div class="top-menu__title"> Machine </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="supplier.php" class="top-menu">
+                        <div class="top-menu__icon"> <i data-lucide="edit"></i> </div>
+                        <div class="top-menu__title"> Process</div>
                     </a>
                 </li>
             </ul>
