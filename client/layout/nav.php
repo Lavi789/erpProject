@@ -12,6 +12,37 @@ function getActive($amenu, $tmenu)
     max-height: 200px; /* Set the maximum height of the dropdown */
     overflow-y: auto; /* Add vertical scrollbar when content overflows */
 }
+.material-menu {
+    position: relative;
+}
+
+.material-menu .sub-submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    
+    padding: 5px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.material-menu:hover .sub-submenu {
+    display: block;
+}
+
+.sub-submenu li {
+    padding: 8px 15px;
+}
+
+.sub-submenu a {
+    color: #333;
+    text-decoration: none;
+}
+
+.sub-submenu li:hover {
+    background-color: #f0f0f0;
+}
+
 </style>
 
 <nav class="top-nav">
@@ -47,11 +78,16 @@ function getActive($amenu, $tmenu)
                         <div class="top-menu__title"> Bank </div>
                     </a>
                 </li>
-                <li>
+                <li class="material-menu">
                     <a href="mfg_company.php" class="top-menu">
                         <div class="top-menu__icon"> <i data-lucide="bar-chart-2"></i> </div>
                         <div class="top-menu__title"> Vendor </div>
                     </a>
+                    <ul class="sub-submenu">
+                      <li><a href="#"> Party Group</a></li>
+                      <li><a href="#">Party</a></li>
+                      <li><a href="#">Vendor Registration</a></li>
+                      </ul>
                 </li>
                 <li>
                     <a href="customer.php" class="top-menu">
@@ -65,12 +101,22 @@ function getActive($amenu, $tmenu)
                         <div class="top-menu__title"> Unit </div>
                     </a>
                 </li>
-                <li>
-                    <a href="supplier.php" class="top-menu">
+                <li class="material-menu">
+                       <a href="supplier.php" class="top-menu">
                         <div class="top-menu__icon"> <i data-lucide="edit"></i> </div>
-                        <div class="top-menu__title"> Material</div>
-                    </a>
-                </li>
+                         <div class="top-menu__title"> Material</div>
+                   </a>
+                      <ul class="sub-submenu">
+                      <li><a href="#"> Item Group</a></li>
+                      <li><a href="#">Item</a></li>
+                      <li><a href="#">Make</a></li>
+                      <li><a href="#">Item Wise Rate</a></li>
+                      <li><a href="#">Item Opening Stock</a></li>
+                      <li><a href="#">Vendor Item Mapping</a></li>
+                      <li><a href="#">Drawing</a></li>
+       
+                   </ul>
+                   </li>
                 <li>
                     <a href="supplier.php" class="top-menu">
                         <div class="top-menu__icon"> <i data-lucide="edit"></i> </div>
@@ -87,6 +133,36 @@ function getActive($amenu, $tmenu)
                     <a href="supplier.php" class="top-menu">
                         <div class="top-menu__icon"> <i data-lucide="edit"></i> </div>
                         <div class="top-menu__title"> Process</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="supplier.php" class="top-menu">
+                        <div class="top-menu__icon"> <i data-lucide="edit"></i> </div>
+                        <div class="top-menu__title"> BOM</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="supplier.php" class="top-menu">
+                        <div class="top-menu__icon"> <i data-lucide="edit"></i> </div>
+                        <div class="top-menu__title"> Shift</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="supplier.php" class="top-menu">
+                        <div class="top-menu__icon"> <i data-lucide="edit"></i> </div>
+                        <div class="top-menu__title"> Transport</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="supplier.php" class="top-menu">
+                        <div class="top-menu__icon"> <i data-lucide="edit"></i> </div>
+                        <div class="top-menu__title"> A/C head</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="supplier.php" class="top-menu">
+                        <div class="top-menu__icon"> <i data-lucide="edit"></i> </div>
+                        <div class="top-menu__title"> Stock</div>
                     </a>
                 </li>
             </ul>
