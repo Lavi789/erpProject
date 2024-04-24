@@ -15,9 +15,9 @@ require_once '../server/config/db.php';
 
 <head>
     <meta charset="utf-8">
-    <link href="dist/images/hindalco.png" rel="shortcut icon">
+    <link href="" rel="shortcut icon">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Hindalco</title>
+    <title>ERP</title>
     <!-- BEGIN: CSS Assets-->
     <link rel="stylesheet" href="dist/css/app.css" />
     <!-- END: CSS Assets-->
