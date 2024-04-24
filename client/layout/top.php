@@ -2,7 +2,7 @@
     <div class="h-full flex items-center">
         <!-- BEGIN: Logo -->
         <a href="index.php" class="logo -intro-x hidden md:flex xl:w-[180px] block">
-            <img alt="Hindalco" class="img-circle" height="50" width="50" src="">
+            <img alt="" class="img-circle" height="50" width="50" src="">
             <span class="logo__text text-white text-lg ml-3 mt-2">ERP</span>
         </a>
         <div class="-intro-x h-[45px] ml-5 mt-5">
@@ -21,7 +21,7 @@
         <!-- BEGIN: Account Menu -->
         <div class="intro-x dropdown w-8 h-8">
             <div class="dropdown-toggle w-8 h-8 rounded-full overflow-hidden shadow-lg image-fit zoom-in scale-110" role="button" aria-expanded="false" data-tw-toggle="dropdown">
-                <img alt="Hindalco" src="dist/images/profile-13.jpg">
+                <img alt="" src="dist/images/profile-13.jpg">
             </div>
             <div class="dropdown-menu w-56">
                 <ul class="dropdown-content bg-primary/80 before:block before:absolute before:bg-black before:inset-0 before:rounded-md before:z-[-1] text-white">
