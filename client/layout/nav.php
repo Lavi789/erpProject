@@ -60,20 +60,26 @@ function getActive($amenu, $tmenu)
             </a>
             <ul class="dropdown-submenu">
                 <li>
-                    <a href="bank.php" class="top-menu">
+                    <a href="currency.php" class="top-menu">
                         <div class="top-menu__icon"> <i data-lucide="briefcase"></i> </div>
                         <div class="top-menu__title"> Currency </div>
                     </a>
                 </li>
-                <li>
-                    <a href="branch.php
-                    " class="top-menu">
+                <li class="material-menu">
+                    <a href="branch.php" class="top-menu">
                         <div class="top-menu__icon"> <i data-lucide="layers"></i> </div>
                         <div class="top-menu__title">Location</div>
                     </a>
+                    <ul class="sub-submenu">
+                    <li><a href="#">County</a></li>
+                      <li><a href="#">State</a></li>
+                      <li><a href="#">Dist</a></li>
+                      <li><a href="#">City</a></li>
+                      </ul>
+
                 </li>
                 <li>
-                    <a href="item.php" class="top-menu">
+                    <a href="bank.php" class="top-menu">
                         <div class="top-menu__icon"> <i data-lucide="scissors"></i> </div>
                         <div class="top-menu__title"> Bank </div>
                     </a>
