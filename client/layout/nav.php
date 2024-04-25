@@ -72,7 +72,7 @@ function getActive($amenu, $tmenu)
                     </a>
                     <ul class="sub-submenu">
                     <li><a href="#">County</a></li>
-                      <li><a href="#">State</a></li>
+                      <li><a href="state.php">State</a></li>
                       <li><a href="#">Dist</a></li>
                       <li><a href="#">City</a></li>
                       </ul>

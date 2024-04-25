@@ -80,6 +80,7 @@ if ((!isset($_SESSION['user_name']))) {
                                     <th>State Name</th>
                                     <th>County Name</th>
                                     <th>Code</th>
+                                    <th>GST CODE</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -103,22 +104,30 @@ if ((!isset($_SESSION['user_name']))) {
                             <!-- BEGIN: Modal Header -->
                             <div class="modal-header">
                                 <h2 id="modal-title" class="font-medium text-base mr-auto">
-                                    Bank
+                                    State
                                 </h2>
                             </div>
                             <!-- END: Modal Header -->
                             <!-- BEGIN: Modal Body -->
                             <form id="frm_user" name="frm_user" action="" method="post">
                                 <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
-                                    <input id="bank_id" name="bank_id" type="hidden" class="form-control" placeholder="Bank Id" readonly>
+                                    <input id="state_id" name="state_id" type="hidden" class="form-control" placeholder="State Id" readonly>
 
                                     <div class="col-span-12 sm:col-span-6">
-                                        <label for="bank_name" class="form-label">Bank Name</label>
-                                        <input id="bank_name" name="bank_name" type="text" class="form-control" placeholder="Bank Name">
+                                        <label for="state_name" class="form-label">State Name</label>
+                                        <input id="state_name" name="state_name" type="text" class="form-control" placeholder="State Name">
                                     </div>
                                     <div class="col-span-12 sm:col-span-6">
-                                        <label for="address" class="form-label">Address</label>
-                                        <input id="address" name="address" type="text" class="form-control" placeholder="Address">
+                                        <label for="country_name" class="form-label">Country</label>
+                                        <input id="country_name" name="country_name" type="text" class="form-control" placeholder="Country_name">
+                                    </div>
+                                    <div class="col-span-12 sm:col-span-6">
+                                        <label for="code" class="form-label">Code</label>
+                                        <input id="code" name="code" type="text" class="form-control" placeholder="Code">
+                                    </div>
+                                    <div class="col-span-12 sm:col-span-6">
+                                        <label for="gst_code" class="form-label">GST Code</label>
+                                        <input id="gst_code" name="gst_code" type="text" class="form-control" placeholder="Gst_Code">
                                     </div>
                                 </div>
                             </form>
@@ -153,11 +162,11 @@ if ((!isset($_SESSION['user_name']))) {
         "searching": true,
         "serverSide": true,
         "ajax": {
-            url: "../server/ajax_bank.php",
+            url: "../server/ajax_state.php",
             type: "POST"
         },
         "columns": [{
-                "data": "bank_id",
+                "data": "state_id",
                 "visible": false
             },
             {
@@ -168,10 +177,16 @@ if ((!isset($_SESSION['user_name']))) {
                 "orderable": false
             },
             {
-                "data": "bank_name"
+                "data": "state_name"
             },
             {
-                "data": "address"
+                "data": "country_name"
+            },
+            {
+                "data": "code"
+            },
+            {
+                "data": "gst_code"
             },
             {
                 "data": "action",
@@ -202,7 +217,7 @@ if ((!isset($_SESSION['user_name']))) {
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
-                    url: '../api/bank/' + id,
+                    url: '../api/state/' + id,
                     type: 'DELETE',
                     dataType: 'json',
                     contentType: 'application/json',
@@ -233,14 +248,14 @@ if ((!isset($_SESSION['user_name']))) {
         $("#btn_save").show();
         $("#btn_update").hide();
         $("#frm_user").trigger("reset");
-        $("#modal-title").text('Add Bank');
+        $("#modal-title").text('Add');
     }
 
     $("#btn_save").on("click", function() {
         const form = $("#frm_user");
         const json = convertFormToJSON(form);
         $.ajax({
-            url: '../api/bank',
+            url: '../api/state',
             type: 'POST',
             data: JSON.stringify(json),
             dataType: 'json',
@@ -270,11 +285,13 @@ if ((!isset($_SESSION['user_name']))) {
         $("#btn_update").show();
         $("#modal-title").text('Edit Bank');
         $.ajax({
-            url: '../api/bank/' + id,
+            url: '../api/state/' + id,
             method: "GET",
             success: function(res) {
-                $("#bank_id").val(res.bank_id);
-                $("#bank_name").val(res.bank_name);
+                $("#state_id").val(res.bank_id);
+                $("#state_name").val(res.bank_name);
+                $("#country_name").val(res.bank_name);
+                $("#code").val(res.bank_name);
             }
         });
     }
@@ -282,9 +299,9 @@ if ((!isset($_SESSION['user_name']))) {
     $("#btn_update").on("click", function() {
         const form = $("#frm_user");
         const json = convertFormToJSON(form);
-        var id = $("#bank_id").val();
+        var id = $("#state_id").val();
         $.ajax({
-            url: '../api/bank/' + id,
+            url: '../api/state/' + id,
             type: 'PUT',
             data: JSON.stringify(json),
             dataType: 'json',
