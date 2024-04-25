@@ -330,7 +330,161 @@ $app->group("$base/state", function (Group $group) {
     });
 });
 /*
-    END: REST API for Bank
+    END: REST API for state
 */
+
+// *
+//     BEIGN: REST API for vendor registration
+// */
+$app->group("$base/registration", function (Group $group) {
+    $group->get("", function (Request $request, Response $response) {
+        try {
+            $conn = new DB;
+            $conn = $conn->connect();
+
+            $sql = "SELECT * FROM vendor_reg";
+            $stmt = $conn->query($sql);
+            $data = $stmt->fetchAll(PDO::FETCH_OBJ);
+            $conn = null;
+
+            $status = 200;
+        } catch (PDOException $e) {
+            $data = array("status" => "Error", "msg" => $e->getMessage());
+            $status = 400;
+        }
+
+        $output = json_encode($data);
+
+        $response->getBody()->write($output);
+        return $response->withHeader('Content-type', 'application/json')
+            ->withStatus($status);
+    });
+
+    $group->get("/{id}", function (Request $request, Response $response, array $args) {
+        try {
+            $vreg_id = $args['id'];
+
+            $conn = new DB;
+            $conn = $conn->connect();
+
+            $sql = "SELECT * FROM vendor_reg WHERE vreg_id=:vreg_id";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':vreg_id', $vreg_id);
+            $stmt->execute();
+            $data = $stmt->fetch(PDO::FETCH_OBJ);
+
+            $conn = null;
+
+            $status = 200;
+        } catch (PDOException $e) {
+            $data = array("status" => "Error", "msg" => $e->getMessage());
+            $status = 400;
+        }
+
+        $output = json_encode($data);
+
+        $response->getBody()->write($output);
+        return $response->withHeader('Content-type', 'application/json')
+            ->withStatus($status);
+    });
+
+    $group->post("", function (Request $request, Response $response) {
+        try {
+            $parameters = $request->getParsedBody();
+
+            $conn = new DB;
+            $conn = $conn->connect();
+
+            $sql = "INSERT INTO vendor_reg (vendor_type,documents,qms) VALUES (:vendor_type,:documents,:qms)";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':vendor_type', $parameters['vendor_type']);
+            $stmt->bindParam(':documents', $parameters['documents']);
+            $stmt->bindParam(':qms', $parameters['qms']);
+            
+            $stmt->execute();
+
+            $msg = ($stmt->rowCount() > 0) ? "Success" : "No Update";
+            $conn = null;
+
+            $status = 200;
+            $data = array("status" => "Ok", "msg" => $msg, "item" => $parameters);
+        } catch (PDOException $e) {
+            $data = array("status" => "Error", "msg" => $e->getMessage(), "item" => $parameters);
+            $status = 400;
+        }
+
+        $output = json_encode($data);
+
+        $response->getBody()->write($output);
+        return $response->withHeader('Content-type', 'application/json')
+            ->withStatus($status);
+    });
+
+    $group->put("/{id}", function (Request $request, Response $response, array $args) {
+        try {
+            $parameters = $request->getParsedBody();
+
+            $conn = new DB;
+            $conn = $conn->connect();
+
+            $sql = "UPDATE vendor_reg SET vendor_type=:vendor_type, documents=:documents, qms=:qms,  updated_at=NOW() WHERE vreg_id=:vreg_id";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':vreg_id', $parameters['vreg_id']);
+            $stmt->bindParam(':vendor_type', $parameters['vendor_type']);
+            $stmt->bindParam(':documents', $parameters['documents']);
+            $stmt->bindParam(':qms', $parameters['qms']);
+           
+            $stmt->execute();
+            $stmt->execute();
+            $stmt->execute();
+
+            $msg = ($stmt->rowCount() > 0) ? "Success" : "No Update";
+            $conn = null;
+
+            $status = 200;
+            $data = array("status" => "Ok", "msg" => $msg, "item" => $parameters);
+        } catch (PDOException $e) {
+            $data = array("status" => "Error", "msg" => $e->getMessage(), "item" => $parameters);
+            $status = 400;
+        }
+
+        $output = json_encode($data);
+
+        $response->getBody()->write($output);
+        return $response->withHeader('Content-type', 'application/json')
+            ->withStatus($status);
+    });
+
+    $group->delete("/{id}", function (Request $request, Response $response, array $args) {
+        try {
+            $conn = new DB;
+            $conn = $conn->connect();
+
+            $sql = "DELETE FROM vendor_reg WHERE vreg_id=:vreg_id";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':vreg_id', $args['id']);
+            $stmt->execute();
+
+            $msg = ($stmt->rowCount() > 0) ? "Success" : "No Update";
+            $conn = null;
+
+            $status = 200;
+            $data = array("status" => "Ok", "msg" => $msg);
+        } catch (PDOException $e) {
+            $data = array("status" => "Error", "msg" => $e->getMessage());
+            $status = 400;
+        }
+
+        $output = json_encode($data);
+
+        $response->getBody()->write($output);
+        return $response->withHeader('Content-type', 'application/json')
+            ->withStatus($status);
+    });
+});
+/*
+    END: REST API for vendor registration
+*/
+
 
 

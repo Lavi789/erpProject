@@ -57,18 +57,18 @@ if ((!isset($_SESSION['user_name']))) {
         <!-- BEGIN: Title -->
         <div class="intro-y flex items-center h-10 mt-8 mb-5">
             <h2 class="text-lg font-medium truncate mr-5">
-                State
+                Vendor Registration
             </h2>
             <a href="" class="ml-auto flex items-center text-primary"> <i data-lucide="refresh-ccw" class="w-4 h-4 mr-3"></i> Reload Data </a>
         </div>
         <!-- BEGIN: Title -->
 
         <!-- BEGIN: Add Button -->
-        <button class="btn btn-primary shadow-md mr-2" onclick="add_data()" data-tw-toggle="modal" data-tw-target="#header-footer-modal-preview-view">Add</button>
+        <button class="btn btn-primary shadow-md mr-2" onclick="add_data()" data-tw-toggle="modal" data-tw-target="#header-footer-modal-preview-view">Add Vendor</button>
         <!-- END: Add Button -->
 
         <!-- BEGIN: Responsive Table -->
-        <div class="intro-y box mt-5">
+        <!-- <div class="intro-y box mt-5">
             <div class="p-5" id="responsive-table">
                 <div class="preview">
                     <div class="overflow-x-auto">
@@ -88,7 +88,7 @@ if ((!isset($_SESSION['user_name']))) {
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <!-- END: Responsive Table -->
     </div>
     <!-- END: Content -->
@@ -104,31 +104,28 @@ if ((!isset($_SESSION['user_name']))) {
                             <!-- BEGIN: Modal Header -->
                             <div class="modal-header">
                                 <h2 id="modal-title" class="font-medium text-base mr-auto">
-                                    State
+                                Vendor Registration
                                 </h2>
                             </div>
                             <!-- END: Modal Header -->
                             <!-- BEGIN: Modal Body -->
                             <form id="frm_user" name="frm_user" action="" method="post">
                                 <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
-                                    <input id="state_id" name="state_id" type="hidden" class="form-control" placeholder="State Id" readonly>
+                                    <input id="vreg_id" name="vreg_id" type="hidden" class="form-control" placeholder="State Id" readonly>
 
                                     <div class="col-span-12 sm:col-span-6">
-                                        <label for="state_name" class="form-label">State Name</label>
-                                        <input id="state_name" name="state_name" type="text" class="form-control" placeholder="State Name">
+                                        <label for="vendor_type" class="form-label"> Vendor Type</label>
+                                        <input id="vendor_type" name="vendor_type" type="text" class="form-control"   placeholder="vendor type">
                                     </div>
                                     <div class="col-span-12 sm:col-span-6">
-                                        <label for="country_name" class="form-label">Country</label>
-                                        <input id="country_name" name="country_name" type="text" class="form-control" placeholder="Country_name">
+                                        <label for="documents" class="form-label">Country</label>
+                                        <input id="documents" name="documents" type="file" class="form-control" placeholder="upload documents">
                                     </div>
                                     <div class="col-span-12 sm:col-span-6">
-                                        <label for="code" class="form-label">Code</label>
-                                        <input id="code" name="code" type="text" class="form-control" placeholder="Code">
+                                        <label for="qms" class="form-label">Code</label>
+                                        <input id="qms" name="qms" type="file" class="form-control" placeholder="upload">
                                     </div>
-                                    <div class="col-span-12 sm:col-span-6">
-                                        <label for="gst_code" class="form-label">GST Code</label>
-                                        <input id="gst_code" name="gst_code" type="text" class="form-control" placeholder="Gst_Code">
-                                    </div>
+                                   
                                 </div>
                             </form>
                             <!-- END: Modal Body -->
@@ -162,32 +159,24 @@ if ((!isset($_SESSION['user_name']))) {
         "searching": true,
         "serverSide": true,
         "ajax": {
-            url: "../server/ajax_state.php",
+            url: "../server/ajax_vreg.php",
             type: "POST"
         },
         "columns": [{
-                "data": "state_id",
+                "data": "vreg_id",
                 "visible": false
             },
+            
             {
-                "data": "sl_no",
-                render: function(data, type, row, meta) {
-                    return meta.row + meta.settings._iDisplayStart + 1;
-                },
-                "orderable": false
+                "data": "vendor_type"
             },
             {
-                "data": "state_name"
+                "data": "documents"
             },
             {
-                "data": "country_name"
+                "data": "qms"
             },
-            {
-                "data": "code"
-            },
-            {
-                "data": "gst_code"
-            },
+           
             {
                 "data": "action",
                 "orderable": false
@@ -217,7 +206,7 @@ if ((!isset($_SESSION['user_name']))) {
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
-                    url: '../api/state/' + id,
+                    url: '../api/registration/' + id,
                     type: 'DELETE',
                     dataType: 'json',
                     contentType: 'application/json',
@@ -255,7 +244,7 @@ if ((!isset($_SESSION['user_name']))) {
         const form = $("#frm_user");
         const json = convertFormToJSON(form);
         $.ajax({
-            url: '../api/state',
+            url: '../api/registration',
             type: 'POST',
             data: JSON.stringify(json),
             dataType: 'json',
@@ -285,14 +274,13 @@ if ((!isset($_SESSION['user_name']))) {
         $("#btn_update").show();
         $("#modal-title").text('Edit Bank');
         $.ajax({
-            url: '../api/state/' + id,
+            url: '../api/registration/' + id,
             method: "GET",
             success: function(res) {
-                $("#state_id").val(res.state_id);
-                $("#state_name").val(res.state_name);
-                $("#country_name").val(res.country_name);
-                $("#code").val(res.code);
-                $("#gst_code").val(res.gst_code);
+                $("#vreg_id").val(res.vreg_id);
+                $("#vendor_type").val(res.vendor_type);
+                $("#documents").val(res.documents);
+                $("#qms").val(res.qms);
             }
         });
     }
@@ -300,9 +288,9 @@ if ((!isset($_SESSION['user_name']))) {
     $("#btn_update").on("click", function() {
         const form = $("#frm_user");
         const json = convertFormToJSON(form);
-        var id = $("#state_id").val();
+        var id = $("#vreg_id").val();
         $.ajax({
-            url: '../api/state/' + id,
+            url: '../api/registration/' + id,
             type: 'PUT',
             data: JSON.stringify(json),
             dataType: 'json',
