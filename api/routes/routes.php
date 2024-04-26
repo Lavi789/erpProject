@@ -783,6 +783,157 @@ $app->group("$base/process", function (Group $group) {
 */
 
 
+/*
+    BEIGN: REST API for shift
+*/
+$app->group("$base/shift", function (Group $group) {
+    $group->get("", function (Request $request, Response $response) {
+        try {
+            $conn = new DB;
+            $conn = $conn->connect();
 
+            $sql = "SELECT * FROM shift";
+            $stmt = $conn->query($sql);
+            $data = $stmt->fetchAll(PDO::FETCH_OBJ);
+            $conn = null;
+
+            $status = 200;
+        } catch (PDOException $e) {
+            $data = array("status" => "Error", "msg" => $e->getMessage());
+            $status = 400;
+        }
+
+        $output = json_encode($data);
+
+        $response->getBody()->write($output);
+        return $response->withHeader('Content-type', 'application/json')
+            ->withStatus($status);
+    });
+
+    $group->get("/{id}", function (Request $request, Response $response, array $args) {
+        try {
+            $shift_id = $args['id'];
+
+            $conn = new DB;
+            $conn = $conn->connect();
+
+            $sql = "SELECT * FROM shift WHERE shift_id=:shift_id";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':shift_id', $shift_id);
+            $stmt->execute();
+            $data = $stmt->fetch(PDO::FETCH_OBJ);
+
+            $conn = null;
+
+            $status = 200;
+        } catch (PDOException $e) {
+            $data = array("status" => "Error", "msg" => $e->getMessage());
+            $status = 400;
+        }
+
+        $output = json_encode($data);
+
+        $response->getBody()->write($output);
+        return $response->withHeader('Content-type', 'application/json')
+            ->withStatus($status);
+    });
+
+    $group->post("", function (Request $request, Response $response) {
+        try {
+            $parameters = $request->getParsedBody();
+
+            $conn = new DB;
+            $conn = $conn->connect();
+
+            $sql = "INSERT INTO shift (shift,in_time,out_time, deduction,grace) VALUES (:shift, :in_time,:out_time, :deduction,:grace)";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':shift', $parameters['shift']);
+            $stmt->bindParam(':in_time', $parameters['in_time']);
+            $stmt->bindParam(':out_time', $parameters['out_time']);
+            $stmt->bindParam(':deduction', $parameters['deduction']);
+            $stmt->bindParam(':grace', $parameters['grace']);
+            $stmt->execute();
+
+            $msg = ($stmt->rowCount() > 0) ? "Success" : "No Update";
+            $conn = null;
+
+            $status = 200;
+            $data = array("status" => "Ok", "msg" => $msg, "item" => $parameters);
+        } catch (PDOException $e) {
+            $data = array("status" => "Error", "msg" => $e->getMessage(), "item" => $parameters);
+            $status = 400;
+        }
+
+        $output = json_encode($data);
+
+        $response->getBody()->write($output);
+        return $response->withHeader('Content-type', 'application/json')
+            ->withStatus($status);
+    });
+
+    $group->put("/{id}", function (Request $request, Response $response, array $args) {
+        try {
+            $parameters = $request->getParsedBody();
+
+            $conn = new DB;
+            $conn = $conn->connect();
+
+            $sql = "UPDATE shift SET shift=:shift, in_time=:in_time, out_time=:out_time, deduction=:deduction, grace=:grace WHERE shift_id=:shift_id";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':shift_id', $parameters['shift_id']);
+            $stmt->bindParam(':shift', $parameters['shift']);
+            $stmt->bindParam(':in_time', $parameters['in_time']);
+            $stmt->bindParam(':out_time', $parameters['out_time']);
+            $stmt->bindParam(':deduction', $parameters['deduction']);
+            $stmt->bindParam(':grace', $parameters['grace']);
+            $stmt->execute();
+
+            $msg = ($stmt->rowCount() > 0) ? "Success" : "No Update";
+            $conn = null;
+
+            $status = 200;
+            $data = array("status" => "Ok", "msg" => $msg, "item" => $parameters);
+        } catch (PDOException $e) {
+            $data = array("status" => "Error", "msg" => $e->getMessage(), "item" => $parameters);
+            $status = 400;
+        }
+
+        $output = json_encode($data);
+
+        $response->getBody()->write($output);
+        return $response->withHeader('Content-type', 'application/json')
+            ->withStatus($status);
+    });
+
+    $group->delete("/{id}", function (Request $request, Response $response, array $args) {
+        try {
+            $conn = new DB;
+            $conn = $conn->connect();
+
+            $sql = "DELETE FROM shift WHERE shift_id=:shift_id";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':shift_id', $args['id']);
+            $stmt->execute();
+
+            $msg = ($stmt->rowCount() > 0) ? "Success" : "No Update";
+            $conn = null;
+
+            $status = 200;
+            $data = array("status" => "Ok", "msg" => $msg);
+        } catch (PDOException $e) {
+            $data = array("status" => "Error", "msg" => $e->getMessage());
+            $status = 400;
+        }
+
+        $output = json_encode($data);
+
+        $response->getBody()->write($output);
+        return $response->withHeader('Content-type', 'application/json')
+            ->withStatus($status);
+    });
+});
+/*
+    END: REST API for shift
+*/
 
 
