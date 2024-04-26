@@ -15,7 +15,7 @@ if ((!isset($_SESSION['user_name']))) {
     <meta charset="utf-8">
     <link href="dist/images/hindalco.png" rel="shortcut icon">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Hindalco</title>
+    <title>ERP</title>
     <!-- BEGIN: CSS Assets-->
     <link rel="stylesheet" href="dist/css/app.css" />
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.css" />
@@ -57,14 +57,14 @@ if ((!isset($_SESSION['user_name']))) {
         <!-- BEGIN: Title -->
         <div class="intro-y flex items-center h-10 mt-8 mb-5">
             <h2 class="text-lg font-medium truncate mr-5">
-                Bank
+                Department
             </h2>
             <a href="" class="ml-auto flex items-center text-primary"> <i data-lucide="refresh-ccw" class="w-4 h-4 mr-3"></i> Reload Data </a>
         </div>
         <!-- BEGIN: Title -->
 
         <!-- BEGIN: Add Button -->
-        <button class="btn btn-primary shadow-md mr-2" onclick="add_data()" data-tw-toggle="modal" data-tw-target="#header-footer-modal-preview-view">Add Bank</button>
+        <button class="btn btn-primary shadow-md mr-2" onclick="add_data()" data-tw-toggle="modal" data-tw-target="#header-footer-modal-preview-view">Add Department</button>
         <!-- END: Add Button -->
 
         <!-- BEGIN: Responsive Table -->
@@ -77,8 +77,9 @@ if ((!isset($_SESSION['user_name']))) {
                                 <tr>
                                     <th>ID</th>
                                     <th>Sl No.</th>
-                                    <th>Bank Name</th>
-                                    <th>Address</th>
+                                    <th>Department Name</th>
+                                    <th>HOD</th>
+                                    <th>Cost center</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -102,22 +103,26 @@ if ((!isset($_SESSION['user_name']))) {
                             <!-- BEGIN: Modal Header -->
                             <div class="modal-header">
                                 <h2 id="modal-title" class="font-medium text-base mr-auto">
-                                    Bank
+                                    Department
                                 </h2>
                             </div>
                             <!-- END: Modal Header -->
                             <!-- BEGIN: Modal Body -->
                             <form id="frm_user" name="frm_user" action="" method="post">
                                 <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
-                                    <input id="bank_id" name="bank_id" type="hidden" class="form-control" placeholder="Bank Id" readonly>
+                                    <input id="department_id" name="department_id" type="hidden" class="form-control" placeholder="Department Id" readonly>
 
                                     <div class="col-span-12 sm:col-span-6">
-                                        <label for="bank_name" class="form-label">Bank Name</label>
-                                        <input id="bank_name" name="bank_name" type="text" class="form-control" placeholder="Bank Name">
+                                        <label for="name" class="form-label"> Name</label>
+                                        <input id="name" name="name" type="text" class="form-control" placeholder=" Name">
                                     </div>
                                     <div class="col-span-12 sm:col-span-6">
-                                        <label for="address" class="form-label">Address</label>
-                                        <input id="address" name="address" type="text" class="form-control" placeholder="Address">
+                                        <label for="d_hod" class="form-label">Hod</label>
+                                        <input id="d_hod" name="d_hod" type="text" class="form-control" placeholder="hod">
+                                    </div>
+                                    <div class="col-span-12 sm:col-span-6">
+                                        <label for="cost_center" class="form-label">Cost center</label>
+                                        <input id="cost_center" name="cost_center" type="text" class="form-control" placeholder="cost center">
                                     </div>
                                 </div>
                             </form>
@@ -152,11 +157,11 @@ if ((!isset($_SESSION['user_name']))) {
         "searching": true,
         "serverSide": true,
         "ajax": {
-            url: "../server/ajax_bank.php",
+            url: "../server/ajax_department.php",
             type: "POST"
         },
         "columns": [{
-                "data": "bank_id",
+                "data": "department_id",
                 "visible": false
             },
             {
@@ -167,10 +172,13 @@ if ((!isset($_SESSION['user_name']))) {
                 "orderable": false
             },
             {
-                "data": "bank_name"
+                "data": "name"
             },
             {
-                "data": "address"
+                "data": "d_hod"
+            },
+            {
+                "data": "cost_center"
             },
             {
                 "data": "action",
@@ -201,7 +209,7 @@ if ((!isset($_SESSION['user_name']))) {
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
-                    url: '../api/bank/' + id,
+                    url: '../api/department/' + id,
                     type: 'DELETE',
                     dataType: 'json',
                     contentType: 'application/json',
@@ -232,14 +240,14 @@ if ((!isset($_SESSION['user_name']))) {
         $("#btn_save").show();
         $("#btn_update").hide();
         $("#frm_user").trigger("reset");
-        $("#modal-title").text('Add Bank');
+        $("#modal-title").text('Add department');
     }
 
     $("#btn_save").on("click", function() {
         const form = $("#frm_user");
         const json = convertFormToJSON(form);
         $.ajax({
-            url: '../api/bank',
+            url: '../api/department',
             type: 'POST',
             data: JSON.stringify(json),
             dataType: 'json',
@@ -267,14 +275,16 @@ if ((!isset($_SESSION['user_name']))) {
     function load_data(id) {
         $("#btn_save").hide();
         $("#btn_update").show();
-        $("#modal-title").text('Edit Bank');
+        $("#modal-title").text('Edit department');
         $.ajax({
-            url: '../api/bank/' + id,
+            url: '../api/department/' + id,
             method: "GET",
             success: function(res) {
-                $("#bank_id").val(res.bank_id);
-                $("#bank_name").val(res.bank_name);
-                $("#address").val(res.address);
+                $("#department_id").val(res.department_id);
+                $("#name").val(res.name);
+                $("#d_hod").val(res.d_hod);
+                $("#cost_center").val(res.cost_center);
+                
             }
         });
     }
@@ -282,9 +292,9 @@ if ((!isset($_SESSION['user_name']))) {
     $("#btn_update").on("click", function() {
         const form = $("#frm_user");
         const json = convertFormToJSON(form);
-        var id = $("#bank_id").val();
+        var id = $("#department_id").val();
         $.ajax({
-            url: '../api/bank/' + id,
+            url: '../api/department/' + id,
             type: 'PUT',
             data: JSON.stringify(json),
             dataType: 'json',

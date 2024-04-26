@@ -280,6 +280,7 @@ if ((!isset($_SESSION['user_name']))) {
         });
     });
 
+    
     function load_data(id) {
         $("#btn_save").hide();
         $("#btn_update").show();
@@ -296,6 +297,7 @@ if ((!isset($_SESSION['user_name']))) {
             }
         });
     }
+
 
     $("#btn_update").on("click", function() {
         const form = $("#frm_user");
