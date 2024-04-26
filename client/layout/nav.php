@@ -154,7 +154,7 @@ function getActive($amenu, $tmenu)
                     </a>
                 </li>
                 <li>
-                    <a href="supplier.php" class="top-menu">
+                    <a href="shift.php" class="top-menu">
                         <div class="top-menu__icon"> <i data-lucide="edit"></i> </div>
                         <div class="top-menu__title"> Shift</div>
                     </a>

@@ -209,7 +209,7 @@ $app->group("$base/state", function (Group $group) {
 
     $group->get("/{id}", function (Request $request, Response $response, array $args) {
         try {
-            $bank_id = $args['id'];
+            $state_id = $args['id'];
 
             $conn = new DB;
             $conn = $conn->connect();
@@ -274,7 +274,7 @@ $app->group("$base/state", function (Group $group) {
             $conn = new DB;
             $conn = $conn->connect();
 
-            $sql = "UPDATE state SET state_name=:state_name, country_name=:country_name, code=:code, gst_code=:gst_code, updated_at=NOW() WHERE state_id=:state_id";
+            $sql = "UPDATE state SET state_name=:state_name, country_name=:country_name, code=:code, gst_code=:gst_code WHERE state_id=:state_id";
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(':state_id', $parameters['state_id']);
             $stmt->bindParam(':state_name', $parameters['state_name']);
@@ -361,7 +361,7 @@ $app->group("$base/registration", function (Group $group) {
 
     $group->get("/{id}", function (Request $request, Response $response, array $args) {
         try {
-            $vreg_id = $args['id'];
+            $registration_id = $args['id'];
 
             $conn = new DB;
             $conn = $conn->connect();
@@ -426,7 +426,7 @@ $app->group("$base/registration", function (Group $group) {
             $conn = new DB;
             $conn = $conn->connect();
 
-            $sql = "UPDATE vendor_reg SET vendor_type=:vendor_type, documents=:documents, qms=:qms,  updated_at=NOW() WHERE vreg_id=:vreg_id";
+            $sql = "UPDATE vendor_reg SET vendor_type=:vendor_type, documents=:documents, qms=:qms WHERE vreg_id=:vreg_id";
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(':vreg_id', $parameters['vreg_id']);
             $stmt->bindParam(':vendor_type', $parameters['vendor_type']);
@@ -512,7 +512,7 @@ $app->group("$base/department", function (Group $group) {
 
     $group->get("/{id}", function (Request $request, Response $response, array $args) {
         try {
-            $vreg_id = $args['id'];
+            $department_id = $args['id'];
 
             $conn = new DB;
             $conn = $conn->connect();
@@ -577,7 +577,7 @@ $app->group("$base/department", function (Group $group) {
             $conn = new DB;
             $conn = $conn->connect();
 
-            $sql = "UPDATE department SET name=:name, d_hod=:d_hod, cost_center=:cost_center,  updated_at=NOW() WHERE department_id=:department_id";
+            $sql = "UPDATE department SET name=:name, d_hod=:d_hod, cost_center=:cost_center WHERE department_id=:department_id";
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(':department_id', $parameters['department_id']);
             $stmt->bindParam(':name', $parameters['name']);
@@ -664,7 +664,7 @@ $app->group("$base/process", function (Group $group) {
 
     $group->get("/{id}", function (Request $request, Response $response, array $args) {
         try {
-            $bank_id = $args['id'];
+            $process_id = $args['id'];
 
             $conn = new DB;
             $conn = $conn->connect();
@@ -727,7 +727,7 @@ $app->group("$base/process", function (Group $group) {
             $conn = new DB;
             $conn = $conn->connect();
 
-            $sql = "UPDATE process SET p_name=:p_name, short_name=:short_name, updated_at=NOW() WHERE process_id=:process_id";
+            $sql = "UPDATE process SET p_name=:p_name, short_name=:short_name WHERE process_id=:process_id";
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(':process_id', $parameters['process_id']);
             $stmt->bindParam(':p_name', $parameters['p_name']);

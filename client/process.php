@@ -273,7 +273,7 @@ if ((!isset($_SESSION['user_name']))) {
             method: "GET",
             success: function(res) {
                 $("#process_id").val(res.process_id);
-                $("#name").val(res.name);
+                $("#p_name").val(res.p_name);
                 $("#short_name").val(res.short_name);
             }
         });
