@@ -42,6 +42,12 @@ function getActive($amenu, $tmenu)
 .sub-submenu li:hover {
     background-color: #f0f0f0;
 }
+.parent-container {
+    display: flex;
+    justify-content: center; /* Horizontally center the child elements */
+    align-items: center; /* Vertically center the child elements */
+    /* Add any other styling you need for the parent container */
+}
 
 </style>
 
@@ -136,7 +142,7 @@ function getActive($amenu, $tmenu)
                     </a>
                 </li>
                 <li>
-                    <a href="supplier.php" class="top-menu">
+                    <a href="process.php" class="top-menu">
                         <div class="top-menu__icon"> <i data-lucide="edit"></i> </div>
                         <div class="top-menu__title"> Process</div>
                     </a>
@@ -169,6 +175,49 @@ function getActive($amenu, $tmenu)
                     <a href="supplier.php" class="top-menu">
                         <div class="top-menu__icon"> <i data-lucide="edit"></i> </div>
                         <div class="top-menu__title"> Stock</div>
+                    </a>
+                </li>
+            </ul>
+            <ul class="" style="margin-left:250px;">
+            <div class="parent-container">
+    <div class="top-menu__title">Report</div>
+</div>
+                <li>
+                    <a href="stockreport.php" class="top-menu">
+                        <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
+                        <div class="top-menu__title"> Party List  </div>
+                    </a>
+                </li>
+                
+                <li>
+                    
+                    <a href="sales_report.php" class="top-menu">
+                        <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
+                        <div class="top-menu__title"> Group wise Item List </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="purchase_report.php" class="top-menu">
+                        <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
+                        <div class="top-menu__title"> Vendor Item List  </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="purchase_report.php" class="top-menu">
+                        <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
+                        <div class="top-menu__title"> Production BOM  </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="purchase_report.php" class="top-menu">
+                        <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
+                        <div class="top-menu__title"> Vendor Item List  </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="purchase_report.php" class="top-menu">
+                        <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
+                        <div class="top-menu__title"> Job Contracter BOM  </div>
                     </a>
                 </li>
             </ul>

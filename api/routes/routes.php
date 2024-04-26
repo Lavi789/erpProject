@@ -282,8 +282,7 @@ $app->group("$base/state", function (Group $group) {
             $stmt->bindParam(':code', $parameters['code']);
             $stmt->bindParam(':gst_code', $parameters['gst_code']);
             $stmt->execute();
-            $stmt->execute();
-            $stmt->execute();
+           
 
             $msg = ($stmt->rowCount() > 0) ? "Success" : "No Update";
             $conn = null;
@@ -435,9 +434,7 @@ $app->group("$base/registration", function (Group $group) {
             $stmt->bindParam(':qms', $parameters['qms']);
            
             $stmt->execute();
-            $stmt->execute();
-            $stmt->execute();
-
+            
             $msg = ($stmt->rowCount() > 0) ? "Success" : "No Update";
             $conn = null;
 
@@ -588,9 +585,7 @@ $app->group("$base/department", function (Group $group) {
             $stmt->bindParam(':cost_center', $parameters['cost_center']);
            
             $stmt->execute();
-            $stmt->execute();
-            $stmt->execute();
-
+           
             $msg = ($stmt->rowCount() > 0) ? "Success" : "No Update";
             $conn = null;
 
@@ -637,6 +632,154 @@ $app->group("$base/department", function (Group $group) {
 });
 /*
     END: REST API for department
+*/
+
+
+/*
+    BEIGN: REST API for process
+*/
+$app->group("$base/process", function (Group $group) {
+    $group->get("", function (Request $request, Response $response) {
+        try {
+            $conn = new DB;
+            $conn = $conn->connect();
+
+            $sql = "SELECT * FROM process";
+            $stmt = $conn->query($sql);
+            $data = $stmt->fetchAll(PDO::FETCH_OBJ);
+            $conn = null;
+
+            $status = 200;
+        } catch (PDOException $e) {
+            $data = array("status" => "Error", "msg" => $e->getMessage());
+            $status = 400;
+        }
+
+        $output = json_encode($data);
+
+        $response->getBody()->write($output);
+        return $response->withHeader('Content-type', 'application/json')
+            ->withStatus($status);
+    });
+
+    $group->get("/{id}", function (Request $request, Response $response, array $args) {
+        try {
+            $bank_id = $args['id'];
+
+            $conn = new DB;
+            $conn = $conn->connect();
+
+            $sql = "SELECT * FROM process WHERE process_id=:process_id";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':process_id', $process_id);
+            $stmt->execute();
+            $data = $stmt->fetch(PDO::FETCH_OBJ);
+
+            $conn = null;
+
+            $status = 200;
+        } catch (PDOException $e) {
+            $data = array("status" => "Error", "msg" => $e->getMessage());
+            $status = 400;
+        }
+
+        $output = json_encode($data);
+
+        $response->getBody()->write($output);
+        return $response->withHeader('Content-type', 'application/json')
+            ->withStatus($status);
+    });
+
+    $group->post("", function (Request $request, Response $response) {
+        try {
+            $parameters = $request->getParsedBody();
+
+            $conn = new DB;
+            $conn = $conn->connect();
+
+            $sql = "INSERT INTO process (p_name, short_name) VALUES (:p_name, :short_name)";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':p_name', $parameters['p_name']);
+            $stmt->bindParam(':short_name', $parameters['short_name']);
+            $stmt->execute();
+
+            $msg = ($stmt->rowCount() > 0) ? "Success" : "No Update";
+            $conn = null;
+
+            $status = 200;
+            $data = array("status" => "Ok", "msg" => $msg, "item" => $parameters);
+        } catch (PDOException $e) {
+            $data = array("status" => "Error", "msg" => $e->getMessage(), "item" => $parameters);
+            $status = 400;
+        }
+
+        $output = json_encode($data);
+
+        $response->getBody()->write($output);
+        return $response->withHeader('Content-type', 'application/json')
+            ->withStatus($status);
+    });
+
+    $group->put("/{id}", function (Request $request, Response $response, array $args) {
+        try {
+            $parameters = $request->getParsedBody();
+
+            $conn = new DB;
+            $conn = $conn->connect();
+
+            $sql = "UPDATE process SET p_name=:p_name, short_name=:short_name, updated_at=NOW() WHERE process_id=:process_id";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':process_id', $parameters['process_id']);
+            $stmt->bindParam(':p_name', $parameters['p_name']);
+            $stmt->bindParam(':short_name', $parameters['short_name']);
+            $stmt->execute();
+
+            $msg = ($stmt->rowCount() > 0) ? "Success" : "No Update";
+            $conn = null;
+
+            $status = 200;
+            $data = array("status" => "Ok", "msg" => $msg, "item" => $parameters);
+        } catch (PDOException $e) {
+            $data = array("status" => "Error", "msg" => $e->getMessage(), "item" => $parameters);
+            $status = 400;
+        }
+
+        $output = json_encode($data);
+
+        $response->getBody()->write($output);
+        return $response->withHeader('Content-type', 'application/json')
+            ->withStatus($status);
+    });
+
+    $group->delete("/{id}", function (Request $request, Response $response, array $args) {
+        try {
+            $conn = new DB;
+            $conn = $conn->connect();
+
+            $sql = "DELETE FROM process WHERE process_id=:process_id";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':process_id', $args['id']);
+            $stmt->execute();
+
+            $msg = ($stmt->rowCount() > 0) ? "Success" : "No Update";
+            $conn = null;
+
+            $status = 200;
+            $data = array("status" => "Ok", "msg" => $msg);
+        } catch (PDOException $e) {
+            $data = array("status" => "Error", "msg" => $e->getMessage());
+            $status = 400;
+        }
+
+        $output = json_encode($data);
+
+        $response->getBody()->write($output);
+        return $response->withHeader('Content-type', 'application/json')
+            ->withStatus($status);
+    });
+});
+/*
+    END: REST API for process
 */
 
 
