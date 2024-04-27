@@ -15,7 +15,7 @@ if ((!isset($_SESSION['user_name']))) {
     <meta charset="utf-8">
     <link href="dist/images/hindalco.png" rel="shortcut icon">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Hindalco</title>
+    <title>ERP</title>
     <!-- BEGIN: CSS Assets-->
     <link rel="stylesheet" href="dist/css/app.css" />
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.css" />
@@ -40,7 +40,7 @@ if ((!isset($_SESSION['user_name']))) {
 
     <!-- BEGIN: Top Bar -->
     <?php
-    $currentPage = 'Shift';
+    $currentPage = 'Bank';
     include 'layout/top.php'
     ?>
     <!-- END: Top Bar -->
@@ -57,14 +57,14 @@ if ((!isset($_SESSION['user_name']))) {
         <!-- BEGIN: Title -->
         <div class="intro-y flex items-center h-10 mt-8 mb-5">
             <h2 class="text-lg font-medium truncate mr-5">
-                Shift
+                Machine
             </h2>
             <a href="" class="ml-auto flex items-center text-primary"> <i data-lucide="refresh-ccw" class="w-4 h-4 mr-3"></i> Reload Data </a>
         </div>
         <!-- BEGIN: Title -->
 
         <!-- BEGIN: Add Button -->
-        <button class="btn btn-primary shadow-md mr-2" onclick="add_data()" data-tw-toggle="modal" data-tw-target="#header-footer-modal-preview-view">Add Shift</button>
+        <button class="btn btn-primary shadow-md mr-2" onclick="add_data()" data-tw-toggle="modal" data-tw-target="#header-footer-modal-preview-view">Add Macine</button>
         <!-- END: Add Button -->
 
         <!-- BEGIN: Responsive Table -->
@@ -77,11 +77,8 @@ if ((!isset($_SESSION['user_name']))) {
                                 <tr>
                                     <th>ID</th>
                                     <th>Sl No.</th>
-                                    <th>Shift</th>
-                                    <!-- <th>IN-TIME</th>
-                                    <th>OUT-TIME</th>
-                                    <th>DEDUCTION</th>
-                                    <th>GRACE</th> -->
+                                    <th>Machine Name</th>
+                                    <th>Machine No.</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -105,35 +102,51 @@ if ((!isset($_SESSION['user_name']))) {
                             <!-- BEGIN: Modal Header -->
                             <div class="modal-header">
                                 <h2 id="modal-title" class="font-medium text-base mr-auto">
-                                    SHIFR
+                                    Machine
                                 </h2>
                             </div>
                             <!-- END: Modal Header -->
                             <!-- BEGIN: Modal Body -->
                             <form id="frm_user" name="frm_user" action="" method="post">
                                 <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
-                                    <input id="shift_id" name="shift_id" type="hidden" class="form-control" placeholder="SHIFT Id" readonly>
+                                    <input id="machine_id" name="machine_id" type="hidden" class="form-control" placeholder="Machine Id" readonly>
 
                                     <div class="col-span-12 sm:col-span-6">
-                                        <label for="shift" class="form-label">SHIFT</label>
-                                        <input id="shift" name="shift" type="text" class="form-control" placeholder="Shift Name">
+                                        <label for="m_name" class="form-label">Machine Name</label>
+                                        <input id="m_name" name="m_name" type="text" class="form-control" placeholder="Machine Name">
                                     </div>
                                     <div class="col-span-12 sm:col-span-6">
-                                        <label for="in_time" class="form-label">IN-TIME</label>
-                                        <input id="in_time" name="in_time" type="time" class="form-control" >
+                                        <label for="short_name" class="form-label">short</label>
+                                        <input id="short_name" name="short_name" type="text" class="form-control" placeholder="short">
                                     </div>
                                     <div class="col-span-12 sm:col-span-6">
-                                        <label for="out_time" class="form-label">OUT-TIME</label>
-                                        <input id="out_time" name="out_time" type="time" class="form-control" >
+                                        <label for="shom_nort_name" class="form-label">Machine no</label>
+                                        <input id="m_no" name="m_no" type="text" class="form-control" placeholder="Machine no">
                                     </div>
                                     <div class="col-span-12 sm:col-span-6">
-                                        <label for="deduction" class="form-label">DEDUCTION</label>
-                                        <input id="deduction" name="deduction" type="time" class="form-control" >
+                                        <label for="make" class="form-label">make</label>
+                                        <input id="make" name="make" type="text" class="form-control" placeholder="make">
                                     </div>
                                     <div class="col-span-12 sm:col-span-6">
-                                        <label for="grace" class="form-label">GRACE</label>
-                                        <input id="grace" name="grace" type="time" class="form-control" >
+                                        <label for="location" class="form-label">Location</label>
+                                        <input id="location" name="location" type="text" class="form-control" placeholder="location">
                                     </div>
+                                    
+                                    <div class="col-span-12 sm:col-span-6">
+                                        <label for="nature_work" class="form-label">Nature of work</label>
+                                        <input id="nature_work" name="nature_work" type="text" class="form-control" placeholder="nature_work">
+                                    </div>
+                                    <div class="col-span-12 sm:col-span-6">
+                                        <label for="dept_name" class="form-label">Department Name</label>
+                                        <input id="dept_name" name="dept_name" type="text" class="form-control" placeholder="departement name">
+                                    </div>
+                                    <div class="col-span-12 sm:col-span-6">
+                                        <label for="controller" class="form-label">Controller</label>
+                                        <input id="controller" name="controller" type="text" class="form-control" placeholder="Controller">
+                                    </div>
+                                    
+                                    
+                                    
                                 </div>
                             </form>
                             <!-- END: Modal Body -->
@@ -167,11 +180,11 @@ if ((!isset($_SESSION['user_name']))) {
         "searching": true,
         "serverSide": true,
         "ajax": {
-            url: "../server/ajax_shift.php",
+            url: "../server/ajax_machine.php",
             type: "POST"
         },
         "columns": [{
-                "data": "shift_id",
+                "data": "machine_id",
                 "visible": false
             },
             {
@@ -182,20 +195,11 @@ if ((!isset($_SESSION['user_name']))) {
                 "orderable": false
             },
             {
-                "data": "shift"
+                "data": "m_name"
             },
-            // {
-            //     "data": "in_time"
-            // },
-            // {
-            //     "data": "out_time"
-            // },
-            // {
-            //     "data": "deduction"
-            // },
-            // {
-            //     "data": "grace"
-            // },
+            {
+                "data": "m_no"
+            },
             {
                 "data": "action",
                 "orderable": false
@@ -225,7 +229,7 @@ if ((!isset($_SESSION['user_name']))) {
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
-                    url: '../api/shift/' + id,
+                    url: '../api/machine/' + id,
                     type: 'DELETE',
                     dataType: 'json',
                     contentType: 'application/json',
@@ -256,14 +260,14 @@ if ((!isset($_SESSION['user_name']))) {
         $("#btn_save").show();
         $("#btn_update").hide();
         $("#frm_user").trigger("reset");
-        $("#modal-title").text('Add Shift');
+        $("#modal-title").text('Add Bank');
     }
 
     $("#btn_save").on("click", function() {
         const form = $("#frm_user");
         const json = convertFormToJSON(form);
         $.ajax({
-            url: '../api/shift',
+            url: '../api/machine',
             type: 'POST',
             data: JSON.stringify(json),
             dataType: 'json',
@@ -291,17 +295,20 @@ if ((!isset($_SESSION['user_name']))) {
     function load_data(id) {
         $("#btn_save").hide();
         $("#btn_update").show();
-        $("#modal-title").text('Edit Shift');
+        $("#modal-title").text('Edit Bank');
         $.ajax({
-            url: '../api/shift/' + id,
+            url: '../api/machine/' + id,
             method: "GET",
             success: function(res) {
-                $("#shift_id").val(res.shift_id);
-                $("#shift").val(res.shift);
-                $("#in_time").val(res.in_time);
-                $("#out_time").val(res.out_time);
-                $("#deduction").val(res.deduction);
-                $("#grace").val(res.grace);
+                $("#machine_id").val(res.machine_id);
+                $("#m_name").val(res.m_name);
+                $("#short_name").val(res.short_name);
+                $("#m_no").val(res.m_no);
+                $("#make").val(res.make);
+                $("#location").val(res.location);
+                $("#nature_work").val(res.nature_work);
+                $("#dept_name").val(res.dept_name);
+                $("#controller").val(res.controller);
             }
         });
     }
@@ -309,9 +316,9 @@ if ((!isset($_SESSION['user_name']))) {
     $("#btn_update").on("click", function() {
         const form = $("#frm_user");
         const json = convertFormToJSON(form);
-        var id = $("#shift_id").val();
+        var id = $("#machine_id").val();
         $.ajax({
-            url: '../api/shift/' + id,
+            url: '../api/machine/' + id,
             type: 'PUT',
             data: JSON.stringify(json),
             dataType: 'json',

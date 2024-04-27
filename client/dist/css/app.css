@@ -10745,8 +10745,8 @@ html body{
                 display: flex;
                 align-items: center;
                 border-radius: 0.75rem;
-                padding-left: 1.25rem;
-                padding-right: 1.25rem;
+                /* padding-left: 1.25rem; */
+                /* padding-right: 1.25rem; */
                 --tw-text-opacity: 1;
                 color: rgb(var(--color-slate-600) / var(--tw-text-opacity));
             }
@@ -10853,6 +10853,7 @@ html body{
     display: flex;
     align-items: center;
     white-space: nowrap;
+    
 }
 .top-nav > ul li .top-menu .top-menu__title .top-menu__sub-icon{
     margin-left: 0.5rem;

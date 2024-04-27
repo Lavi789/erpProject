@@ -9,8 +9,15 @@ function getActive($amenu, $tmenu)
         width: 16rem;
     }
     .dropdown-submenu {
-    max-height: 200px; /* Set the maximum height of the dropdown */
-    overflow-y: auto; /* Add vertical scrollbar when content overflows */
+    max-height: 200px; 
+    overflow-y: auto; 
+}
+.top-nav > ul  {
+  padding-left:12px;
+  
+}
+.top-nav > ul li .top-menu .top-menu__title{
+    margin-left:0px;
 }
 .material-menu {
     position: relative;
@@ -53,15 +60,10 @@ function getActive($amenu, $tmenu)
 
 <nav class="top-nav">
     <ul class="dropdown-content">
-        <li>
-            <a href="index.php" class="top-menu <?php getActive($amenu, "dashboard"); ?>">
-                <div class="top-menu__icon"> <i data-lucide="home"></i> </div>
-                <div class="top-menu__title"> Dashboard <i class="top-menu__sub-icon"></i> </div>
-            </a>
-        </li>
+       
         <li>
             <a href="javascript:;" class="top-menu <?php getActive($amenu, "master"); ?>">
-                <div class="top-menu__icon"> <i data-lucide="list"></i> </div>
+                <div class="top-menu__icon"></i> </div>
                 <div class="top-menu__title"> Master <i data-lucide="chevron-down" class="top-menu__sub-icon"></i> </div>
             </a>
             <ul class="dropdown-submenu">
@@ -136,7 +138,7 @@ function getActive($amenu, $tmenu)
                     </a>
                 </li>
                 <li>
-                    <a href="supplier.php" class="top-menu">
+                    <a href="machine.php" class="top-menu">
                         <div class="top-menu__icon"> <i data-lucide="edit"></i> </div>
                         <div class="top-menu__title"> Machine </div>
                     </a>
@@ -225,8 +227,8 @@ function getActive($amenu, $tmenu)
         
         <li>
             <a href="javascript:;" class="top-menu <?php getActive($amenu, "report"); ?>">
-                <div class="top-menu__icon"> <i data-lucide="bar-chart"></i> </div>
-                <div class="top-menu__title"> Report <i data-lucide="chevron-down" class="top-menu__sub-icon"></i> </div>
+                <div class="top-menu__icon"> </div>
+                <div class="top-menu__title"> Sales <i data-lucide="chevron-down" class="top-menu__sub-icon"></i> </div>
             </a>
             <ul class="">
                 <li>
@@ -235,37 +237,163 @@ function getActive($amenu, $tmenu)
                         <div class="top-menu__title"> Party List  </div>
                     </a>
                 </li>
-                <li>
-                    <a href="sales_report.php" class="top-menu">
-                        <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
-                        <div class="top-menu__title"> Group wise Item List </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="purchase_report.php" class="top-menu">
-                        <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
-                        <div class="top-menu__title"> Vendor Item List  </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="purchase_report.php" class="top-menu">
-                        <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
-                        <div class="top-menu__title"> Production BOM  </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="purchase_report.php" class="top-menu">
-                        <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
-                        <div class="top-menu__title"> Vendor Item List  </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="purchase_report.php" class="top-menu">
-                        <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
-                        <div class="top-menu__title"> Job Contracter BOM  </div>
-                    </a>
-                </li>
+               
             </ul>
         </li>
+        <li>
+            <a href="javascript:;" class="top-menu <?php getActive($amenu, "report"); ?>">
+                <div class="top-menu__icon"> </div>
+                <div class="top-menu__title"> Purchase<i data-lucide="chevron-down" class="top-menu__sub-icon"></i> </div>
+            </a>
+            <ul class="">
+                <li>
+                    <a href="stockreport.php" class="top-menu">
+                        <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
+                        <div class="top-menu__title"> Party List  </div>
+                    </a>
+                </li>
+               
+            </ul>
+        </li>
+        <li>
+            <a href="javascript:;" class="top-menu <?php getActive($amenu, "report"); ?>">
+                <div class="top-menu__icon"> </div>
+                <div class="top-menu__title"> Material <i data-lucide="chevron-down" class="top-menu__sub-icon"></i> </div>
+            </a>
+            <ul class="">
+                <li>
+                    <a href="stockreport.php" class="top-menu">
+                        <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
+                        <div class="top-menu__title"> Party List  </div>
+                    </a>
+                </li>
+                
+               
+            </ul>
+        </li>
+        <li>
+            <a href="javascript:;" class="top-menu <?php getActive($amenu, "report"); ?>">
+                <div class="top-menu__icon"> </div>
+                <div class="top-menu__title"> Excise <i data-lucide="chevron-down" class="top-menu__sub-icon"></i> </div>
+            </a>
+            <ul class="">
+                <li>
+                    <a href="stockreport.php" class="top-menu">
+                        <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
+                        <div class="top-menu__title"> Party List  </div>
+                    </a>
+                </li>
+               
+            </ul>
+        </li>
+        <li>
+            <a href="javascript:;" class="top-menu <?php getActive($amenu, "report"); ?>">
+                <div class="top-menu__icon"> </div>
+                <div class="top-menu__title"> Hr&Payroll <i data-lucide="chevron-down" class="top-menu__sub-icon"></i> </div>
+            </a>
+            <ul class="">
+                <li>
+                    <a href="stockreport.php" class="top-menu">
+                        <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
+                        <div class="top-menu__title"> Party List  </div>
+                    </a>
+                </li>
+               
+            </ul>
+        </li>
+        <li>
+            <a href="javascript:;" class="top-menu <?php getActive($amenu, "report"); ?>">
+                <div class="top-menu__icon"> </div>
+                <div class="top-menu__title"> Acct&Finance <i data-lucide="chevron-down" class="top-menu__sub-icon"></i> </div>
+            </a>
+            <ul class="">
+                <li>
+                    <a href="stockreport.php" class="top-menu">
+                        <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
+                        <div class="top-menu__title"> Party List  </div>
+                    </a>
+                </li>
+               
+            </ul>
+        </li>
+        <li>
+            <a href="javascript:;" class="top-menu <?php getActive($amenu, "report"); ?>">
+                <div class="top-menu__icon"> </div>
+                <div class="top-menu__title"> Production <i data-lucide="chevron-down" class="top-menu__sub-icon"></i> </div>
+            </a>
+            <ul class="">
+                <li>
+                    <a href="stockreport.php" class="top-menu">
+                        <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
+                        <div class="top-menu__title"> Party List  </div>
+                    </a>
+                </li>
+               
+            </ul>
+        </li>
+        <li>
+            <a href="javascript:;" class="top-menu <?php getActive($amenu, "report"); ?>">
+                <div class="top-menu__icon"> </div>
+                <div class="top-menu__title"> Quality <i data-lucide="chevron-down" class="top-menu__sub-icon"></i> </div>
+            </a>
+            <ul class="">
+                <li>
+                    <a href="stockreport.php" class="top-menu">
+                        <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
+                        <div class="top-menu__title"> Party List  </div>
+                    </a>
+                </li>
+               
+            </ul>
+        </li>
+        <li>
+            <a href="javascript:;" class="top-menu <?php getActive($amenu, "report"); ?>">
+                <div class="top-menu__icon"> </div>
+                <div class="top-menu__title"> MIS <i data-lucide="chevron-down" class="top-menu__sub-icon"></i> </div>
+            </a>
+            <ul class="">
+                <li>
+                    <a href="stockreport.php" class="top-menu">
+                        <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
+                        <div class="top-menu__title"> Party List  </div>
+                    </a>
+                </li>
+</ul>
+</li>
+<li>
+            <a href="javascript:;" class="top-menu <?php getActive($amenu, "report"); ?>">
+                <div class="top-menu__icon"> </div>
+                <div class="top-menu__title"> Administration<i data-lucide="chevron-down" class="top-menu__sub-icon"></i> </div>
+            </a>
+            <ul class="">
+                <li>
+                    <a href="stockreport.php" class="top-menu">
+                        <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
+                        <div class="top-menu__title"> Party List  </div>
+                    </a>
+                </li>
+                
+               
+            </ul>
+        
+               
+            
+        </li>
+        <li>
+            <a href="javascript:;" class="top-menu <?php getActive($amenu, "report"); ?>">
+                <div class="top-menu__icon">  </div>
+                <div class="top-menu__title"> Skyla<i data-lucide="chevron-down" class="top-menu__sub-icon"></i> </div>
+            </a>
+            <ul class="">
+                <li>
+                    <a href="stockreport.php" class="top-menu">
+                        <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
+                        <div class="top-menu__title"> Party List  </div>
+                    </a>
+                </li>
+               
+            </ul>
+        </li>
+        
     </ul>
 </nav>
