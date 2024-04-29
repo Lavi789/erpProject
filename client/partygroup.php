@@ -77,8 +77,8 @@ if ((!isset($_SESSION['user_name']))) {
                                 <tr>
                                     <th>ID</th>
                                     <th>Sl No.</th>
-                                    <th>Bank Name</th>
-                                    <th>Address</th>
+                                    <th>Party Name</th>
+                                    
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -102,23 +102,20 @@ if ((!isset($_SESSION['user_name']))) {
                             <!-- BEGIN: Modal Header -->
                             <div class="modal-header">
                                 <h2 id="modal-title" class="font-medium text-base mr-auto">
-                                    Bank
+                                    Party Group
                                 </h2>
                             </div>
                             <!-- END: Modal Header -->
                             <!-- BEGIN: Modal Body -->
                             <form id="frm_user" name="frm_user" action="" method="post">
                                 <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
-                                    <input id="bank_id" name="bank_id" type="hidden" class="form-control" placeholder="Bank Id" readonly>
+                                    <input id="partyg_id" name="partyg_id" type="hidden" class="form-control" placeholder="Party group Id" readonly>
 
                                     <div class="col-span-12 sm:col-span-6">
-                                        <label for="bank_name" class="form-label">Bank Name</label>
-                                        <input id="bank_name" name="bank_name" type="text" class="form-control" placeholder="Bank Name">
+                                        <label for="partyg_name" class="form-label">Party group </label>
+                                        <input id="partyg_name" name="partyg_name" type="text" class="form-control" placeholder="Party">
                                     </div>
-                                    <div class="col-span-12 sm:col-span-6">
-                                        <label for="address" class="form-label">Address</label>
-                                        <input id="address" name="address" type="text" class="form-control" placeholder="Address">
-                                    </div>
+                                   
                                 </div>
                             </form>
                             <!-- END: Modal Body -->
@@ -152,11 +149,11 @@ if ((!isset($_SESSION['user_name']))) {
         "searching": true,
         "serverSide": true,
         "ajax": {
-            url: "../server/ajax_bank.php",
+            url: "../server/ajax_partygroup.php",
             type: "POST"
         },
         "columns": [{
-                "data": "bank_id",
+                "data": "partyg_id",
                 "visible": false
             },
             {
@@ -167,11 +164,9 @@ if ((!isset($_SESSION['user_name']))) {
                 "orderable": false
             },
             {
-                "data": "bank_name"
+                "data": "partyg_name"
             },
-            {
-                "data": "address"
-            },
+           
             {
                 "data": "action",
                 "orderable": false
@@ -201,7 +196,7 @@ if ((!isset($_SESSION['user_name']))) {
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
-                    url: '../api/bank/' + id,
+                    url: '../api/partygroup/' + id,
                     type: 'DELETE',
                     dataType: 'json',
                     contentType: 'application/json',
@@ -239,7 +234,7 @@ if ((!isset($_SESSION['user_name']))) {
         const form = $("#frm_user");
         const json = convertFormToJSON(form);
         $.ajax({
-            url: '../api/bank',
+            url: '../api/partygroup',
             type: 'POST',
             data: JSON.stringify(json),
             dataType: 'json',
@@ -269,12 +264,12 @@ if ((!isset($_SESSION['user_name']))) {
         $("#btn_update").show();
         $("#modal-title").text('Edit Bank');
         $.ajax({
-            url: '../api/bank/' + id,
+            url: '../api/partygroup/' + id,
             method: "GET",
             success: function(res) {
-                $("#bank_id").val(res.bank_id);
-                $("#bank_name").val(res.bank_name);
-                $("#address").val(res.address);
+                $("#partyg_id").val(res.partyg_id);
+                $("#partyg_name").val(res.partyg_name);
+               
             }
         });
     }
@@ -282,9 +277,9 @@ if ((!isset($_SESSION['user_name']))) {
     $("#btn_update").on("click", function() {
         const form = $("#frm_user");
         const json = convertFormToJSON(form);
-        var id = $("#bank_id").val();
+        var id = $("#partyg_id").val();
         $.ajax({
-            url: '../api/bank/' + id,
+            url: '../api/partygroup/' + id,
             type: 'PUT',
             data: JSON.stringify(json),
             dataType: 'json',
