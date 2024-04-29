@@ -98,7 +98,7 @@ function getActive($amenu, $tmenu)
                         <div class="top-menu__title"> Vendor </div>
                     </a>
                     <ul class="sub-submenu">
-                      <li><a href="#"> Party Group</a></li>
+                      <li><a href="partygroup.php"> Party Group</a></li>
                       <li><a href="#">Party</a></li>
                       <li><a href="registration.php">Vendor Registration</a></li>
                       </ul>
