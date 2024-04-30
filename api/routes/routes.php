@@ -1395,4 +1395,156 @@ $app->group("$base/partygroup", function (Group $group) {
     END: REST API for currency
 */
 
+/*
+    BEIGN: REST API for COUNTRY
+*/
+$app->group("$base/country", function (Group $group) {
+    $group->get("", function (Request $request, Response $response) {
+        try {
+            $conn = new DB;
+            $conn = $conn->connect();
+
+            $sql = "SELECT * FROM country";
+            $stmt = $conn->query($sql);
+            $data = $stmt->fetchAll(PDO::FETCH_OBJ);
+            $conn = null;
+
+            $status = 200;
+        } catch (PDOException $e) {
+            $data = array("status" => "Error", "msg" => $e->getMessage());
+            $status = 400;
+        }
+
+        $output = json_encode($data);
+
+        $response->getBody()->write($output);
+        return $response->withHeader('Content-type', 'application/json')
+            ->withStatus($status);
+    });
+
+    $group->get("/{id}", function (Request $request, Response $response, array $args) {
+        try {
+            $country_id = $args['id'];
+
+            $conn = new DB;
+            $conn = $conn->connect();
+
+            $sql = "SELECT * FROM country WHERE country_id=:country_id";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':country_id', $country_id);
+            $stmt->execute();
+            $data = $stmt->fetch(PDO::FETCH_OBJ);
+
+            $conn = null;
+
+            $status = 200;
+        } catch (PDOException $e) {
+            $data = array("status" => "Error", "msg" => $e->getMessage());
+            $status = 400;
+        }
+
+        $output = json_encode($data);
+
+        $response->getBody()->write($output);
+        return $response->withHeader('Content-type', 'application/json')
+            ->withStatus($status);
+    });
+
+    $group->post("", function (Request $request, Response $response) {
+        try {
+            $parameters = $request->getParsedBody();
+
+            $conn = new DB;
+            $conn = $conn->connect();
+
+            $sql = "INSERT INTO country (name, country,country_code,gst_code) VALUES (:name, :country, :code, :gst_code)";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':name', $parameters['name']);
+            $stmt->bindParam(':country', $parameters['country']);
+            $stmt->bindParam(':code', $parameters['code']);
+            $stmt->bindParam(':gst_code', $parameters['gst_code']);
+            $stmt->execute();
+
+            $msg = ($stmt->rowCount() > 0) ? "Success" : "No Update";
+            $conn = null;
+
+            $status = 200;
+            $data = array("status" => "Ok", "msg" => $msg, "item" => $parameters);
+        } catch (PDOException $e) {
+            $data = array("status" => "Error", "msg" => $e->getMessage(), "item" => $parameters);
+            $status = 400;
+        }
+
+        $output = json_encode($data);
+
+        $response->getBody()->write($output);
+        return $response->withHeader('Content-type', 'application/json')
+            ->withStatus($status);
+    });
+
+    $group->put("/{id}", function (Request $request, Response $response, array $args) {
+        try {
+            $parameters = $request->getParsedBody();
+
+            $conn = new DB;
+            $conn = $conn->connect();
+
+            $sql = "UPDATE country SET name=:name, country=:country, country_code=:code, gst_code=:gst_code WHERE country_id=:country_id";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':country_id', $parameters['country_id']);
+            $stmt->bindParam(':name', $parameters['name']);
+            $stmt->bindParam(':country', $parameters['country']);
+            $stmt->bindParam(':code', $parameters['code']);
+            $stmt->bindParam(':gst_code', $parameters['gst_code']);
+            $stmt->execute();
+           
+
+            $msg = ($stmt->rowCount() > 0) ? "Success" : "No Update";
+            $conn = null;
+
+            $status = 200;
+            $data = array("status" => "Ok", "msg" => $msg, "item" => $parameters);
+        } catch (PDOException $e) {
+            $data = array("status" => "Error", "msg" => $e->getMessage(), "item" => $parameters);
+            $status = 400;
+        }
+
+        $output = json_encode($data);
+
+        $response->getBody()->write($output);
+        return $response->withHeader('Content-type', 'application/json')
+            ->withStatus($status);
+    });
+
+    $group->delete("/{id}", function (Request $request, Response $response, array $args) {
+        try {
+            $conn = new DB;
+            $conn = $conn->connect();
+
+            $sql = "DELETE FROM country WHERE country_id=:country_id";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':country_id', $args['id']);
+            $stmt->execute();
+
+            $msg = ($stmt->rowCount() > 0) ? "Success" : "No Update";
+            $conn = null;
+
+            $status = 200;
+            $data = array("status" => "Ok", "msg" => $msg);
+        } catch (PDOException $e) {
+            $data = array("status" => "Error", "msg" => $e->getMessage());
+            $status = 400;
+        }
+
+        $output = json_encode($data);
+
+        $response->getBody()->write($output);
+        return $response->withHeader('Content-type', 'application/json')
+            ->withStatus($status);
+    });
+});
+/*
+    END: REST API for state
+*/
+
 
