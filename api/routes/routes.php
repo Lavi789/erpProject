@@ -1457,12 +1457,11 @@ $app->group("$base/country", function (Group $group) {
             $conn = new DB;
             $conn = $conn->connect();
 
-            $sql = "INSERT INTO country (name, country,country_code,gst_code) VALUES (:name, :country, :code, :gst_code)";
+            $sql = "INSERT INTO country (name, currency) VALUES (:name, :currency)";
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(':name', $parameters['name']);
-            $stmt->bindParam(':country', $parameters['country']);
-            $stmt->bindParam(':code', $parameters['code']);
-            $stmt->bindParam(':gst_code', $parameters['gst_code']);
+            $stmt->bindParam(':currency', $parameters['currency']);
+           
             $stmt->execute();
 
             $msg = ($stmt->rowCount() > 0) ? "Success" : "No Update";
@@ -1489,13 +1488,12 @@ $app->group("$base/country", function (Group $group) {
             $conn = new DB;
             $conn = $conn->connect();
 
-            $sql = "UPDATE country SET name=:name, country=:country, country_code=:code, gst_code=:gst_code WHERE country_id=:country_id";
+            $sql = "UPDATE country SET name=:name, currency=:currency WHERE country_id=:country_id";
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(':country_id', $parameters['country_id']);
             $stmt->bindParam(':name', $parameters['name']);
-            $stmt->bindParam(':country', $parameters['country']);
-            $stmt->bindParam(':code', $parameters['code']);
-            $stmt->bindParam(':gst_code', $parameters['gst_code']);
+            $stmt->bindParam(':currency', $parameters['currency']);
+            
             $stmt->execute();
            
 

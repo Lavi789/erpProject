@@ -78,9 +78,7 @@ if ((!isset($_SESSION['user_name']))) {
                                     <th>ID</th>
                                     <th>SL NO</th>
                                     <th> Name</th>
-                                    <th>Country </th>
-                                    <th>Code</th>
-                                    <th>GST CODE</th>
+                                    <th>Currency </th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -118,17 +116,10 @@ if ((!isset($_SESSION['user_name']))) {
                                         <input id="name" name="name" type="text" class="form-control" placeholder="country Name">
                                     </div>
                                     <div class="col-span-12 sm:col-span-6">
-                                        <label for="country" class="form-label">Country</label>
-                                        <input id="country" name="country" type="text" class="form-control" placeholder="Country">
+                                        <label for="currency" class="form-label">Currency</label>
+                                        <input id="currency" name="currency" type="text" class="form-control" placeholder="Currency">
                                     </div>
-                                    <div class="col-span-12 sm:col-span-6">
-                                        <label for="code" class="form-label">Code</label>
-                                        <input id="code" name="code" type="text" class="form-control" placeholder="Code">
-                                    </div>
-                                    <div class="col-span-12 sm:col-span-6">
-                                        <label for="gst_code" class="form-label">GST Code</label>
-                                        <input id="gst_code" name="gst_code" type="text" class="form-control" placeholder="Gst_Code">
-                                    </div>
+                                   
                                 </div>
                             </form>
                             <!-- END: Modal Body -->
@@ -181,14 +172,9 @@ if ((!isset($_SESSION['user_name']))) {
             },
             
             {
-                "data": "country"
+                "data": "currency"
             },
-            {
-                "data": "country_code"
-            },
-            {
-                "data": "gst_code"
-            },
+            
             {
                 "data": "action",
                 "orderable": false
@@ -292,9 +278,8 @@ if ((!isset($_SESSION['user_name']))) {
             success: function(res) {
                 $("#country_id").val(res.country_id);
                 $("#name").val(res.name);
-                $("#country").val(res.name);
-                $("#code").val(res.country_code);
-                $("#gst_code").val(res.gst_code);
+                $("#currency").val(res.currency);
+                
             }
         });
     }

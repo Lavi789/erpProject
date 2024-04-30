@@ -4,10 +4,8 @@ $columns = array(
     0 => 'country_id',
     1 => 'sl_no',
     2 => 'name',
-    3 => 'country',
-    4=> 'country_code',
-    5=> 'gst_code',
-    6=> 'action'
+    3 => 'currency',
+    4=> 'action'
 );
 
 try {
@@ -52,9 +50,7 @@ foreach ($result as $row) {
 
     $object->country_id    = $id;
     $object->name  = $row['name'];
-    $object->country  = $row['country'];
-    $object->country_code  = $row['country_code'];
-    $object->gst_code  = $row['gst_code'];
+    $object->currency  = $row['currency'];
     $object->action     = $action;
 
     array_push($objArr, $object);
