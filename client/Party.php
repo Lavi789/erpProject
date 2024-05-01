@@ -173,8 +173,8 @@ if ((!isset($_SESSION['user_name']))) {
                                         <input id="distance" name="distance" type="text" class="form-control" placeholder="DISTANCE">
                                     </div>
                                     <div class="col-span-12 sm:col-span-6">
-                                        <label for="type" class="form-label">type</label>
-                                        <input id="type" name="type" type="text" class="form-control" placeholder="type">
+                                        <label for="p_type" class="form-label">p_type</label>
+                                        <input id="p_type" name="p_type" type="text" class="form-control" placeholder="type">
                                     </div>
                                     <div class="col-span-12 sm:col-span-6">
                                         <label for="bank_name" class="form-label">Bank</label>
@@ -391,7 +391,7 @@ if ((!isset($_SESSION['user_name']))) {
                 $("#tds_per").val(res.tds_per);
                 $("#disc_per").val(res.disc_per);
                 $("#distance").val(res.distance);
-                $("#type").val(res.type);
+                $("#p_type").val(res.p_type);
                 $("#bank_name").val(res.bank_name);
                 $("#cheque").val(res.cheque);
                 $("#ledger").val(res.ledger);
@@ -415,7 +415,7 @@ if ((!isset($_SESSION['user_name']))) {
         const json = convertFormToJSON(form);
         var id = $("#party_id").val();
         $.ajax({
-            url: '../api/party/' + id,
+            url: '../api//' + id,
             type: 'PUT',
             data: JSON.stringify(json),
             dataType: 'json',

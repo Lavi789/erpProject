@@ -1548,13 +1548,13 @@ $app->group("$base/country", function (Group $group) {
 /*
     BEIGN: REST API for party
 */
-$app->group("$base/bank", function (Group $group) {
+$app->group("$base/party", function (Group $group) {
     $group->get("", function (Request $request, Response $response) {
         try {
             $conn = new DB;
             $conn = $conn->connect();
 
-            $sql = "SELECT * FROM bank";
+            $sql = "SELECT * FROM party";
             $stmt = $conn->query($sql);
             $data = $stmt->fetchAll(PDO::FETCH_OBJ);
             $conn = null;
@@ -1574,14 +1574,14 @@ $app->group("$base/bank", function (Group $group) {
 
     $group->get("/{id}", function (Request $request, Response $response, array $args) {
         try {
-            $bank_id = $args['id'];
+            $party_id = $args['id'];
 
             $conn = new DB;
             $conn = $conn->connect();
 
-            $sql = "SELECT * FROM bank WHERE bank_id=:bank_id";
+            $sql = "SELECT * FROM party WHERE party_id=:party_id";
             $stmt = $conn->prepare($sql);
-            $stmt->bindParam(':bank_id', $bank_id);
+            $stmt->bindParam(':party_id', $party_id);
             $stmt->execute();
             $data = $stmt->fetch(PDO::FETCH_OBJ);
 
@@ -1607,10 +1607,38 @@ $app->group("$base/bank", function (Group $group) {
             $conn = new DB;
             $conn = $conn->connect();
 
-            $sql = "INSERT INTO bank (bank_name, address) VALUES (:bank_name, :address)";
+            $sql = "INSERT INTO party (party_name, alias, partyg_name, address, pin, city_name, contact, email, division, range_at, grace_days, credit_days, tds_per, disc_per, distance, p_type, bank_name, cheque, ledger, tin_no, gstin, pan_no, service_tax_no, handling_charge, micr_code, ifsc_code, account_no, account_type) VALUES (:party_name, :alias, :partyg_name, :address, :pin, :city_name, :contact, :email, :division, :range_at, :grace_days, :credit_days,:tds_per, :disc_per, :distance , :p_type, :bank_name, :cheque, :ledger, :tin_no, :gstin, :pan_no, :service_tax_no, :handling_charge, :micr_code, :ifsc_code, :account_no, :account_type)";
             $stmt = $conn->prepare($sql);
-            $stmt->bindParam(':bank_name', $parameters['bank_name']);
+            $stmt->bindParam(':party_name', $parameters['party_name']);
+            $stmt->bindParam(':alias', $parameters['alias']);
+            $stmt->bindParam(':partyg_name', $parameters['partyg_name']);
             $stmt->bindParam(':address', $parameters['address']);
+            $stmt->bindParam(':pin', $parameters['pin']);
+            $stmt->bindParam(':city_name', $parameters['city_name']);
+            $stmt->bindParam(':contact', $parameters['contact']);
+            $stmt->bindParam(':email', $parameters['email']);
+            $stmt->bindParam(':division', $parameters['division']);
+            $stmt->bindParam(':range_at', $parameters['range_at']);
+            $stmt->bindParam(':grace_days', $parameters['grace_days']);
+            $stmt->bindParam(':credit_days', $parameters['credit_days']);
+            $stmt->bindParam(':tds_per', $parameters['tds_per']);
+            $stmt->bindParam(':disc_per', $parameters['disc_per']);
+            $stmt->bindParam(':distance', $parameters['distance']);
+            $stmt->bindParam(':p_type', $parameters['p_type']);
+            
+            $stmt->bindParam(':bank_name', $parameters['bank_name']);
+            $stmt->bindParam(':cheque', $parameters['cheque']);
+            $stmt->bindParam(':ledger', $parameters['ledger']);
+            $stmt->bindParam(':tin_no', $parameters['tin_no']);
+            $stmt->bindParam(':gstin', $parameters['gstin']);
+            $stmt->bindParam(':pan_no', $parameters['pan_no']);
+            $stmt->bindParam(':service_tax_no', $parameters['service_tax_no']);
+            $stmt->bindParam(':handling_charge', $parameters['handling_charge']);
+            $stmt->bindParam(':micr_code', $parameters['micr_code']);
+            $stmt->bindParam(':ifsc_code', $parameters['ifsc_code']);
+            $stmt->bindParam(':account_no', $parameters['account_no']);
+            $stmt->bindParam(':account_type', $parameters['account_type']);
+            
             $stmt->execute();
 
             $msg = ($stmt->rowCount() > 0) ? "Success" : "No Update";
@@ -1637,11 +1665,11 @@ $app->group("$base/bank", function (Group $group) {
             $conn = new DB;
             $conn = $conn->connect();
 
-            $sql = "UPDATE bank SET bank_name=:bank_name, address=:address, updated_at=NOW() WHERE bank_id=:bank_id";
+            $sql = "UPDATE party SET party_name=:party_name, alias=:alias,partyg_name=:partyg_name,address=:address,pin=:pin,city_name=:city_name , contact=:contact WHERE bank_id=:bank_id";
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(':bank_id', $parameters['bank_id']);
-            $stmt->bindParam(':bank_name', $parameters['bank_name']);
-            $stmt->bindParam(':address', $parameters['address']);
+            $stmt->bindParam(':party_name', $parameters['party_name']);
+            $stmt->bindParam(':alias', $parameters['alias']);
             $stmt->execute();
 
             $msg = ($stmt->rowCount() > 0) ? "Success" : "No Update";
@@ -1666,9 +1694,9 @@ $app->group("$base/bank", function (Group $group) {
             $conn = new DB;
             $conn = $conn->connect();
 
-            $sql = "DELETE FROM bank WHERE bank_id=:bank_id";
+            $sql = "DELETE FROM party WHERE party_id=:party_id";
             $stmt = $conn->prepare($sql);
-            $stmt->bindParam(':bank_id', $args['id']);
+            $stmt->bindParam(':party_id', $args['id']);
             $stmt->execute();
 
             $msg = ($stmt->rowCount() > 0) ? "Success" : "No Update";
