@@ -81,7 +81,7 @@ function getActive($amenu, $tmenu)
                     <ul class="sub-submenu">
                     <li><a href="index_country.php">Country</a></li>
                       <li><a href="state.php">State</a></li>
-                      <li><a href="district.php">Dist</a></li>
+                      <li><a href="index_district.php">Dist</a></li>
                       <li><a href="city.php">City</a></li>
                       </ul>
 
