@@ -1542,7 +1542,7 @@ $app->group("$base/country", function (Group $group) {
     });
 });
 /*
-    END: REST API for state
+    END: REST API for country
 */
 
 
