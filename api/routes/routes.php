@@ -1665,11 +1665,30 @@ $app->group("$base/party", function (Group $group) {
             $conn = new DB;
             $conn = $conn->connect();
 
-            $sql = "UPDATE party SET party_name=:party_name, alias=:alias,partyg_name=:partyg_name,address=:address,pin=:pin,city_name=:city_name , contact=:contact WHERE bank_id=:bank_id";
+            $sql = "UPDATE party SET party_name=:party_name, alias=:alias,partyg_name=:partyg_name,address=:address,pin=:pin,city_name=:city_name , contact=:contact,email=:email, division=:division, range_at=:range_at, grace_days=:grace_days, credit_days=:credit_days,tds_per=:tds_per, disc_per=:disc_per, distance=:distance, p_type=:p_type, bank_name=:bank_name, cheque=:cheque, ledger=:ledger, tin_no=:tin_no, gstin=:gstin, pan_no=:pan_no, service_tax_no=:service_tax_no, handling_charge=:handling_charge, micr_code=:micr_code, ifsc_code=:ifsc_code , account_no=:account_no, account_type=:account_type WHERE party_id=:party_id";
             $stmt = $conn->prepare($sql);
-            $stmt->bindParam(':bank_id', $parameters['bank_id']);
+            $stmt->bindParam(':party_id', $parameters['party_id']);
             $stmt->bindParam(':party_name', $parameters['party_name']);
             $stmt->bindParam(':alias', $parameters['alias']);
+            $stmt->bindParam(':partyg_name', $parameters['partyg_name']);
+            $stmt->bindParam(':address', $parameters['address']);
+            $stmt->bindParam(':pin', $parameters['pin']);
+            $stmt->bindParam(':city_name', $parameters['city_name']);
+            $stmt->bindParam(':contact', $parameters['contact']);
+            $stmt->bindParam(':email', $parameters['email']);
+            $stmt->bindParam(':division', $parameters['division']);
+            $stmt->bindParam(':range_at', $parameters['range_at']);
+            $stmt->bindParam(':grace_days', $parameters['grace_days']);
+            $stmt->bindParam(':credit_days', $parameters['credit_days']);
+            $stmt->bindParam(':tds_per', $parameters['tds_per']);
+            $stmt->bindParam(':disc_per', $parameters['disc_per']);
+            $stmt->bindParam(':pan_no', $parameters['pan_no']);
+            $stmt->bindParam(':service_tax_no', $parameters['service_tax_no']);
+            $stmt->bindParam(':handling_charge', $parameters['handling_charge']);
+            $stmt->bindParam(':micr_code', $parameters['micr_code']);
+            $stmt->bindParam(':ifsc_code', $parameters['ifsc_code']);
+            $stmt->bindParam(':account_no', $parameters['account_no']);
+            $stmt->bindParam(':account_type', $parameters['account_type']);
             $stmt->execute();
 
             $msg = ($stmt->rowCount() > 0) ? "Success" : "No Update";
