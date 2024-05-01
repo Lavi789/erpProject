@@ -216,6 +216,14 @@ if ((!isset($_SESSION['user_name']))) {
                                         <label for="ifsc_code" class="form-label">IFSC CODE</label>
                                         <input id="ifsc_code" name="ifsc_code" type="text" class="form-control" placeholder="IFSC CODE">
                                     </div>
+                                    <div class="col-span-12 sm:col-span-6">
+                                        <label for="account_no" class="form-label">Account NO</label>
+                                        <input id="account_no" name="account_no" type="text" class="form-control" placeholder="account no">
+                                    </div>
+                                    <div class="col-span-12 sm:col-span-6">
+                                        <label for="account_type" class="form-label">Account Type</label>
+                                        <input id="account_type" name="account_type" type="text" class="form-control" placeholder="account type">
+                                    </div>
                                 </div>
                             </form>
                             <!-- END: Modal Body -->
@@ -296,7 +304,7 @@ if ((!isset($_SESSION['user_name']))) {
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
-                    url: '../api/bank/' + id,
+                    url: '../api/party/' + id,
                     type: 'DELETE',
                     dataType: 'json',
                     contentType: 'application/json',
@@ -334,7 +342,7 @@ if ((!isset($_SESSION['user_name']))) {
         const form = $("#frm_user");
         const json = convertFormToJSON(form);
         $.ajax({
-            url: '../api/bank',
+            url: '../api/party',
             type: 'POST',
             data: JSON.stringify(json),
             dataType: 'json',
@@ -364,12 +372,40 @@ if ((!isset($_SESSION['user_name']))) {
         $("#btn_update").show();
         $("#modal-title").text('Edit Bank');
         $.ajax({
-            url: '../api/bank/' + id,
+            url: '../api/party/' + id,
             method: "GET",
             success: function(res) {
-                $("#bank_id").val(res.bank_id);
-                $("#bank_name").val(res.bank_name);
+                $("#party_id").val(res.party_id);
+                $("#party_name").val(res.party_name);
+                $("#alias").val(res.alias);
+                $("#partyg_name").val(res.partyg_name);
                 $("#address").val(res.address);
+                $("#pin").val(res.pin);
+                $("#city_name").val(res.city_name);
+                $("#contact").val(res.contact);
+                $("#email").val(res.email);
+                $("#division").val(res.division);
+                $("#range_at").val(res.range_at);
+                $("#grace_days").val(res.grace_days);
+                $("#credit_days").val(res.credit_days);
+                $("#tds_per").val(res.tds_per);
+                $("#disc_per").val(res.disc_per);
+                $("#distance").val(res.distance);
+                $("#type").val(res.type);
+                $("#bank_name").val(res.bank_name);
+                $("#cheque").val(res.cheque);
+                $("#ledger").val(res.ledger);
+                $("#tin_no").val(res.tin_no);
+                $("#gstin").val(res.gstin);
+                $("#pan_no").val(res.pan_no);
+                $("#service_tax_no").val(res.service_tax_no);
+                $("#handling_charge").val(res.handling_charge);
+                $("#micr_code").val(res.micr_code);
+                $("#ifsc_code").val(res.ifsc_code);
+                $("#account_no").val(res.account_no);
+                $("#account_type").val(res.account_type);
+
+
             }
         });
     }
@@ -377,9 +413,9 @@ if ((!isset($_SESSION['user_name']))) {
     $("#btn_update").on("click", function() {
         const form = $("#frm_user");
         const json = convertFormToJSON(form);
-        var id = $("#bank_id").val();
+        var id = $("#party_id").val();
         $.ajax({
-            url: '../api/bank/' + id,
+            url: '../api/party/' + id,
             type: 'PUT',
             data: JSON.stringify(json),
             dataType: 'json',
