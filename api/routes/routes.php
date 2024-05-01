@@ -1682,6 +1682,14 @@ $app->group("$base/party", function (Group $group) {
             $stmt->bindParam(':credit_days', $parameters['credit_days']);
             $stmt->bindParam(':tds_per', $parameters['tds_per']);
             $stmt->bindParam(':disc_per', $parameters['disc_per']);
+            $stmt->bindParam(':distance', $parameters['distance']);
+            $stmt->bindParam(':p_type', $parameters['p_type']);
+            $stmt->bindParam(':bank_name', $parameters['bank_name']);
+            $stmt->bindParam(':cheque', $parameters['cheque']);
+            $stmt->bindParam(':ledger', $parameters['ledger']);
+            $stmt->bindParam(':tin_no', $parameters['tin_no']);
+            $stmt->bindParam(':gstin', $parameters['gstin']);
+            
             $stmt->bindParam(':pan_no', $parameters['pan_no']);
             $stmt->bindParam(':service_tax_no', $parameters['service_tax_no']);
             $stmt->bindParam(':handling_charge', $parameters['handling_charge']);
