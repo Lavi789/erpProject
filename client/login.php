@@ -120,6 +120,8 @@ if (isset($_REQUEST['login'])) {
                         <div class="intro-x  text-center xl:text-left">
                             <button class="btn btn-primary py-3 px-4 w-full xl:w-32 xl:mr-3 align-top" name="login" value="login">Login</button>
                         </div>
+                        <div class="mb-8 py-5 text-center font-bold absolute bottom-0 leading-tight">Developed By © Sigma eSolution Private Limited, Ranchi Jharkhand</div>
+                            </div>
                     </div>
                 </div>
             </form>
