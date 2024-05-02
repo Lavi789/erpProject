@@ -185,7 +185,7 @@ function getActive($amenu, $tmenu)
     <div class="top-menu__title">Report</div>
 </div>
                 <li>
-                    <a href="stockreport.php" class="top-menu">
+                    <a href="partylistreport.php" class="top-menu">
                         <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
                         <div class="top-menu__title"> Party List  </div>
                     </a>
