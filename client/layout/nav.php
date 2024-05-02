@@ -193,7 +193,7 @@ function getActive($amenu, $tmenu)
                 
                 <li>
                     
-                    <a href="sales_report.php" class="top-menu">
+                    <a href="itemgroupreport.php" class="top-menu">
                         <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
                         <div class="top-menu__title"> Group wise Item List </div>
                     </a>
