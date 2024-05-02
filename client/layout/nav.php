@@ -121,7 +121,7 @@ function getActive($amenu, $tmenu)
                          <div class="top-menu__title"> Material</div>
                    </a>
                       <ul class="sub-submenu">
-                      <li><a href="#"> Item Group</a></li>
+                      <li><a href="itemgroup.php"> Item Group</a></li>
                       <li><a href="#">Item</a></li>
                       <li><a href="#">Make</a></li>
                       <li><a href="#">Item Wise Rate</a></li>

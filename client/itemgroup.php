@@ -57,7 +57,7 @@ if ((!isset($_SESSION['user_name']))) {
         <!-- BEGIN: Title -->
         <div class="intro-y flex items-center h-10 mt-8 mb-5">
             <h2 class="text-lg font-medium truncate mr-5">
-                Party Group
+                Item Group
             </h2>
             <a href="" class="ml-auto flex items-center text-primary"> <i data-lucide="refresh-ccw" class="w-4 h-4 mr-3"></i> Reload Data </a>
         </div>
@@ -267,8 +267,8 @@ if ((!isset($_SESSION['user_name']))) {
             url: '../api/itemgroup/' + id,
             method: "GET",
             success: function(res) {
-                $("#itemg_id").val(res.partyg_id);
-                $("#itemg_name").val(res.partyg_name);
+                $("#itemg_id").val(res.itemg_id);
+                $("#itemg_name").val(res.itemg_name);
                
             }
         });

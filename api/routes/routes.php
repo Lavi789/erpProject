@@ -1782,7 +1782,7 @@ $app->group("$base/itemgroup", function (Group $group) {
 
             $sql = "SELECT * FROM itemgroup WHERE itemg_id=:itemg_id";
             $stmt = $conn->prepare($sql);
-            $stmt->bindParam(':itemg_id', $partyg_id);
+            $stmt->bindParam(':itemg_id', $itemg_id);
             $stmt->execute();
             $data = $stmt->fetch(PDO::FETCH_OBJ);
 
