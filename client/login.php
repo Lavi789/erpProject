@@ -35,6 +35,45 @@ if (isset($_REQUEST['login'])) {
 </head>
 <!-- END: Head -->
 
+<style>
+        /* .login::after{
+            background-image:url('dist/images/payroll-system.jpg');
+
+        } */
+         .my-input-group{
+		font-size: 1rem;
+		position: relative;
+		--primary: #2196f3;
+	  }
+        .my-input{
+            all: unset;
+			 color: #333;
+            padding: 0.75rem 0.5rem;
+            border: 1px solid #9e9e9e;
+            border-radius: 5px;
+            transition: 150ms
+            cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .my-label{
+            position: absolute;
+            top: 1rem;
+			left: 1rem;
+            color: #d4d4d4;
+            pointer-events: none;
+            transition: 150ms
+            cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .my-input:focus{
+            border: 1px solid
+            var(--primary);
+        }
+        .my-input:is(:focus, :valid) ~ label{
+            transform: translateY(-130%) scale(0.7);
+            background-color: white;
+            padding-inline: 0.3rem;
+            color: var(--primary);
+        }
+    </style>
 <body class="login">
     <div class="container sm:px-10">
         <div class="block xl:grid grid-cols-2 gap-4">
@@ -55,12 +94,19 @@ if (isset($_REQUEST['login'])) {
             </div>
             <!-- END: Login Info -->
             <!-- BEGIN: Login Form -->
-            <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-                <div class="h-screen xl:h-auto flex py-5 xl:py-0 my-10 xl:my-0">
-                    <div class="my-auto mx-auto xl:ml-20 bg-white dark:bg-darkmode-600 xl:bg-transparent px-5 sm:px-8 py-8 xl:p-0 rounded-md shadow-md xl:shadow-none w-full sm:w-3/4 lg:w-2/4 xl:w-auto">
-                        <h2 class="intro-x mt-10 font-bold text-2xl xl:text-3xl text-center xl:text-left">
-                            Login
-                        </h2>
+            <form method="post">
+
+                <!-- <span class="intro-y  text-black absolute font-medium text-3xl leading-tight" style="font-family: 'Libre Baskerville', serif;"> </span> -->
+                    <div class="h-screen xl:h-auto flex xl:py-0  xl:mt-0">
+                        <div class="my-auto mx-auto xl:ml-20 bg-white dark:bg-darkmode-600 px-5 sm:px-8 py-8 xl:p-0 rounded-md shadow-md xl:shadow-none w-full sm:w-3/4 lg:w-2/4 xl:w-auto">
+                        <div class="mt-12 py-5 text-center font-bold text-3xl leading-tight" style="border-radius:100% 100% 0px 0px;font-family: 'Libre Baskerville', serif;">
+                        <!-- <img alt="" class="-intro-x w-1/2 mx-auto " src="dist/images/interlinkfoods.png"/> -->
+                    </div>
+
+                        <div class="card-body p-5 m-0" style="box-shadow:1px 5px 12px 10px rgba(184,194,230,1)">
+                            <h2 class="intro-x mb-10 font-bold text-2xl xl:text-3xl text-center text-white" style="background-color:#02082d ;">
+                                Login
+                            </h2>
                         <div class="intro-x mt-3">
                             <input type="text" class="intro-x login__input form-control py-3 px-4 block" placeholder="Email" name="email">
                             <input type="Password" class="intro-x login__input form-control py-3 px-4 block mt-4" placeholder="Password" name="password">
