@@ -223,8 +223,32 @@ if ((!isset($_SESSION['user_name']))) {
                                         <input id="posting" name="posting" type="text" class="form-control" placeholder="Posting">
                                     </div>
                                     <div class="col-span-12 sm:col-span-6">
-                                        <label for="tooling" class="form-label">Account Type</label>
+                                        <label for="tooling" class="form-label">Tooling</label>
                                         <input id="tooling" name="tooling" type="text" class="form-control" placeholder="account type">
+                                    </div>
+                                    <div class="col-span-12 sm:col-span-6">
+                                        <label for="surface_std" class="form-label">Surface_Std</label>
+                                        <input id="surface_std" name="surface_std" type="text" class="form-control" placeholder="Surface Std">
+                                    </div>
+                                    <div class="col-span-12 sm:col-span-6">
+                                        <label for="rack_no" class="form-label">Rack No</label>
+                                        <input id="rack_no" name="rack_no" type="text" class="form-control" placeholder="Rack No">
+                                    </div>
+                                    <div class="col-span-12 sm:col-span-6">
+                                        <label for="size" class="form-label">Size</label>
+                                        <input id="size" name="size" type="text" class="form-control" placeholder="Size">
+                                    </div>
+                                    <div class="col-span-12 sm:col-span-6">
+                                        <label for="category" class="form-label">category</label>
+                                        <input id="category" name="category" type="text" class="form-control" placeholder="category">
+                                    </div>
+                                    <div class="col-span-12 sm:col-span-6">
+                                        <label for="maximum_level" class="form-label">Maximum Level</label>
+                                        <input id="maximum_level" name="maximum_level" type="text" class="form-control" placeholder="Maximum Level">
+                                    </div>
+                                    <div class="col-span-12 sm:col-span-6">
+                                        <label for="production_maximum_order" class="form-label">Production Maximum Order</label>
+                                        <input id="production_maximum_order" name="production_maximum_order" type="text" class="form-control" placeholder="account type">
                                     </div>
                                 </div>
                             </form>

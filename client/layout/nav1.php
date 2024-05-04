@@ -5,21 +5,23 @@ function getActive($amenu, $tmenu)
 }
 ?>
 <style>
-<style>
     .top-nav>ul li ul {
         width: 16rem;
     }
-
-
+    .dropdown-submenu {
+    max-height: 200px; 
+    overflow-y: auto; 
+}
+/* .top-nav > ul  {
+  padding-left:20px;
+  
+} */
+.top-nav > ul li .top-menu .top-menu__title{
+    margin-left:0px;
+}
 .material-menu {
     position: relative;
 }
-.top-nav > ul li .top-menu {
-                
-                margin-right: 0.85rem;
-                margin-left: 0.85rem;
-                
-            }
 
 .material-menu .sub-submenu {
     display: none;
@@ -34,6 +36,12 @@ function getActive($amenu, $tmenu)
 .material-menu:hover .sub-submenu {
     display: block;
 }
+.top-nav > ul li .top-menu {
+                
+                margin-right: 0.85rem;
+                margin-left: 0.85rem;
+                
+            }
 
 .sub-submenu li {
     padding: 8px 15px;
@@ -65,7 +73,7 @@ function getActive($amenu, $tmenu)
             </a>
         </li>
        
-        <li>
+        <!-- <li>
             <a href="javascript:;" class="top-menu <?php getActive($amenu, "master"); ?>">
                 <div class="top-menu__icon"><i data-lucide="menu"></i> </div>
                 <div class="top-menu__title"> Master <i data-lucide="chevron-down" class="top-menu__sub-icon"></i> </div>
@@ -231,7 +239,7 @@ function getActive($amenu, $tmenu)
         
         <li>
             <a href="javascript:;" class="top-menu <?php getActive($amenu, "report"); ?>">
-                <div class="top-menu__icon"><i data-lucide="shopping-cart"></i> </div>
+                <div class="top-menu__icon"><i data-lucide="menu"></i> </div>
                 <div class="top-menu__title"> Sales <i data-lucide="chevron-down" class="top-menu__sub-icon"></i> </div>
             </a>
             <ul class="">
@@ -246,7 +254,7 @@ function getActive($amenu, $tmenu)
         </li>
         <li>
             <a href="javascript:;" class="top-menu <?php getActive($amenu, "report"); ?>">
-                <div class="top-menu__icon"><i data-lucide="shopping-bag"></i>  </div>
+                <div class="top-menu__icon"> </div>
                 <div class="top-menu__title"> Purchase<i data-lucide="chevron-down" class="top-menu__sub-icon"></i> </div>
             </a>
             <ul class="">
@@ -261,7 +269,7 @@ function getActive($amenu, $tmenu)
         </li>
         <li>
             <a href="javascript:;" class="top-menu <?php getActive($amenu, "report"); ?>">
-                <div class="top-menu__icon"><i data-lucide="briefcase"></i></div>
+                <div class="top-menu__icon"> </div>
                 <div class="top-menu__title"> Material <i data-lucide="chevron-down" class="top-menu__sub-icon"></i> </div>
             </a>
             <ul class="">
@@ -277,7 +285,7 @@ function getActive($amenu, $tmenu)
         </li>
         <li>
             <a href="javascript:;" class="top-menu <?php getActive($amenu, "report"); ?>">
-                <div class="top-menu__icon"><i data-lucide="circle"></i>  </div>
+                <div class="top-menu__icon"><i data-lucide="menu"></i>  </div>
                 <div class="top-menu__title"> Excise <i data-lucide="chevron-down" class="top-menu__sub-icon"></i> </div>
             </a>
             <ul class="">
@@ -292,7 +300,7 @@ function getActive($amenu, $tmenu)
         </li>
         <li>
             <a href="javascript:;" class="top-menu <?php getActive($amenu, "report"); ?>">
-                <div class="top-menu__icon"> <i data-lucide="box"></i> </div>
+                <div class="top-menu__icon"> <i data-lucide="menu"></i> </div>
                 <div class="top-menu__title"> Hr&Payroll <i data-lucide="chevron-down" class="top-menu__sub-icon"></i> </div>
             </a>
             <ul class="">
@@ -307,7 +315,7 @@ function getActive($amenu, $tmenu)
         </li>
         <li>
             <a href="javascript:;" class="top-menu <?php getActive($amenu, "report"); ?>">
-                <div class="top-menu__icon"> <i data-lucide="wallet"></i> </div>
+                <div class="top-menu__icon"> <i data-lucide="menu"></i> </div>
                 <div class="top-menu__title"> Acct&Finance <i data-lucide="chevron-down" class="top-menu__sub-icon"></i> </div>
             </a>
             <ul class="">
@@ -322,12 +330,20 @@ function getActive($amenu, $tmenu)
         </li>
         <li>
             <a href="index1.php" class="top-menu <?php getActive($amenu, "report"); ?>">
-                <div class="top-menu__icon"> <i data-lucide="plus"></i> </div>
-                <div class="top-menu__title"> Others  </i> </div>
+                <div class="top-menu__icon"> <i data-lucide="menu"></i> </div>
+                <div class="top-menu__title"> Others <i data-lucide="chevron-down" class="top-menu__sub-icon"></i> </div>
             </a>
-            
-        </li>
-        <!-- <li>
+            <ul class="">
+                <li>
+                    <a href="stockreport.php" class="top-menu">
+                        <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
+                        <div class="top-menu__title"> Party List  </div>
+                    </a>
+                </li>
+               
+            </ul>
+        </li> -->
+        <li>
             <a href="javascript:;" class="top-menu <?php getActive($amenu, "report"); ?>">
                 <div class="top-menu__icon"> <i data-lucide="menu"></i> </div>
                 <div class="top-menu__title"> Quality <i data-lucide="chevron-down" class="top-menu__sub-icon"></i> </div>
@@ -389,7 +405,7 @@ function getActive($amenu, $tmenu)
                 </li>
                
             </ul>
-        </li> -->
+        </li>
         
     </ul>
 </nav>
