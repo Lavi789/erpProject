@@ -139,7 +139,7 @@ function getActive($amenu, $tmenu)
                    </a>
                       <ul class="sub-submenu">
                       <li><a href="itemgroup.php"> Item Group</a></li>
-                      <li><a href="#">Item</a></li>
+                      <li><a href="item.php">Item</a></li>
                       <li><a href="#">Make</a></li>
                       <li><a href="#">Item Wise Rate</a></li>
                       <li><a href="#">Item Opening Stock</a></li>
