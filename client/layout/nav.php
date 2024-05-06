@@ -4,22 +4,29 @@ function getActive($amenu, $tmenu)
     if ($amenu == $tmenu) echo "top-menu--active";
 }
 ?>
-<style>
+
 <style>
     .top-nav>ul li ul {
-        width: 16rem;
+        width: 600px;
+        overflow-y: auto; 
     }
-
-
+    .dropdown-submenu {
+    max-height: 100px; 
+    overflow-y: auto; 
+}
+.top-nav > ul li ul li{
+    display:inline-block;
+}
+/* .top-nav > ul  {
+  padding-left:20px;
+  
+} */
+.top-nav > ul li .top-menu .top-menu__title{
+    margin-left:0px;
+}
 .material-menu {
     position: relative;
 }
-.top-nav > ul li .top-menu {
-                
-                margin-right: 0.85rem;
-                margin-left: 0.85rem;
-                
-            }
 
 .material-menu .sub-submenu {
     display: none;
@@ -34,6 +41,12 @@ function getActive($amenu, $tmenu)
 .material-menu:hover .sub-submenu {
     display: block;
 }
+.top-nav > ul li .top-menu {
+                
+                margin-right: 0.85rem;
+                margin-left: 0.85rem;
+                
+            }
 
 .sub-submenu li {
     padding: 8px 15px;
@@ -184,7 +197,7 @@ function getActive($amenu, $tmenu)
                     </a>
                 </li>
             </ul>
-            <ul class="" style="margin-left:250px;">
+            <!-- <ul class="" style="margin-left:250px;">
             <div class="parent-container">
     <div class="top-menu__title">Report</div>
 </div>
@@ -226,7 +239,7 @@ function getActive($amenu, $tmenu)
                         <div class="top-menu__title"> Job Contracter BOM  </div>
                     </a>
                 </li>
-            </ul>
+            </ul> -->
         </li>
         
         <li>
