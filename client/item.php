@@ -171,16 +171,16 @@ if ((!isset($_SESSION['user_name']))) {
                                         <input id="lead_time" name="lead_time" type="text" class="form-control" placeholder="Lead Time">
                                     </div>
                                     <div class="col-span-12 sm:col-span-6">
-                                        <label for="finished_work" class="form-label">Finished work</label>
-                                        <input id="finished_work" name="finished_work" type="text" class="form-control" placeholder="Finished work">
+                                        <label for="finished_weight" class="form-label">Finished work</label>
+                                        <input id="finished_weight" name="finished_weight" type="text" class="form-control" placeholder="Finished work">
                                     </div>
                                     <div class="col-span-12 sm:col-span-6">
                                         <label for="input_weight" class="form-label">input_weight</label>
                                         <input id="input_weight" name="input_weight" type="text" class="form-control" placeholder="Weight">
                                     </div>
                                     <div class="col-span-12 sm:col-span-6">
-                                        <label for="length" class="form-label">Length</label>
-                                        <input id="length" name="length" type="text" class="form-control" placeholder="length">
+                                        <label for="lenght" class="form-label">Length</label>
+                                        <input id="lenght" name="lenght" type="text" class="form-control" placeholder="length">
                                     </div>
                                     <div class="col-span-12 sm:col-span-6">
                                         <label for="thickness" class="form-label">Thickness</label>
@@ -247,8 +247,8 @@ if ((!isset($_SESSION['user_name']))) {
                                         <input id="maximum_level" name="maximum_level" type="text" class="form-control" placeholder="Maximum Level">
                                     </div>
                                     <div class="col-span-12 sm:col-span-6">
-                                        <label for="production_maximum_order" class="form-label">Production Maximum Order</label>
-                                        <input id="production_maximum_order" name="production_maximum_order" type="text" class="form-control" placeholder="production maximum order">
+                                        <label for="prduction_maximum_order" class="form-label">Production Maximum Order</label>
+                                        <input id="prduction_maximum_order" name="prduction_maximum_order" type="text" class="form-control" placeholder="production maximum order">
                                     </div>
                                     <div class="col-span-12 sm:col-span-6">
                                         <label for="follio_no" class="form-label">Follio No</label>
@@ -259,8 +259,12 @@ if ((!isset($_SESSION['user_name']))) {
                                         <input id="no_pcs" name="no_pcs" type="text" class="form-control" placeholder="No of pcs">
                                     </div>
                                     <div class="col-span-12 sm:col-span-6">
-                                        <label for="sheet_scrap" class="form-label">Sheet Scrap</label>
-                                        <input id="sheet_scrap" name="sheet_scrap" type="text" class="form-control" placeholder="Sheet Scrap">
+                                        <label for="sheet" class="form-label">Sheet Scrap</label>
+                                        <input id="sheet" name="sheet" type="text" class="form-control" placeholder="Sheet ">
+                                    </div>
+                                    <div class="col-span-12 sm:col-span-6">
+                                        <label for="scrap" class="form-label"> Scrap</label>
+                                        <input id="scrap" name="scrap" type="text" class="form-control" placeholder="Sheet ">
                                     </div>
                                     <div class="col-span-12 sm:col-span-6">
                                         <label for="width" class="form-label">Width</label>
@@ -461,7 +465,8 @@ if ((!isset($_SESSION['user_name']))) {
                 $("#prduction_max_level").val(res.prduction_max_level);
                 $("#follio_no").val(res.follio_no);
                 $("#no_pcs").val(res.no_pcs);
-                $("#sheet_scrap").val(res.sheet_scrap);
+                $("#sheet").val(res.sheet);
+                $("#scrap").val(res.scrap);
                 $("#width").val(res.width);
                 $("#old_part_no").val(res.old_part_no);
                 

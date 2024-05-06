@@ -1893,3 +1893,217 @@ $app->group("$base/itemgroup", function (Group $group) {
 /*
     END: REST API for Item Group
 */
+
+// *
+//     BEIGN: REST API for item
+// */
+$app->group("$base/item", function (Group $group) {
+    $group->get("", function (Request $request, Response $response) {
+        try {
+            $conn = new DB;
+            $conn = $conn->connect();
+
+            $sql = "SELECT * FROM item";
+            $stmt = $conn->query($sql);
+            $data = $stmt->fetchAll(PDO::FETCH_OBJ);
+            $conn = null;
+
+            $status = 200;
+        } catch (PDOException $e) {
+            $data = array("status" => "Error", "msg" => $e->getMessage());
+            $status = 400;
+        }
+
+        $output = json_encode($data);
+
+        $response->getBody()->write($output);
+        return $response->withHeader('Content-type', 'application/json')
+            ->withStatus($status);
+    });
+
+    $group->get("/{id}", function (Request $request, Response $response, array $args) {
+        try {
+            $item_id = $args['id'];
+
+            $conn = new DB;
+            $conn = $conn->connect();
+
+            $sql = "SELECT * FROM item WHERE item_id=:item_id";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':itme_id', $itme_id);
+            $stmt->execute();
+            $data = $stmt->fetch(PDO::FETCH_OBJ);
+
+            $conn = null;
+
+            $status = 200;
+        } catch (PDOException $e) {
+            $data = array("status" => "Error", "msg" => $e->getMessage());
+            $status = 400;
+        }
+
+        $output = json_encode($data);
+
+        $response->getBody()->write($output);
+        return $response->withHeader('Content-type', 'application/json')
+            ->withStatus($status);
+    });
+
+    $group->post("", function (Request $request, Response $response) {
+        try {
+            $parameters = $request->getParsedBody();
+
+            $conn = new DB;
+            $conn = $conn->connect();
+
+            $sql = "INSERT INTO item (item_name, itemg_name, ledger, showin_sr, source, part_no, make, packaging_std, grade, specification, min_level, p_min_order, reorder_level, lead_time, finished_weight, input_weight, lenght, thickness, revision_level, traffic_head, hsn_code, sac_code, purchase_unit, stock_unit, type, auto_quality, posting, tooling,surface_std,rack_no,size,category,max_level,prduction_max_order,follio_no,no_pcs,sheet,scrap,width,old_part_no) VALUES (:item_name, :itemg_name, :ledger, :showin_sr, :source, :part_no, :make, :packaging_std, :grade, :specification, :min_level, :p_min_order,:reorder_level, :lead_time, :finished_weight , :input_weight, :lenght, :thickness, :revision_level, :traffic_head, :hsn_code, :sac_code, :purchase_unit, :stock_unit, :type, :auto_quality, :posting, :tooling,:surface_std,:rack_no,:size,:category,:max_level,:prduction_max_order,:follio_no,:no_pcs,:sheet,:scrap,:width,:old_part_no)";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':item_name', $parameters['item_name']);
+            $stmt->bindParam(':itemg_name', $parameters['itemg_name']);
+            $stmt->bindParam(':ledger', $parameters['ledger']);
+            $stmt->bindParam(':showin_sr', $parameters['showin_sr']);
+            $stmt->bindParam(':source', $parameters['source']);
+            $stmt->bindParam(':part_no', $parameters['part_no']);
+            $stmt->bindParam(':make', $parameters['make']);
+            $stmt->bindParam(':packaging_std', $parameters['packaging_std']);
+            $stmt->bindParam(':grade', $parameters['grade']);
+            $stmt->bindParam(':specification', $parameters['specification']);
+            $stmt->bindParam(':min_level', $parameters['min_level']);
+            $stmt->bindParam(':p_min_order', $parameters['p_min_order']);
+            $stmt->bindParam(':reorder_level', $parameters['reorder_level']);
+            $stmt->bindParam(':lead_time', $parameters['lead_time']);
+            $stmt->bindParam(':finished_weight', $parameters['finished_weight']);
+            $stmt->bindParam(':input_weight', $parameters['input_weight']);
+            
+            $stmt->bindParam(':lenght', $parameters['lenght']);
+            $stmt->bindParam(':thickness', $parameters['thickness']);
+            $stmt->bindParam(':revision_level', $parameters['revision_level']);
+            $stmt->bindParam(':traffic_head', $parameters['traffic_head']);
+            $stmt->bindParam(':hsn_code', $parameters['hsn_code']);
+            $stmt->bindParam(':sac_code', $parameters['sac_code']);
+            $stmt->bindParam(':purchase_unit', $parameters['purchase_unit']);
+            $stmt->bindParam(':stock_unit', $parameters['stock_unit']);
+            $stmt->bindParam(':type', $parameters['type']);
+            $stmt->bindParam(':auto_quality', $parameters['auto_quality']);
+            $stmt->bindParam(':posting', $parameters['posting']);
+            $stmt->bindParam(':tooling', $parameters['tooling']);
+            $stmt->bindParam(':surface_std', $parameters['surface_std']);
+            $stmt->bindParam(':rack_no', $parameters['rack_no']);
+            $stmt->bindParam(':size', $parameters['size']);
+            $stmt->bindParam(':category', $parameters['category']);
+            $stmt->bindParam(':max_level', $parameters['max_level']);
+            $stmt->bindParam(':prduction_max_order', $parameters['prduction_max_order']);
+            $stmt->bindParam(':follio_no', $parameters['follio_no']);
+            $stmt->bindParam(':no_pcs', $parameters['no_pcs']);
+            $stmt->bindParam(':sheet', $parameters['sheet']);
+            $stmt->bindParam(':scrap', $parameters['scrap']);
+            $stmt->bindParam(':width', $parameters['width']);
+            $stmt->bindParam(':old_part_no', $parameters['old_part_no']);
+            
+            $stmt->execute();
+
+            $msg = ($stmt->rowCount() > 0) ? "Success" : "No Update";
+            $conn = null;
+
+            $status = 200;
+            $data = array("status" => "Ok", "msg" => $msg, "item" => $parameters);
+        } catch (PDOException $e) {
+            $data = array("status" => "Error", "msg" => $e->getMessage(), "item" => $parameters);
+            $status = 400;
+        }
+
+        $output = json_encode($data);
+
+        $response->getBody()->write($output);
+        return $response->withHeader('Content-type', 'application/json')
+            ->withStatus($status);
+    });
+
+    $group->put("/{id}", function (Request $request, Response $response, array $args) {
+        try {
+            $parameters = $request->getParsedBody();
+
+            $conn = new DB;
+            $conn = $conn->connect();
+
+            $sql = "UPDATE party SET party_name=:party_name, alias=:alias,partyg_name=:partyg_name,address=:address,pin=:pin,city_name=:city_name , contact=:contact,email=:email, division=:division, range_at=:range_at, grace_days=:grace_days, credit_days=:credit_days,tds_per=:tds_per, disc_per=:disc_per, distance=:distance, p_type=:p_type, bank_name=:bank_name, cheque=:cheque, ledger=:ledger, tin_no=:tin_no, gstin=:gstin, pan_no=:pan_no, service_tax_no=:service_tax_no, handling_charge=:handling_charge, micr_code=:micr_code, ifsc_code=:ifsc_code , account_no=:account_no, account_type=:account_type WHERE party_id=:party_id";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':party_id', $parameters['party_id']);
+            $stmt->bindParam(':party_name', $parameters['party_name']);
+            $stmt->bindParam(':alias', $parameters['alias']);
+            $stmt->bindParam(':partyg_name', $parameters['partyg_name']);
+            $stmt->bindParam(':address', $parameters['address']);
+            $stmt->bindParam(':pin', $parameters['pin']);
+            $stmt->bindParam(':city_name', $parameters['city_name']);
+            $stmt->bindParam(':contact', $parameters['contact']);
+            $stmt->bindParam(':email', $parameters['email']);
+            $stmt->bindParam(':division', $parameters['division']);
+            $stmt->bindParam(':range_at', $parameters['range_at']);
+            $stmt->bindParam(':grace_days', $parameters['grace_days']);
+            $stmt->bindParam(':credit_days', $parameters['credit_days']);
+            $stmt->bindParam(':tds_per', $parameters['tds_per']);
+            $stmt->bindParam(':disc_per', $parameters['disc_per']);
+            $stmt->bindParam(':distance', $parameters['distance']);
+            $stmt->bindParam(':p_type', $parameters['p_type']);
+            $stmt->bindParam(':bank_name', $parameters['bank_name']);
+            $stmt->bindParam(':cheque', $parameters['cheque']);
+            $stmt->bindParam(':ledger', $parameters['ledger']);
+            $stmt->bindParam(':tin_no', $parameters['tin_no']);
+            $stmt->bindParam(':gstin', $parameters['gstin']);
+            
+            $stmt->bindParam(':pan_no', $parameters['pan_no']);
+            $stmt->bindParam(':service_tax_no', $parameters['service_tax_no']);
+            $stmt->bindParam(':handling_charge', $parameters['handling_charge']);
+            $stmt->bindParam(':micr_code', $parameters['micr_code']);
+            $stmt->bindParam(':ifsc_code', $parameters['ifsc_code']);
+            $stmt->bindParam(':account_no', $parameters['account_no']);
+            $stmt->bindParam(':account_type', $parameters['account_type']);
+            $stmt->execute();
+
+            $msg = ($stmt->rowCount() > 0) ? "Success" : "No Update";
+            $conn = null;
+
+            $status = 200;
+            $data = array("status" => "Ok", "msg" => $msg, "item" => $parameters);
+        } catch (PDOException $e) {
+            $data = array("status" => "Error", "msg" => $e->getMessage(), "item" => $parameters);
+            $status = 400;
+        }
+
+        $output = json_encode($data);
+
+        $response->getBody()->write($output);
+        return $response->withHeader('Content-type', 'application/json')
+            ->withStatus($status);
+    });
+
+    $group->delete("/{id}", function (Request $request, Response $response, array $args) {
+        try {
+            $conn = new DB;
+            $conn = $conn->connect();
+
+            $sql = "DELETE FROM party WHERE party_id=:party_id";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':party_id', $args['id']);
+            $stmt->execute();
+
+            $msg = ($stmt->rowCount() > 0) ? "Success" : "No Update";
+            $conn = null;
+
+            $status = 200;
+            $data = array("status" => "Ok", "msg" => $msg);
+        } catch (PDOException $e) {
+            $data = array("status" => "Error", "msg" => $e->getMessage());
+            $status = 400;
+        }
+
+        $output = json_encode($data);
+
+        $response->getBody()->write($output);
+        return $response->withHeader('Content-type', 'application/json')
+            ->withStatus($status);
+    });
+});
+/*
+    END: REST API for item
+*/
