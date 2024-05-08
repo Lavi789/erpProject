@@ -15,7 +15,7 @@ require_once '../server/config/db.php';
 
 <head>
     <meta charset="utf-8">
-    <link href="" rel="shortcut icon">
+    <link href="dist/images/erplogo.jpg" rel="shortcut icon">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>ERP</title>
     <!-- BEGIN: CSS Assets-->

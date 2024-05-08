@@ -346,7 +346,7 @@ function getActive($amenu, $tmenu)
         <li>
             <a href="javascript:;" class="top-menu <?php getActive($amenu, "report"); ?>">
                 <div class="top-menu__icon"> <i data-lucide="menu"></i> </div>
-                <div class="top-menu__title"> Quality <i data-lucide="chevron-down" class="top-menu__sub-icon"></i> </div>
+                <div class="top-menu__title"> HRNS <i data-lucide="chevron-down" class="top-menu__sub-icon"></i> </div>
             </a>
             <ul class="">
                 <li>

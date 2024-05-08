@@ -2,7 +2,7 @@
     <div class="h-full flex items-center">
         <!-- BEGIN: Logo -->
         <a href="index.php" class="logo -intro-x hidden md:flex xl:w-[180px] block">
-            <img alt="" class="img-circle" height="50" width="50" src="">
+            <img alt="" class="img-circle" height="50" width="50" src="dist/images/erplogo.jpg">
             <span class="logo__text text-white text-lg ml-3 mt-2">ERP</span>
         </a>
         <div class="-intro-x h-[45px] ml-5 mt-5">
