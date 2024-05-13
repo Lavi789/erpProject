@@ -1893,3 +1893,309 @@ $app->group("$base/itemgroup", function (Group $group) {
 /*
     END: REST API for Item Group
 */
+
+// *
+//     BEIGN: REST API for vehicle group
+// */
+$app->group("$base/vehiclegrp", function (Group $group) {
+    $group->get("", function (Request $request, Response $response) {
+        try {
+            $conn = new DB;
+            $conn = $conn->connect();
+
+            $sql = "SELECT * FROM vehiclegrp";
+            $stmt = $conn->query($sql);
+            $data = $stmt->fetchAll(PDO::FETCH_OBJ);
+            $conn = null;
+
+            $status = 200;
+        } catch (PDOException $e) {
+            $data = array("status" => "Error", "msg" => $e->getMessage());
+            $status = 400;
+        }
+
+        $output = json_encode($data);
+
+        $response->getBody()->write($output);
+        return $response->withHeader('Content-type', 'application/json')
+            ->withStatus($status);
+    });
+
+    $group->get("/{id}", function (Request $request, Response $response, array $args) {
+        try {
+            $vehiclegroup_id= $args['id'];
+
+            $conn = new DB;
+            $conn = $conn->connect();
+
+            $sql = "SELECT * FROM vehiclegrp WHERE vehiclegroup_id=:vehiclegroup_id";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':vehiclegroup_id', $vehiclegroup_id);
+            $stmt->execute();
+            $data = $stmt->fetch(PDO::FETCH_OBJ);
+
+            $conn = null;
+
+            $status = 200;
+        } catch (PDOException $e) {
+            $data = array("status" => "Error", "msg" => $e->getMessage());
+            $status = 400;
+        }
+
+        $output = json_encode($data);
+
+        $response->getBody()->write($output);
+        return $response->withHeader('Content-type', 'application/json')
+            ->withStatus($status);
+    });
+
+    $group->post("", function (Request $request, Response $response) {
+        try {
+            $parameters = $request->getParsedBody();
+
+            $conn = new DB;
+            $conn = $conn->connect();
+
+            $sql = "INSERT INTO vehiclegrp (vehicle_name) VALUES (:vehiclegroup_name)";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':vehiclegroup_name', $parameters['vehiclegroup_name']);
+           
+            
+            $stmt->execute();
+
+            $msg = ($stmt->rowCount() > 0) ? "Success" : "No Update";
+            $conn = null;
+
+            $status = 200;
+            $data = array("status" => "Ok", "msg" => $msg, "item" => $parameters);
+        } catch (PDOException $e) {
+            $data = array("status" => "Error", "msg" => $e->getMessage(), "item" => $parameters);
+            $status = 400;
+        }
+
+        $output = json_encode($data);
+
+        $response->getBody()->write($output);
+        return $response->withHeader('Content-type', 'application/json')
+            ->withStatus($status);
+    });
+
+    $group->put("/{id}", function (Request $request, Response $response, array $args) {
+        try {
+            $parameters = $request->getParsedBody();
+
+            $conn = new DB;
+            $conn = $conn->connect();
+
+            $sql = "UPDATE vehiclegrp SET vehicle_name=:vehiclegroup_name WHERE vehiclegroup_id=:vehiclegroup_id";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':vehiclegroup_id', $parameters['vehiclegroup_id']);
+            $stmt->bindParam(':vehiclegroup_name', $parameters['vehiclegroup_name']);
+         
+            $stmt->execute();
+           
+            $msg = ($stmt->rowCount() > 0) ? "Success" : "No Update";
+            $conn = null;
+
+            $status = 200;
+            $data = array("status" => "Ok", "msg" => $msg, "item" => $parameters);
+        } catch (PDOException $e) {
+            $data = array("status" => "Error", "msg" => $e->getMessage(), "item" => $parameters);
+            $status = 400;
+        }
+
+        $output = json_encode($data);
+
+        $response->getBody()->write($output);
+        return $response->withHeader('Content-type', 'application/json')
+            ->withStatus($status);
+    });
+
+    $group->delete("/{id}", function (Request $request, Response $response, array $args) {
+        try {
+            $conn = new DB;
+            $conn = $conn->connect();
+
+            $sql = "DELETE FROM vehiclegrp WHERE vehiclegroup_id=:vehiclegroup_id";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':vehiclegroup_id', $args['id']);
+            $stmt->execute();
+
+            $msg = ($stmt->rowCount() > 0) ? "Success" : "No Update";
+            $conn = null;
+
+            $status = 200;
+            $data = array("status" => "Ok", "msg" => $msg);
+        } catch (PDOException $e) {
+            $data = array("status" => "Error", "msg" => $e->getMessage());
+            $status = 400;
+        }
+
+        $output = json_encode($data);
+
+        $response->getBody()->write($output);
+        return $response->withHeader('Content-type', 'application/json')
+            ->withStatus($status);
+    });
+});
+/*
+    END: REST API for vehicle group
+*/
+
+// *
+//     BEIGN: REST API for vehicle 
+// */
+$app->group("$base/vehicle", function (Group $group) {
+    $group->get("", function (Request $request, Response $response) {
+        try {
+            $conn = new DB;
+            $conn = $conn->connect();
+
+            $sql = "SELECT * FROM vehicle";
+            $stmt = $conn->query($sql);
+            $data = $stmt->fetchAll(PDO::FETCH_OBJ);
+            $conn = null;
+
+            $status = 200;
+        } catch (PDOException $e) {
+            $data = array("status" => "Error", "msg" => $e->getMessage());
+            $status = 400;
+        }
+
+        $output = json_encode($data);
+
+        $response->getBody()->write($output);
+        return $response->withHeader('Content-type', 'application/json')
+            ->withStatus($status);
+    });
+
+    $group->get("/{id}", function (Request $request, Response $response, array $args) {
+        try {
+            $vehicle_id= $args['id'];
+
+            $conn = new DB;
+            $conn = $conn->connect();
+
+            $sql = "SELECT * FROM vehicle WHERE vehicle_id=:vehicle_id";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':vehicle_id', $vehicle_id);
+            $stmt->execute();
+            $data = $stmt->fetch(PDO::FETCH_OBJ);
+
+            $conn = null;
+
+            $status = 200;
+        } catch (PDOException $e) {
+            $data = array("status" => "Error", "msg" => $e->getMessage());
+            $status = 400;
+        }
+
+        $output = json_encode($data);
+
+        $response->getBody()->write($output);
+        return $response->withHeader('Content-type', 'application/json')
+            ->withStatus($status);
+    });
+
+    $group->post("", function (Request $request, Response $response) {
+        try {
+            $parameters = $request->getParsedBody();
+
+            $conn = new DB;
+            $conn = $conn->connect();
+            $sql = "INSERT INTO vehicle(vehiclegrp_id, vehicle_no, driver_name1, driver_add1, driver_phno1) 
+            VALUES (:vehiclegrp_id, :vehicle_no, :driver_name, :driver_add, :driver_phno)";
+    $stmt = $conn->prepare($sql);
+   
+    $stmt->bindParam(':vehiclegrp_id', $parameters['vehiclegrp_id']);
+    $stmt->bindParam(':vehicle_no', $parameters['vehicle_no']);
+    $stmt->bindParam(':driver_name', $parameters['driver_name']);
+    $stmt->bindParam(':driver_add', $parameters['driver_add']);
+    $stmt->bindParam(':driver_phno', $parameters['driver_phno']);
+    $stmt->execute();
+            //    $stmt->bindParam(':driver_name2', $parameters['driver_name']);
+        //    $stmt->bindParam(':driver_add2', $parameters['driver_add2']);
+        //   $stmt->bindParam(':driver_phno2', $parameters['driver_phno2']);
+        //  $stmt->bindParam(':driver_name3', $parameters['driver_name3']);
+        //   $stmt->bindParam(':driver_add3', $parameters['driver_add3']);
+        //  $stmt->bindParam(':driver_phno3', $parameters['driver_phno3']);
+        //  $stmt->execute();
+
+            $msg = ($stmt->rowCount() > 0) ? "Success" : "No Update";
+            $conn = null;
+
+            $status = 200;
+            $data = array("status" => "Ok", "msg" => $msg, "item" => $parameters);
+        } catch (PDOException $e) {
+            $data = array("status" => "Error", "msg" => $e->getMessage(), "item" => $parameters);
+            $status = 400;
+        }
+
+        $output = json_encode($data);
+
+        $response->getBody()->write($output);
+        return $response->withHeader('Content-type', 'application/json')
+            ->withStatus($status);
+    });
+
+    $group->put("/{id}", function (Request $request, Response $response, array $args) {
+        try {
+            $parameters = $request->getParsedBody();
+
+            $conn = new DB;
+            $conn = $conn->connect();
+
+            $sql = "UPDATE vehicle SET vehicle_name=:vehiclegroup_name WHERE vehicle_id=:vehicle_id";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':vehicle_id', $parameters['vehicle_id']);
+            $stmt->bindParam(':vehiclegroup_name', $parameters['vehiclegroup_name']);
+         
+            $stmt->execute();
+           
+            $msg = ($stmt->rowCount() > 0) ? "Success" : "No Update";
+            $conn = null;
+
+            $status = 200;
+            $data = array("status" => "Ok", "msg" => $msg, "item" => $parameters);
+        } catch (PDOException $e) {
+            $data = array("status" => "Error", "msg" => $e->getMessage(), "item" => $parameters);
+            $status = 400;
+        }
+
+        $output = json_encode($data);
+
+        $response->getBody()->write($output);
+        return $response->withHeader('Content-type', 'application/json')
+            ->withStatus($status);
+    });
+
+    $group->delete("/{id}", function (Request $request, Response $response, array $args) {
+        try {
+            $conn = new DB;
+            $conn = $conn->connect();
+
+            $sql = "DELETE FROM vehicle WHERE vehicle_id=:vehicle_id";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':vehicle_id', $args['id']);
+            $stmt->execute();
+
+            $msg = ($stmt->rowCount() > 0) ? "Success" : "No Update";
+            $conn = null;
+
+            $status = 200;
+            $data = array("status" => "Ok", "msg" => $msg);
+        } catch (PDOException $e) {
+            $data = array("status" => "Error", "msg" => $e->getMessage());
+            $status = 400;
+        }
+
+        $output = json_encode($data);
+
+        $response->getBody()->write($output);
+        return $response->withHeader('Content-type', 'application/json')
+            ->withStatus($status);
+    });
+});
+/*
+    END: REST API for vehicle 
+*/
