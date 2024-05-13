@@ -444,7 +444,7 @@ if ((!isset($_SESSION['user_name']))) {
                 $("#reorder_level").val(res.reorder_level);
                 $("#lead_time").val(res.lead_time);
                 $("#finished_weight").val(res.finished_weight);
-                $("input_weight").val(res.input_weight);
+                $("#input_weight").val(res.input_weight);
                 $("#lenght").val(res.lenght);
                 $("#thickness").val(res.thickness);
                 $("#revision_level").val(res.revision_level);
@@ -462,7 +462,7 @@ if ((!isset($_SESSION['user_name']))) {
                 $("#size").val(res.size);
                 $("#category").val(res.category);
                 $("#max_level").val(res.max_level);
-                $("#prduction_max_level").val(res.prduction_max_level);
+                $("#prduction_max_order").val(res.prduction_max_order);
                 $("#follio_no").val(res.follio_no);
                 $("#no_pcs").val(res.no_pcs);
                 $("#sheet").val(res.sheet);

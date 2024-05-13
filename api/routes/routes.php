@@ -2026,9 +2026,9 @@ $app->group("$base/item", function (Group $group) {
             $conn = new DB;
             $conn = $conn->connect();
 
-            $sql = "UPDATE item SET item_name=:item_name, itemg_name=:itemg_name,ledger=:ledger,showin_sr=:showin_sr,source=:source,part_no=:part_no , make=:make,packaging_std=:packaging_std, grade=:grade, specification=:specification, min_level=:min_level, p_min_order=:p_min_order,reorder_level=:reorder_level, traffic_head=:traffic_head, hsn_code=:hsn_code, sac_code=:sac_code, purchase_unit=:purchase_unit, cheque=:cheque, ledger=:ledger, tin_no=:tin_no, gstin=:gstin, pan_no=:pan_no, service_tax_no=:service_tax_no, handling_charge=:handling_charge, micr_code=:micr_code, ifsc_code=:ifsc_code , account_no=:account_no, account_type=:account_type WHERE party_id=:party_id";
+            $sql = "UPDATE item SET item_name=:item_name, itemg_name=:itemg_name,ledger=:ledger,showin_sr=:showin_sr,source=:source,part_no=:part_no , make=:make,packaging_std=:packaging_std, grade=:grade, specification=:specification, min_level=:min_level, p_min_order=:p_min_order,reorder_level=:reorder_level, lead_time=:lead_time, finished_weight=:finished_weight, input_weight=:input_weight, lenght=:lenght, thickness=:thickness, revision_level=:revision_level, traffic_head=:traffic_head, hsn_code=:hsn_code, sac_code=:sac_code, purchase_unit=:purchase_unit, stock_unit=:stock_unit, type=:type, auto_quality=:auto_quality , posting=:posting, tooling=:tooling, surface_std=:surface_std,rack_no=:rack_no, size=:size, category=:category, max_level=:max_level, prduction_max_order=:prduction_max_order, follio_no=:follio_no, no_pcs=:no_pcs, sheet=:sheet, scrap=:scrap, width=:width, old_part_no=:old_part_no WHERE item_id=:item_id";
             $stmt = $conn->prepare($sql);
-            $stmt->bindParam(':party_id', $parameters['party_id']);
+            $stmt->bindParam(':item_id', $parameters['item_id']);
             $stmt->bindParam(':item_name', $parameters['item_name']);
             $stmt->bindParam(':itemg_name', $parameters['itemg_name']);
             $stmt->bindParam(':ledger', $parameters['ledger']);
@@ -2042,22 +2042,34 @@ $app->group("$base/item", function (Group $group) {
             $stmt->bindParam(':min_level', $parameters['min_level']);
             $stmt->bindParam(':p_min_order', $parameters['p_min_order']);
             $stmt->bindParam(':reorder_level', $parameters['reorder_level']);
+            $stmt->bindParam(':lead_time', $parameters['lead_time']);
+            $stmt->bindParam(':finished_weight', $parameters['finished_weight']);
+            $stmt->bindParam(':input_weight', $parameters['input_weight']);
+            $stmt->bindParam(':lenght', $parameters['lenght']);
+            $stmt->bindParam(':thickness', $parameters['thickness']);
+            $stmt->bindParam(':revision_level', $parameters['revision_level']);
             $stmt->bindParam(':traffic_head', $parameters['traffic_head']);
             $stmt->bindParam(':hsn_code', $parameters['hsn_code']);
+            
             $stmt->bindParam(':sac_code', $parameters['sac_code']);
             $stmt->bindParam(':purchase_unit', $parameters['purchase_unit']);
-            $stmt->bindParam(':cheque', $parameters['cheque']);
-            $stmt->bindParam(':ledger', $parameters['ledger']);
-            $stmt->bindParam(':tin_no', $parameters['tin_no']);
-            $stmt->bindParam(':gstin', $parameters['gstin']);
-            
-            $stmt->bindParam(':pan_no', $parameters['pan_no']);
-            $stmt->bindParam(':service_tax_no', $parameters['service_tax_no']);
-            $stmt->bindParam(':handling_charge', $parameters['handling_charge']);
-            $stmt->bindParam(':micr_code', $parameters['micr_code']);
-            $stmt->bindParam(':ifsc_code', $parameters['ifsc_code']);
-            $stmt->bindParam(':account_no', $parameters['account_no']);
-            $stmt->bindParam(':account_type', $parameters['account_type']);
+            $stmt->bindParam(':stock_unit', $parameters['stock_unit']);
+            $stmt->bindParam(':type', $parameters['type']);
+            $stmt->bindParam(':auto_quality', $parameters['auto_quality']);
+            $stmt->bindParam(':posting', $parameters['posting']);
+            $stmt->bindParam(':tooling', $parameters['tooling']);
+            $stmt->bindParam(':surface_std', $parameters['surface_std']);
+            $stmt->bindParam(':rack_no', $parameters['rack_no']);
+            $stmt->bindParam(':size', $parameters['size']);
+            $stmt->bindParam(':category', $parameters['category']);
+            $stmt->bindParam(':max_level', $parameters['max_level']);
+            $stmt->bindParam(':prduction_max_order', $parameters['prduction_max_order']);
+            $stmt->bindParam(':follio_no', $parameters['follio_no']);
+            $stmt->bindParam(':no_pcs', $parameters['no_pcs']);
+            $stmt->bindParam(':sheet', $parameters['sheet']);
+            $stmt->bindParam(':scrap', $parameters['scrap']);
+            $stmt->bindParam(':width', $parameters['width']);
+            $stmt->bindParam(':old_part_no', $parameters['old_part_no']);
             $stmt->execute();
 
             $msg = ($stmt->rowCount() > 0) ? "Success" : "No Update";
