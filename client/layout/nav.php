@@ -49,7 +49,7 @@ function getActive($amenu, $tmenu)
             }
 
 .sub-submenu li {
-    padding: 8px 15px;
+    padding: 8px 30px;
 }
 
 .sub-submenu a {
@@ -139,7 +139,7 @@ function getActive($amenu, $tmenu)
                    </a>
                       <ul class="sub-submenu">
                       <li><a href="itemgroup.php"> Item Group</a></li>
-                      <li><a href="#">Item</a></li>
+                      <li><a href="item.php">Item</a></li>
                       <li><a href="#">Make</a></li>
                       <li><a href="#">Item Wise Rate</a></li>
                       <li><a href="#">Item Opening Stock</a></li>
@@ -202,6 +202,22 @@ function getActive($amenu, $tmenu)
                         <div class="top-menu__title"> Stock</div>
                     </a>
                 </li>
+                <!-- <li class="material-menu">
+                       <a href="supplier.php" class="top-menu">
+                        <div class="top-menu__icon"> <i data-lucide="edit"></i> </div>
+                         <div class="top-menu__title"> Report</div>
+                   </a>
+                      <ul class="sub-submenu">
+                      <li><a href="partylistreport.php"> Party List</a></li>
+                      <li><a href="itemgroupreport.php">Group Wise Item List</a></li>
+                      <li><a href="#">Vendor Item List</a></li>
+                      <li><a href="#">Production Bom</a></li>
+                      <li><a href="#">Vendor Item List</a></li>
+                      <li><a href="#">Job contractor Bom</a></li>
+                      >
+       
+                   </ul>
+                   </li> -->
             </ul>
             <!-- <ul class="" style="margin-left:250px;">
             <div class="parent-container">
@@ -244,8 +260,48 @@ function getActive($amenu, $tmenu)
                         <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
                         <div class="top-menu__title"> Job Contracter BOM  </div>
                     </a>
+                </li> -->
+                
+            <!-- </ul>  -->
+        </li>
+        <li>
+            <a href="javascript:;" class="top-menu <?php getActive($amenu, "report"); ?>">
+                <div class="top-menu__icon"><i data-lucide="list"></i> </div>
+                <div class="top-menu__title"> Report<i data-lucide="chevron-down" class="top-menu__sub-icon"></i> </div>
+            </a>
+            <ul class="">
+                <li>
+                    <a href="partylistreport.php" class="top-menu">
+                        <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
+                        <div class="top-menu__title"> Party List  </div>
+                    </a>
                 </li>
-            </ul> -->
+                <li>
+                    <a href="itemgroupreport.php" class="top-menu">
+                        <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
+                        <div class="top-menu__title"> Group Wise Item List </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="itemgroupreport.php" class="top-menu">
+                        <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
+                        <div class="top-menu__title"> Vendor Item List </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="itemgroupreport.php" class="top-menu">
+                        <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
+                        <div class="top-menu__title"> Production Bom </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="itemgroupreport.php" class="top-menu">
+                        <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
+                        <div class="top-menu__title"> Job contractor BOM</div>
+                    </a>
+                </li>
+               
+            </ul>
         </li>
         
         <li>
@@ -312,7 +368,7 @@ function getActive($amenu, $tmenu)
         <li>
             <a href="javascript:;" class="top-menu <?php getActive($amenu, "report"); ?>">
                 <div class="top-menu__icon"> <i data-lucide="box"></i> </div>
-                <div class="top-menu__title"> Hr&Payroll <i data-lucide="chevron-down" class="top-menu__sub-icon"></i> </div>
+                <div class="top-menu__title"> Quality <i data-lucide="chevron-down" class="top-menu__sub-icon"></i> </div>
             </a>
             <ul class="">
                 <li>
@@ -327,7 +383,7 @@ function getActive($amenu, $tmenu)
         <li>
             <a href="javascript:;" class="top-menu <?php getActive($amenu, "report"); ?>">
                 <div class="top-menu__icon"> <i data-lucide="wallet"></i> </div>
-                <div class="top-menu__title"> Acct&Finance <i data-lucide="chevron-down" class="top-menu__sub-icon"></i> </div>
+                <div class="top-menu__title"> FNA <i data-lucide="chevron-down" class="top-menu__sub-icon"></i> </div>
             </a>
             <ul class="">
                 <li>

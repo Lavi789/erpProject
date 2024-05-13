@@ -13,7 +13,7 @@ if ((!isset($_SESSION['user_name']))) {
 
 <head>
     <meta charset="utf-8">
-    <link href="dist/images/hindalco.png" rel="shortcut icon">
+    <link href="dist/images/erplogo.jpg" rel="shortcut icon">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>ERP</title>
     <!-- BEGIN: CSS Assets-->
@@ -48,7 +48,7 @@ if ((!isset($_SESSION['user_name']))) {
     <!-- BEGIN: Top Menu -->
     <?php
     $amenu = "master";
-    include 'layout/nav.php'
+    include 'layout/masternav.pho'
     ?>
     <!-- END: Top Menu -->
 

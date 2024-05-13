@@ -48,7 +48,7 @@ if ((!isset($_SESSION['user_name']))) {
     <!-- BEGIN: Top Menu -->
     <?php
     $amenu = "master";
-    include 'layout/nav.php'
+    include 'layout/masternav.pho'
     ?>
     <!-- END: Top Menu -->
 
@@ -171,16 +171,16 @@ if ((!isset($_SESSION['user_name']))) {
                                         <input id="lead_time" name="lead_time" type="text" class="form-control" placeholder="Lead Time">
                                     </div>
                                     <div class="col-span-12 sm:col-span-6">
-                                        <label for="finished_work" class="form-label">Finished work</label>
-                                        <input id="finished_work" name="finished_work" type="text" class="form-control" placeholder="Finished work">
+                                        <label for="finished_weight" class="form-label">Finished work</label>
+                                        <input id="finished_weight" name="finished_weight" type="text" class="form-control" placeholder="Finished work">
                                     </div>
                                     <div class="col-span-12 sm:col-span-6">
                                         <label for="input_weight" class="form-label">input_weight</label>
                                         <input id="input_weight" name="input_weight" type="text" class="form-control" placeholder="Weight">
                                     </div>
                                     <div class="col-span-12 sm:col-span-6">
-                                        <label for="length" class="form-label">Length</label>
-                                        <input id="length" name="length" type="text" class="form-control" placeholder="length">
+                                        <label for="lenght" class="form-label">Length</label>
+                                        <input id="lenght" name="lenght" type="text" class="form-control" placeholder="length">
                                     </div>
                                     <div class="col-span-12 sm:col-span-6">
                                         <label for="thickness" class="form-label">Thickness</label>
@@ -247,8 +247,32 @@ if ((!isset($_SESSION['user_name']))) {
                                         <input id="maximum_level" name="maximum_level" type="text" class="form-control" placeholder="Maximum Level">
                                     </div>
                                     <div class="col-span-12 sm:col-span-6">
-                                        <label for="production_maximum_order" class="form-label">Production Maximum Order</label>
-                                        <input id="production_maximum_order" name="production_maximum_order" type="text" class="form-control" placeholder="account type">
+                                        <label for="prduction_maximum_order" class="form-label">Production Maximum Order</label>
+                                        <input id="prduction_maximum_order" name="prduction_maximum_order" type="text" class="form-control" placeholder="production maximum order">
+                                    </div>
+                                    <div class="col-span-12 sm:col-span-6">
+                                        <label for="follio_no" class="form-label">Follio No</label>
+                                        <input id="follio_no" name="follio_no" type="text" class="form-control" placeholder="Follio no">
+                                    </div>
+                                    <div class="col-span-12 sm:col-span-6">
+                                        <label for="no_pcs" class="form-label">No Of Pcs</label>
+                                        <input id="no_pcs" name="no_pcs" type="text" class="form-control" placeholder="No of pcs">
+                                    </div>
+                                    <div class="col-span-12 sm:col-span-6">
+                                        <label for="sheet" class="form-label">Sheet Scrap</label>
+                                        <input id="sheet" name="sheet" type="text" class="form-control" placeholder="Sheet ">
+                                    </div>
+                                    <div class="col-span-12 sm:col-span-6">
+                                        <label for="scrap" class="form-label"> Scrap</label>
+                                        <input id="scrap" name="scrap" type="text" class="form-control" placeholder="Sheet ">
+                                    </div>
+                                    <div class="col-span-12 sm:col-span-6">
+                                        <label for="width" class="form-label">Width</label>
+                                        <input id="width" name="width" type="text" class="form-control" placeholder="Width">
+                                    </div>
+                                    <div class="col-span-12 sm:col-span-6">
+                                        <label for="old_part_no" class="form-label">Old Part no</label>
+                                        <input id="old_part_no" name="old_part_no" type="text" class="form-control" placeholder="Old Part No">
                                     </div>
                                 </div>
                             </form>
@@ -283,11 +307,11 @@ if ((!isset($_SESSION['user_name']))) {
         "searching": true,
         "serverSide": true,
         "ajax": {
-            url: "../server/ajax_party.php",
+            url: "../server/ajax_item.php",
             type: "POST"
         },
         "columns": [{
-                "data": "party_id",
+                "data": "item_id",
                 "visible": false
             },
             {
@@ -298,7 +322,10 @@ if ((!isset($_SESSION['user_name']))) {
                 "orderable": false
             },
             {
-                "data": "party_name"
+                "data": "item_name"
+            },
+            {
+                "data": "part_no"
             },
            
             {
@@ -330,7 +357,7 @@ if ((!isset($_SESSION['user_name']))) {
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
-                    url: '../api/party/' + id,
+                    url: '../api/item/' + id,
                     type: 'DELETE',
                     dataType: 'json',
                     contentType: 'application/json',
@@ -361,14 +388,14 @@ if ((!isset($_SESSION['user_name']))) {
         $("#btn_save").show();
         $("#btn_update").hide();
         $("#frm_user").trigger("reset");
-        $("#modal-title").text('Add Bank');
+        $("#modal-title").text('Add item');
     }
 
     $("#btn_save").on("click", function() {
         const form = $("#frm_user");
         const json = convertFormToJSON(form);
         $.ajax({
-            url: '../api/party',
+            url: '../api/item',
             type: 'POST',
             data: JSON.stringify(json),
             dataType: 'json',
@@ -396,40 +423,60 @@ if ((!isset($_SESSION['user_name']))) {
     function load_data(id) {
         $("#btn_save").hide();
         $("#btn_update").show();
-        $("#modal-title").text('Edit Bank');
+        $("#modal-title").text('Edit Item');
         $.ajax({
-            url: '../api/party/' + id,
+            url: '../api/item/' + id,
             method: "GET",
             success: function(res) {
-                $("#party_id").val(res.party_id);
-                $("#party_name").val(res.party_name);
-                $("#alias").val(res.alias);
-                $("#partyg_name").val(res.partyg_name);
-                $("#address").val(res.address);
-                $("#pin").val(res.pin);
-                $("#city_name").val(res.city_name);
-                $("#contact").val(res.contact);
-                $("#email").val(res.email);
-                $("#division").val(res.division);
-                $("#range_at").val(res.range_at);
-                $("#grace_days").val(res.grace_days);
-                $("#credit_days").val(res.credit_days);
-                $("#tds_per").val(res.tds_per);
-                $("#disc_per").val(res.disc_per);
-                $("#distance").val(res.distance);
-                $("#p_type").val(res.p_type);
-                $("#bank_name").val(res.bank_name);
-                $("#cheque").val(res.cheque);
+                $("#item_id").val(res.item_id);
+                $("#item_name").val(res.item_name);
+                $("#itemg_name").val(res.itemg_name);
                 $("#ledger").val(res.ledger);
-                $("#tin_no").val(res.tin_no);
-                $("#gstin").val(res.gstin);
-                $("#pan_no").val(res.pan_no);
-                $("#service_tax_no").val(res.service_tax_no);
-                $("#handling_charge").val(res.handling_charge);
-                $("#micr_code").val(res.micr_code);
-                $("#ifsc_code").val(res.ifsc_code);
-                $("#account_no").val(res.account_no);
-                $("#account_type").val(res.account_type);
+                $("#showin_sr").val(res.showin_sr);
+                $("#source").val(res.source);
+                $("#part_no").val(res.part_no);
+                $("#make").val(res.make);
+                $("#packaging_std").val(res.packaging_std);
+                $("#grade").val(res.grade);
+                $("#specification").val(res.specification);
+                $("#min_level").val(res.min_level);
+                $("#p_min_order").val(res.p_min_order);
+                $("#reorder_level").val(res.reorder_level);
+                $("#lead_time").val(res.lead_time);
+                $("#finished_weight").val(res.finished_weight);
+                $("#input_weight").val(res.input_weight);
+                $("#lenght").val(res.lenght);
+                $("#thickness").val(res.thickness);
+                $("#revision_level").val(res.revision_level);
+                $("#traffic_head").val(res.traffic_head);
+                $("#hsn_code").val(res.hsn_code);
+                $("#sac_code").val(res.sac_code);
+                $("#purchase_unit").val(res.purchase_unit);
+                $("#stock_unit").val(res.stock_unit);
+                $("#type").val(res.type);
+                $("#auto_quality").val(res.auto_quality);
+                $("#posting").val(res.posting);
+                $("#tooling").val(res.tooling);
+                $("#surface_std").val(res.surface_std);
+                $("#rack_no").val(res.rack_no);
+                $("#size").val(res.size);
+                $("#category").val(res.category);
+                $("#max_level").val(res.max_level);
+                $("#prduction_max_order").val(res.prduction_max_order);
+                $("#follio_no").val(res.follio_no);
+                $("#no_pcs").val(res.no_pcs);
+                $("#sheet").val(res.sheet);
+                $("#scrap").val(res.scrap);
+                $("#width").val(res.width);
+                $("#old_part_no").val(res.old_part_no);
+                
+
+                
+
+
+
+
+
 
 
             }
@@ -439,7 +486,7 @@ if ((!isset($_SESSION['user_name']))) {
     $("#btn_update").on("click", function() {
         const form = $("#frm_user");
         const json = convertFormToJSON(form);
-        var id = $("#party_id").val();
+        var id = $("#item_id").val();
         $.ajax({
             url: '../api//' + id,
             type: 'PUT',

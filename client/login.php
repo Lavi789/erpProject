@@ -26,7 +26,7 @@ if (isset($_REQUEST['login'])) {
 
 <head>
     <meta charset="utf-8">
-    <link href="dist/images/hindalco.png" rel="shortcut icon">
+    <link href="dist/images/erplogo.jpg" rel="shortcut icon">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>SINGHBHUM MACHINOMETAL (P).LTD</title>
     <!-- BEGIN: CSS Assets-->
@@ -79,12 +79,12 @@ if (isset($_REQUEST['login'])) {
         <div class="block xl:grid grid-cols-2 gap-4">
             <!-- BEGIN: Login Info -->
             <div class="hidden xl:flex flex-col min-h-screen">
-                <a href="" class="-intro-x flex items-center pt-5">
+                <a href="dist/images/erplogo.jpg" class="-intro-x flex items-center pt-5">
                     <img class="w-6" src="">
                     <span class="text-white text-lg ml-3"></span>
                 </a>
                 <div class="my-auto">
-                    <img alt="" class="-intro-x w-3 -mt-16" style="border:50%;width:25%;text-align:center;" src="">
+                    <img alt="" class="-intro-x w-3 -mt-16" style="border:50%;width:25%;text-align:center;" src="dist/images/erplogo.jpg">
                     <div class="-intro-x text-white font-medium text-3xl leading-tight mt-10">
                     SINGHBHUM MACHINOMETAL (P).LTD
                     </div>

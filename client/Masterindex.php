@@ -15,7 +15,7 @@ require_once '../server/config/db.php';
 
 <head>
     <meta charset="utf-8">
-    <link href="" rel="shortcut icon">
+    <link href="dist/images/erplogo.jpg" rel="shortcut icon">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>ERP</title>
     <!-- BEGIN: CSS Assets-->
@@ -43,7 +43,7 @@ require_once '../server/config/db.php';
     <!-- BEGIN: Top Menu -->
     <?php
     $amenu = "dashboard";
-    include 'layout/nav1.php'
+    include 'layout/masternav.php'
     ?>
     <!-- END: Top Menu -->
 
@@ -52,11 +52,11 @@ require_once '../server/config/db.php';
         <!-- BEGIN: General Report -->
         <div class="intro-y flex items-center h-10 mt-8">
             <h2 class="text-lg font-medium truncate mr-5">
-                General Report
+                Master
             </h2>
             <a href="" class="ml-auto flex items-center text-primary"> <i data-lucide="refresh-ccw" class="w-4 h-4 mr-3"></i> Reload Data </a>
         </div>
-        <div class="grid grid-cols-12 gap-6 mt-5">
+        <!-- <div class="grid grid-cols-12 gap-6 mt-5">
             <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
                 <div class="report-box zoom-in">
                     <div class="box p-5">
@@ -113,7 +113,7 @@ require_once '../server/config/db.php';
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <!-- END: General Report -->
     </div>
     <!-- END: Content -->

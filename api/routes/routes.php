@@ -1895,6 +1895,458 @@ $app->group("$base/itemgroup", function (Group $group) {
 */
 
 // *
+//     BEIGN: REST API for item
+// */
+$app->group("$base/item", function (Group $group) {
+    $group->get("", function (Request $request, Response $response) {
+        try {
+            $conn = new DB;
+            $conn = $conn->connect();
+
+            $sql = "SELECT * FROM item";
+            $stmt = $conn->query($sql);
+            $data = $stmt->fetchAll(PDO::FETCH_OBJ);
+            $conn = null;
+
+            $status = 200;
+        } catch (PDOException $e) {
+            $data = array("status" => "Error", "msg" => $e->getMessage());
+            $status = 400;
+        }
+
+        $output = json_encode($data);
+
+        $response->getBody()->write($output);
+        return $response->withHeader('Content-type', 'application/json')
+            ->withStatus($status);
+    });
+
+    $group->get("/{id}", function (Request $request, Response $response, array $args) {
+        try {
+            $item_id = $args['id'];
+
+            $conn = new DB;
+            $conn = $conn->connect();
+
+            $sql = "SELECT * FROM item WHERE item_id=:item_id";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':itme_id', $itme_id);
+            $stmt->execute();
+            $data = $stmt->fetch(PDO::FETCH_OBJ);
+
+            $conn = null;
+
+            $status = 200;
+        } catch (PDOException $e) {
+            $data = array("status" => "Error", "msg" => $e->getMessage());
+            $status = 400;
+        }
+
+        $output = json_encode($data);
+
+        $response->getBody()->write($output);
+        return $response->withHeader('Content-type', 'application/json')
+            ->withStatus($status);
+    });
+
+    $group->post("", function (Request $request, Response $response) {
+        try {
+            $parameters = $request->getParsedBody();
+
+            $conn = new DB;
+            $conn = $conn->connect();
+
+            $sql = "INSERT INTO item (item_name, itemg_name, ledger, showin_sr, source, part_no, make, packaging_std, grade, specification, min_level, p_min_order, reorder_level, lead_time, finished_weight, input_weight, lenght, thickness, revision_level, traffic_head, hsn_code, sac_code, purchase_unit, stock_unit, type, auto_quality, posting, tooling,surface_std,rack_no,size,category,max_level,prduction_max_order,follio_no,no_pcs,sheet,scrap,width,old_part_no) VALUES (:item_name, :itemg_name, :ledger, :showin_sr, :source, :part_no, :make, :packaging_std, :grade, :specification, :min_level, :p_min_order,:reorder_level, :lead_time, :finished_weight , :input_weight, :lenght, :thickness, :revision_level, :traffic_head, :hsn_code, :sac_code, :purchase_unit, :stock_unit, :type, :auto_quality, :posting, :tooling,:surface_std,:rack_no,:size,:category,:max_level,:prduction_max_order,:follio_no,:no_pcs,:sheet,:scrap,:width,:old_part_no)";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':item_name', $parameters['item_name']);
+            $stmt->bindParam(':itemg_name', $parameters['itemg_name']);
+            $stmt->bindParam(':ledger', $parameters['ledger']);
+            $stmt->bindParam(':showin_sr', $parameters['showin_sr']);
+            $stmt->bindParam(':source', $parameters['source']);
+            $stmt->bindParam(':part_no', $parameters['part_no']);
+            $stmt->bindParam(':make', $parameters['make']);
+            $stmt->bindParam(':packaging_std', $parameters['packaging_std']);
+            $stmt->bindParam(':grade', $parameters['grade']);
+            $stmt->bindParam(':specification', $parameters['specification']);
+            $stmt->bindParam(':min_level', $parameters['min_level']);
+            $stmt->bindParam(':p_min_order', $parameters['p_min_order']);
+            $stmt->bindParam(':reorder_level', $parameters['reorder_level']);
+            $stmt->bindParam(':lead_time', $parameters['lead_time']);
+            $stmt->bindParam(':finished_weight', $parameters['finished_weight']);
+            $stmt->bindParam(':input_weight', $parameters['input_weight']);
+            
+            $stmt->bindParam(':lenght', $parameters['lenght']);
+            $stmt->bindParam(':thickness', $parameters['thickness']);
+            $stmt->bindParam(':revision_level', $parameters['revision_level']);
+            $stmt->bindParam(':traffic_head', $parameters['traffic_head']);
+            $stmt->bindParam(':hsn_code', $parameters['hsn_code']);
+            $stmt->bindParam(':sac_code', $parameters['sac_code']);
+            $stmt->bindParam(':purchase_unit', $parameters['purchase_unit']);
+            $stmt->bindParam(':stock_unit', $parameters['stock_unit']);
+            $stmt->bindParam(':type', $parameters['type']);
+            $stmt->bindParam(':auto_quality', $parameters['auto_quality']);
+            $stmt->bindParam(':posting', $parameters['posting']);
+            $stmt->bindParam(':tooling', $parameters['tooling']);
+            $stmt->bindParam(':surface_std', $parameters['surface_std']);
+            $stmt->bindParam(':rack_no', $parameters['rack_no']);
+            $stmt->bindParam(':size', $parameters['size']);
+            $stmt->bindParam(':category', $parameters['category']);
+            $stmt->bindParam(':max_level', $parameters['max_level']);
+            $stmt->bindParam(':prduction_max_order', $parameters['prduction_max_order']);
+            $stmt->bindParam(':follio_no', $parameters['follio_no']);
+            $stmt->bindParam(':no_pcs', $parameters['no_pcs']);
+            $stmt->bindParam(':sheet', $parameters['sheet']);
+            $stmt->bindParam(':scrap', $parameters['scrap']);
+            $stmt->bindParam(':width', $parameters['width']);
+            $stmt->bindParam(':old_part_no', $parameters['old_part_no']);
+            
+            $stmt->execute();
+
+            $msg = ($stmt->rowCount() > 0) ? "Success" : "No Update";
+            $conn = null;
+
+            $status = 200;
+            $data = array("status" => "Ok", "msg" => $msg, "item" => $parameters);
+        } catch (PDOException $e) {
+            $data = array("status" => "Error", "msg" => $e->getMessage(), "item" => $parameters);
+            $status = 400;
+        }
+
+        $output = json_encode($data);
+
+        $response->getBody()->write($output);
+        return $response->withHeader('Content-type', 'application/json')
+            ->withStatus($status);
+    });
+
+    $group->put("/{id}", function (Request $request, Response $response, array $args) {
+        try {
+            $parameters = $request->getParsedBody();
+
+            $conn = new DB;
+            $conn = $conn->connect();
+
+            $sql = "UPDATE item SET item_name=:item_name, itemg_name=:itemg_name,ledger=:ledger,showin_sr=:showin_sr,source=:source,part_no=:part_no , make=:make,packaging_std=:packaging_std, grade=:grade, specification=:specification, min_level=:min_level, p_min_order=:p_min_order,reorder_level=:reorder_level, lead_time=:lead_time, finished_weight=:finished_weight, input_weight=:input_weight, lenght=:lenght, thickness=:thickness, revision_level=:revision_level, traffic_head=:traffic_head, hsn_code=:hsn_code, sac_code=:sac_code, purchase_unit=:purchase_unit, stock_unit=:stock_unit, type=:type, auto_quality=:auto_quality , posting=:posting, tooling=:tooling, surface_std=:surface_std,rack_no=:rack_no, size=:size, category=:category, max_level=:max_level, prduction_max_order=:prduction_max_order, follio_no=:follio_no, no_pcs=:no_pcs, sheet=:sheet, scrap=:scrap, width=:width, old_part_no=:old_part_no WHERE item_id=:item_id";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':item_id', $parameters['item_id']);
+            $stmt->bindParam(':item_name', $parameters['item_name']);
+            $stmt->bindParam(':itemg_name', $parameters['itemg_name']);
+            $stmt->bindParam(':ledger', $parameters['ledger']);
+            $stmt->bindParam(':showin_sr', $parameters['showin_sr']);
+            $stmt->bindParam(':source', $parameters['source']);
+            $stmt->bindParam(':part_no', $parameters['part_no']);
+            $stmt->bindParam(':make', $parameters['make']);
+            $stmt->bindParam(':packaging_std', $parameters['packaging_std']);
+            $stmt->bindParam(':grade', $parameters['grade']);
+            $stmt->bindParam(':specification', $parameters['specification']);
+            $stmt->bindParam(':min_level', $parameters['min_level']);
+            $stmt->bindParam(':p_min_order', $parameters['p_min_order']);
+            $stmt->bindParam(':reorder_level', $parameters['reorder_level']);
+            $stmt->bindParam(':lead_time', $parameters['lead_time']);
+            $stmt->bindParam(':finished_weight', $parameters['finished_weight']);
+            $stmt->bindParam(':input_weight', $parameters['input_weight']);
+            $stmt->bindParam(':lenght', $parameters['lenght']);
+            $stmt->bindParam(':thickness', $parameters['thickness']);
+            $stmt->bindParam(':revision_level', $parameters['revision_level']);
+            $stmt->bindParam(':traffic_head', $parameters['traffic_head']);
+            $stmt->bindParam(':hsn_code', $parameters['hsn_code']);
+            
+            $stmt->bindParam(':sac_code', $parameters['sac_code']);
+            $stmt->bindParam(':purchase_unit', $parameters['purchase_unit']);
+            $stmt->bindParam(':stock_unit', $parameters['stock_unit']);
+            $stmt->bindParam(':type', $parameters['type']);
+            $stmt->bindParam(':auto_quality', $parameters['auto_quality']);
+            $stmt->bindParam(':posting', $parameters['posting']);
+            $stmt->bindParam(':tooling', $parameters['tooling']);
+            $stmt->bindParam(':surface_std', $parameters['surface_std']);
+            $stmt->bindParam(':rack_no', $parameters['rack_no']);
+            $stmt->bindParam(':size', $parameters['size']);
+            $stmt->bindParam(':category', $parameters['category']);
+            $stmt->bindParam(':max_level', $parameters['max_level']);
+            $stmt->bindParam(':prduction_max_order', $parameters['prduction_max_order']);
+            $stmt->bindParam(':follio_no', $parameters['follio_no']);
+            $stmt->bindParam(':no_pcs', $parameters['no_pcs']);
+            $stmt->bindParam(':sheet', $parameters['sheet']);
+            $stmt->bindParam(':scrap', $parameters['scrap']);
+            $stmt->bindParam(':width', $parameters['width']);
+            $stmt->bindParam(':old_part_no', $parameters['old_part_no']);
+            $stmt->execute();
+
+            $msg = ($stmt->rowCount() > 0) ? "Success" : "No Update";
+            $conn = null;
+
+            $status = 200;
+            $data = array("status" => "Ok", "msg" => $msg, "item" => $parameters);
+        } catch (PDOException $e) {
+            $data = array("status" => "Error", "msg" => $e->getMessage(), "item" => $parameters);
+            $status = 400;
+        }
+
+        $output = json_encode($data);
+
+        $response->getBody()->write($output);
+        return $response->withHeader('Content-type', 'application/json')
+            ->withStatus($status);
+    });
+
+    $group->delete("/{id}", function (Request $request, Response $response, array $args) {
+        try {
+            $conn = new DB;
+            $conn = $conn->connect();
+
+            $sql = "DELETE FROM party WHERE party_id=:party_id";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':party_id', $args['id']);
+            $stmt->execute();
+
+            $msg = ($stmt->rowCount() > 0) ? "Success" : "No Update";
+            $conn = null;
+
+            $status = 200;
+            $data = array("status" => "Ok", "msg" => $msg);
+        } catch (PDOException $e) {
+            $data = array("status" => "Error", "msg" => $e->getMessage());
+            $status = 400;
+        }
+
+        $output = json_encode($data);
+
+        $response->getBody()->write($output);
+        return $response->withHeader('Content-type', 'application/json')
+            ->withStatus($status);
+    });
+});
+/*
+    END: REST API for item
+*/
+
+// *
+//     BEIGN: REST API for item
+// */
+$app->group("$base/item", function (Group $group) {
+    $group->get("", function (Request $request, Response $response) {
+        try {
+            $conn = new DB;
+            $conn = $conn->connect();
+
+            $sql = "SELECT * FROM item";
+            $stmt = $conn->query($sql);
+            $data = $stmt->fetchAll(PDO::FETCH_OBJ);
+            $conn = null;
+
+            $status = 200;
+        } catch (PDOException $e) {
+            $data = array("status" => "Error", "msg" => $e->getMessage());
+            $status = 400;
+        }
+
+        $output = json_encode($data);
+
+        $response->getBody()->write($output);
+        return $response->withHeader('Content-type', 'application/json')
+            ->withStatus($status);
+    });
+
+    $group->get("/{id}", function (Request $request, Response $response, array $args) {
+        try {
+            $item_id = $args['id'];
+
+            $conn = new DB;
+            $conn = $conn->connect();
+
+            $sql = "SELECT * FROM item WHERE item_id=:item_id";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':itme_id', $itme_id);
+            $stmt->execute();
+            $data = $stmt->fetch(PDO::FETCH_OBJ);
+
+            $conn = null;
+
+            $status = 200;
+        } catch (PDOException $e) {
+            $data = array("status" => "Error", "msg" => $e->getMessage());
+            $status = 400;
+        }
+
+        $output = json_encode($data);
+
+        $response->getBody()->write($output);
+        return $response->withHeader('Content-type', 'application/json')
+            ->withStatus($status);
+    });
+
+    $group->post("", function (Request $request, Response $response) {
+        try {
+            $parameters = $request->getParsedBody();
+
+            $conn = new DB;
+            $conn = $conn->connect();
+
+            $sql = "INSERT INTO item (item_name, itemg_name, ledger, showin_sr, source, part_no, make, packaging_std, grade, specification, min_level, p_min_order, reorder_level, lead_time, finished_weight, input_weight, lenght, thickness, revision_level, traffic_head, hsn_code, sac_code, purchase_unit, stock_unit, type, auto_quality, posting, tooling,surface_std,rack_no,size,category,max_level,prduction_max_order,follio_no,no_pcs,sheet,scrap,width,old_part_no) VALUES (:item_name, :itemg_name, :ledger, :showin_sr, :source, :part_no, :make, :packaging_std, :grade, :specification, :min_level, :p_min_order,:reorder_level, :lead_time, :finished_weight , :input_weight, :lenght, :thickness, :revision_level, :traffic_head, :hsn_code, :sac_code, :purchase_unit, :stock_unit, :type, :auto_quality, :posting, :tooling,:surface_std,:rack_no,:size,:category,:max_level,:prduction_max_order,:follio_no,:no_pcs,:sheet,:scrap,:width,:old_part_no)";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':item_name', $parameters['item_name']);
+            $stmt->bindParam(':itemg_name', $parameters['itemg_name']);
+            $stmt->bindParam(':ledger', $parameters['ledger']);
+            $stmt->bindParam(':showin_sr', $parameters['showin_sr']);
+            $stmt->bindParam(':source', $parameters['source']);
+            $stmt->bindParam(':part_no', $parameters['part_no']);
+            $stmt->bindParam(':make', $parameters['make']);
+            $stmt->bindParam(':packaging_std', $parameters['packaging_std']);
+            $stmt->bindParam(':grade', $parameters['grade']);
+            $stmt->bindParam(':specification', $parameters['specification']);
+            $stmt->bindParam(':min_level', $parameters['min_level']);
+            $stmt->bindParam(':p_min_order', $parameters['p_min_order']);
+            $stmt->bindParam(':reorder_level', $parameters['reorder_level']);
+            $stmt->bindParam(':lead_time', $parameters['lead_time']);
+            $stmt->bindParam(':finished_weight', $parameters['finished_weight']);
+            $stmt->bindParam(':input_weight', $parameters['input_weight']);
+            
+            $stmt->bindParam(':lenght', $parameters['lenght']);
+            $stmt->bindParam(':thickness', $parameters['thickness']);
+            $stmt->bindParam(':revision_level', $parameters['revision_level']);
+            $stmt->bindParam(':traffic_head', $parameters['traffic_head']);
+            $stmt->bindParam(':hsn_code', $parameters['hsn_code']);
+            $stmt->bindParam(':sac_code', $parameters['sac_code']);
+            $stmt->bindParam(':purchase_unit', $parameters['purchase_unit']);
+            $stmt->bindParam(':stock_unit', $parameters['stock_unit']);
+            $stmt->bindParam(':type', $parameters['type']);
+            $stmt->bindParam(':auto_quality', $parameters['auto_quality']);
+            $stmt->bindParam(':posting', $parameters['posting']);
+            $stmt->bindParam(':tooling', $parameters['tooling']);
+            $stmt->bindParam(':surface_std', $parameters['surface_std']);
+            $stmt->bindParam(':rack_no', $parameters['rack_no']);
+            $stmt->bindParam(':size', $parameters['size']);
+            $stmt->bindParam(':category', $parameters['category']);
+            $stmt->bindParam(':max_level', $parameters['max_level']);
+            $stmt->bindParam(':prduction_max_order', $parameters['prduction_max_order']);
+            $stmt->bindParam(':follio_no', $parameters['follio_no']);
+            $stmt->bindParam(':no_pcs', $parameters['no_pcs']);
+            $stmt->bindParam(':sheet', $parameters['sheet']);
+            $stmt->bindParam(':scrap', $parameters['scrap']);
+            $stmt->bindParam(':width', $parameters['width']);
+            $stmt->bindParam(':old_part_no', $parameters['old_part_no']);
+            
+            $stmt->execute();
+
+            $msg = ($stmt->rowCount() > 0) ? "Success" : "No Update";
+            $conn = null;
+
+            $status = 200;
+            $data = array("status" => "Ok", "msg" => $msg, "item" => $parameters);
+        } catch (PDOException $e) {
+            $data = array("status" => "Error", "msg" => $e->getMessage(), "item" => $parameters);
+            $status = 400;
+        }
+
+        $output = json_encode($data);
+
+        $response->getBody()->write($output);
+        return $response->withHeader('Content-type', 'application/json')
+            ->withStatus($status);
+    });
+
+    $group->put("/{id}", function (Request $request, Response $response, array $args) {
+        try {
+            $parameters = $request->getParsedBody();
+
+            $conn = new DB;
+            $conn = $conn->connect();
+
+            $sql = "UPDATE item SET item_name=:item_name, itemg_name=:itemg_name,ledger=:ledger,showin_sr=:showin_sr,source=:source,part_no=:part_no , make=:make,packaging_std=:packaging_std, grade=:grade, specification=:specification, min_level=:min_level, p_min_order=:p_min_order,reorder_level=:reorder_level, lead_time=:lead_time, finished_weight=:finished_weight, input_weight=:input_weight, lenght=:lenght, thickness=:thickness, revision_level=:revision_level, traffic_head=:traffic_head, hsn_code=:hsn_code, sac_code=:sac_code, purchase_unit=:purchase_unit, stock_unit=:stock_unit, type=:type, auto_quality=:auto_quality , posting=:posting, tooling=:tooling, surface_std=:surface_std,rack_no=:rack_no, size=:size, category=:category, max_level=:max_level, prduction_max_order=:prduction_max_order, follio_no=:follio_no, no_pcs=:no_pcs, sheet=:sheet, scrap=:scrap, width=:width, old_part_no=:old_part_no WHERE item_id=:item_id";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':item_id', $parameters['item_id']);
+            $stmt->bindParam(':item_name', $parameters['item_name']);
+            $stmt->bindParam(':itemg_name', $parameters['itemg_name']);
+            $stmt->bindParam(':ledger', $parameters['ledger']);
+            $stmt->bindParam(':showin_sr', $parameters['showin_sr']);
+            $stmt->bindParam(':source', $parameters['source']);
+            $stmt->bindParam(':part_no', $parameters['part_no']);
+            $stmt->bindParam(':make', $parameters['make']);
+            $stmt->bindParam(':packaging_std', $parameters['packaging_std']);
+            $stmt->bindParam(':grade', $parameters['grade']);
+            $stmt->bindParam(':specification', $parameters['specification']);
+            $stmt->bindParam(':min_level', $parameters['min_level']);
+            $stmt->bindParam(':p_min_order', $parameters['p_min_order']);
+            $stmt->bindParam(':reorder_level', $parameters['reorder_level']);
+            $stmt->bindParam(':lead_time', $parameters['lead_time']);
+            $stmt->bindParam(':finished_weight', $parameters['finished_weight']);
+            $stmt->bindParam(':input_weight', $parameters['input_weight']);
+            $stmt->bindParam(':lenght', $parameters['lenght']);
+            $stmt->bindParam(':thickness', $parameters['thickness']);
+            $stmt->bindParam(':revision_level', $parameters['revision_level']);
+            $stmt->bindParam(':traffic_head', $parameters['traffic_head']);
+            $stmt->bindParam(':hsn_code', $parameters['hsn_code']);
+            
+            $stmt->bindParam(':sac_code', $parameters['sac_code']);
+            $stmt->bindParam(':purchase_unit', $parameters['purchase_unit']);
+            $stmt->bindParam(':stock_unit', $parameters['stock_unit']);
+            $stmt->bindParam(':type', $parameters['type']);
+            $stmt->bindParam(':auto_quality', $parameters['auto_quality']);
+            $stmt->bindParam(':posting', $parameters['posting']);
+            $stmt->bindParam(':tooling', $parameters['tooling']);
+            $stmt->bindParam(':surface_std', $parameters['surface_std']);
+            $stmt->bindParam(':rack_no', $parameters['rack_no']);
+            $stmt->bindParam(':size', $parameters['size']);
+            $stmt->bindParam(':category', $parameters['category']);
+            $stmt->bindParam(':max_level', $parameters['max_level']);
+            $stmt->bindParam(':prduction_max_order', $parameters['prduction_max_order']);
+            $stmt->bindParam(':follio_no', $parameters['follio_no']);
+            $stmt->bindParam(':no_pcs', $parameters['no_pcs']);
+            $stmt->bindParam(':sheet', $parameters['sheet']);
+            $stmt->bindParam(':scrap', $parameters['scrap']);
+            $stmt->bindParam(':width', $parameters['width']);
+            $stmt->bindParam(':old_part_no', $parameters['old_part_no']);
+            $stmt->execute();
+
+            $msg = ($stmt->rowCount() > 0) ? "Success" : "No Update";
+            $conn = null;
+
+            $status = 200;
+            $data = array("status" => "Ok", "msg" => $msg, "item" => $parameters);
+        } catch (PDOException $e) {
+            $data = array("status" => "Error", "msg" => $e->getMessage(), "item" => $parameters);
+            $status = 400;
+        }
+
+        $output = json_encode($data);
+
+        $response->getBody()->write($output);
+        return $response->withHeader('Content-type', 'application/json')
+            ->withStatus($status);
+    });
+
+    $group->delete("/{id}", function (Request $request, Response $response, array $args) {
+        try {
+            $conn = new DB;
+            $conn = $conn->connect();
+
+            $sql = "DELETE FROM party WHERE party_id=:party_id";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':party_id', $args['id']);
+            $stmt->execute();
+
+            $msg = ($stmt->rowCount() > 0) ? "Success" : "No Update";
+            $conn = null;
+
+            $status = 200;
+            $data = array("status" => "Ok", "msg" => $msg);
+        } catch (PDOException $e) {
+            $data = array("status" => "Error", "msg" => $e->getMessage());
+            $status = 400;
+        }
+
+        $output = json_encode($data);
+
+        $response->getBody()->write($output);
+        return $response->withHeader('Content-type', 'application/json')
+            ->withStatus($status);
+    });
+});
+/*
+    END: REST API for item
+*/
+
+// *
 //     BEIGN: REST API for vehicle group
 // */
 $app->group("$base/vehiclegrp", function (Group $group) {
