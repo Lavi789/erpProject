@@ -79,7 +79,7 @@ require_once '../server/config/db.php';
                             </div>
                         </div>
                         <div class="text-xl font-small leading-8 mt-6">Sales</div>
-                        <div class="text-base text-slate-500 mt-1">open</div>
+                        <a href="salesindex.php"><div class="text-base text-slate-500 mt-1">open</div></a>
                     </div>
                 </div>
             </div>

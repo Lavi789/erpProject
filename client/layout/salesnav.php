@@ -212,7 +212,12 @@ function getActive($amenu, $tmenu)
                         <div class="top-menu__title"> Party </div>
                     </a>
                 </li>
-                
+                <li>
+                    <a href="vendor.php" class="top-menu">
+                        <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
+                        <div class="top-menu__title"> Vendor </div>
+                    </a>
+                </li>
                 <li>
                     <a href="vendorregistration.php" class="top-menu">
                         <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
@@ -226,40 +231,75 @@ function getActive($amenu, $tmenu)
         <li>
             <a href="javascript:;" class="top-menu <?php getActive($amenu, "report"); ?>">
                 <div class="top-menu__icon">  <i data-lucide="menu"></i> </div>
-                <div class="top-menu__title"> Material<i data-lucide="chevron-down" class="top-menu__sub-icon"></i> </div>
+                <div class="top-menu__title"> Utility<i data-lucide="chevron-down" class="top-menu__sub-icon"></i> </div>
             </a>
             <ul class="">
                 <li>
                     <a href="itemgroup.php" class="top-menu">
                         <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
-                        <div class="top-menu__title"> Item Group  </div>
+                        <div class="top-menu__title"> Data Updation  </div>
                     </a>
                 </li>
                 <li>
-                    <a href="item.php" class="top-menu">
+                    <a href="itemmake.php" class="top-menu">
                         <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
-                        <div class="top-menu__title"> Item  </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="item.php" class="top-menu">
-                        <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
-                        <div class="top-menu__title"> Make </div>
+                        <div class="top-menu__title"> SRM (General) File generation </div>
                     </a>
                 </li>
                 <li>
                     <a href="itemwiserate.php" class="top-menu">
                         <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
-                        <div class="top-menu__title"> Item Wise Rate </div>
+                        <div class="top-menu__title"> SRM(Mashop)File Genration</div>
                     </a>
                 </li>
                 <li>
                     <a href="itemopstock.php" class="top-menu">
                         <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
-                        <div class="top-menu__title"> Item Op Stock</div>
+                        <div class="top-menu__title"> API Password Updation</div>
                     </a>
                 </li>
-                
+                <li>
+                    <a href="itemopstock.php" class="top-menu">
+                        <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
+                        <div class="top-menu__title"> General Challan Printing</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="itemopstock.php" class="top-menu">
+                        <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
+                        <div class="top-menu__title"> Mashop Challan Printing</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="itemopstock.php" class="top-menu">
+                        <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
+                        <div class="top-menu__title"> Daily Schedule Amendment</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="itemopstock.php" class="top-menu">
+                        <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
+                        <div class="top-menu__title"> Road Permit</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="itemopstock.php" class="top-menu">
+                        <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
+                        <div class="top-menu__title"> E-Way Bill</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="itemopstock.php" class="top-menu">
+                        <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
+                        <div class="top-menu__title"> E-Way Bill (jobwork)</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="itemopstock.php" class="top-menu">
+                        <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
+                        <div class="top-menu__title"> E- Way Bill (General)</div>
+                    </a>
+                </li>
                
             </ul>
         </li>
