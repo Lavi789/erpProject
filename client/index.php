@@ -41,75 +41,185 @@ require_once '../server/config/db.php';
     <!-- END: Top Bar -->
 
     <!-- BEGIN: Top Menu -->
-    <?php
-    $amenu = "dashboard";
-    include 'layout/nav.php'
-    ?>
+   
     <!-- END: Top Menu -->
 
     <!-- BEGIN: Content -->
     <div class="content content--top-nav">
         <!-- BEGIN: General Report -->
         <div class="intro-y flex items-center h-10 mt-8">
-            <h2 class="text-lg font-medium truncate mr-5">
+            <h2 class="text-lg font-small truncate mr-5">
                 General Report
             </h2>
             <a href="" class="ml-auto flex items-center text-primary"> <i data-lucide="refresh-ccw" class="w-4 h-4 mr-3"></i> Reload Data </a>
         </div>
-        <div class="grid grid-cols-12 gap-6 mt-5">
-            <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
+        <div class="grid grid-cols-8 gap-6 mt-5">
+            <div class="col-span-2">
                 <div class="report-box zoom-in">
                     <div class="box p-5">
                         <div class="flex">
-                            <i data-lucide="shopping-cart" class="report-box__icon text-primary"></i>
+                            <i data-lucide="credit-card" class="report-box__icon text-primary"></i>
                             <div class="ml-auto">
-                                <div class="report-box__indicator bg-success tooltip cursor-pointer" title="33% Higher than last month"> 33% <i data-lucide="chevron-up" class="w-4 h-4 ml-0.5"></i> </div>
+                                
                             </div>
                         </div>
-                        <div class="text-3xl font-medium leading-8 mt-6">4.710</div>
-                        <div class="text-base text-slate-500 mt-1">Item Sales</div>
+                        <div class="text-3xl font-small leading-8 mt-6">Master</div>
+                        <a href="masterindex.php"><div class="text-base text-slate-500 mt-1">open</div></a>
+                        
                     </div>
                 </div>
             </div>
-            <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
+            <div class="col-span-2">
                 <div class="report-box zoom-in">
                     <div class="box p-5">
                         <div class="flex">
-                            <i data-lucide="credit-card" class="report-box__icon text-pending"></i>
+                            <i data-lucide="shopping-cart" class="report-box__icon text-pending"></i>
                             <div class="ml-auto">
-                                <div class="report-box__indicator bg-danger tooltip cursor-pointer" title="2% Lower than last month"> 2% <i data-lucide="chevron-down" class="w-4 h-4 ml-0.5"></i> </div>
+                                
                             </div>
                         </div>
-                        <div class="text-3xl font-medium leading-8 mt-6">3.721</div>
-                        <div class="text-base text-slate-500 mt-1">New Orders</div>
+                        <div class="text-3xl font-small leading-8 mt-6">Sales</div>
+                        <div class="text-base text-slate-500 mt-1">open</div>
                     </div>
                 </div>
             </div>
-            <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
+            <div class="col-span-2">
                 <div class="report-box zoom-in">
                     <div class="box p-5">
                         <div class="flex">
-                            <i data-lucide="monitor" class="report-box__icon text-warning"></i>
+                            <i data-lucide="shopping-bag" class="report-box__icon text-warning"></i>
                             <div class="ml-auto">
-                                <div class="report-box__indicator bg-success tooltip cursor-pointer" title="12% Higher than last month"> 12% <i data-lucide="chevron-up" class="w-4 h-4 ml-0.5"></i> </div>
+                               
                             </div>
                         </div>
-                        <div class="text-3xl font-medium leading-8 mt-6">2.149</div>
-                        <div class="text-base text-slate-500 mt-1">Total Products</div>
+                        <div class="text-3xl font-small leading-8 mt-6">Purchase</div>
+                        <div class="text-base text-slate-500 mt-1">open</div>
                     </div>
                 </div>
             </div>
-            <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
+            <div class="col-span-2">
+                <div class="report-box zoom-in">
+                    <div class="box p-5">
+                        <div class="flex">
+                            <i data-lucide="briefcase" class="report-box__icon text-success"></i>
+                            <div class="ml-auto">
+                                
+                            </div>
+                        </div>
+                        <div class="text-3xl font-small leading-8 mt-6">Material</div>
+                        <div class="text-base text-slate-500 mt-1">open</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-span-2">
+                <div class="report-box zoom-in">
+                    <div class="box p-5">
+                        <div class="flex">
+                            <i data-lucide="circle" class="report-box__icon text-success"></i>
+                            <div class="ml-auto">
+                               
+                            </div>
+                        </div>
+                        <div class="text-3xl font-small leading-8 mt-6">Excise</div>
+                        <div class="text-base text-slate-500 mt-1">open</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-span-2">
                 <div class="report-box zoom-in">
                     <div class="box p-5">
                         <div class="flex">
                             <i data-lucide="user" class="report-box__icon text-success"></i>
                             <div class="ml-auto">
+                               
+                            </div>
+                        </div>
+                        <div class="text-3xl font-small leading-8 mt-6">HRMS</div>
+                        <div class="text-base text-slate-500 mt-1">open</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-span-2">
+                <div class="report-box zoom-in">
+                    <div class="box p-5">
+                        <div class="flex">
+                            <i data-lucide="wallet" class="report-box__icon text-success"></i>
+                            <div class="ml-auto">
+                               
+                            </div>
+                        </div>
+                        <div class="text-3xl font-small leading-8 mt-6">FNA</div>
+                        <div class="text-base text-slate-500 mt-1">open</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-span-2">
+                <div class="report-box zoom-in">
+                    <div class="box p-5">
+                        <div class="flex">
+                            <i data-lucide="box" class="report-box__icon text-success"></i>
+                            <div class="ml-auto">
+                                
+                            </div>
+                        </div>
+                        <div class="text-3xl font-small leading-8 mt-6">Prodcution</div>
+                        <div class="text-base text-slate-500 mt-1">open</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-span-2">
+                <div class="report-box zoom-in">
+                    <div class="box p-5">
+                        <div class="flex">
+                            <i data-lucide="star" class="report-box__icon text-success"></i>
+                            <div class="ml-auto">
+                               
+                            </div>
+                        </div>
+                        <div class="text-3xl font-small leading-8 mt-6">Quality</div>
+                        <div class="text-base text-slate-500 mt-1">open</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-span-2">
+                <div class="report-box zoom-in">
+                    <div class="box p-5">
+                        <div class="flex">
+                            <i data-lucide="plus" class="report-box__icon text-success"></i>
+                            <div class="ml-auto">
+                               
+                            </div>
+                        </div>
+                        <div class="text-3xl font-small leading-8 mt-6">MIS</div>
+                        <div class="text-base text-slate-500 mt-1">open</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-span-2">
+                <div class="report-box zoom-in">
+                    <div class="box p-5">
+                        <div class="flex">
+                            <i data-lucide="user" class="report-box__icon text-success"></i>
+                            <div class="ml-auto">
+                                
+                            </div>
+                        </div>
+                        <div class="text-3xl font-small leading-8 mt-6">Administration</div>
+                        <div class="text-base text-slate-500 mt-1">open</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-span-2">
+                <div class="report-box zoom-in">
+                    <div class="box p-5">
+                        <div class="flex">
+                            <i data-lucide="menu" class="report-box__icon text-success"></i>
+                            <div class="ml-auto">
                                 <div class="report-box__indicator bg-success tooltip cursor-pointer" title="22% Higher than last month"> 22% <i data-lucide="chevron-up" class="w-4 h-4 ml-0.5"></i> </div>
                             </div>
                         </div>
-                        <div class="text-3xl font-medium leading-8 mt-6">152</div>
-                        <div class="text-base text-slate-500 mt-1">Customer</div>
+                        <div class="text-3xl font-small leading-8 mt-6">Skyla</div>
+                        <div class="text-base text-slate-500 mt-1">open</div>
                     </div>
                 </div>
             </div>

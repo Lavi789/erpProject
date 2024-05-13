@@ -65,7 +65,7 @@ try {
     <!-- BEGIN: Top Menu -->
     <?php
     $amenu = "master";
-    include 'layout/nav.php'
+    include 'layout/masternav.pho'
     ?>
     <!-- END: Top Menu -->
 	<style>
