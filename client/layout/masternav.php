@@ -241,7 +241,7 @@ function getActive($amenu, $tmenu)
                     </a>
                 </li>
                 <li>
-                    <a href="itemmake.php" class="top-menu">
+                    <a href="item.php" class="top-menu">
                         <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
                         <div class="top-menu__title"> Item Make </div>
                     </a>

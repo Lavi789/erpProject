@@ -40,7 +40,7 @@ if ((!isset($_SESSION['user_name']))) {
 
     <!-- BEGIN: Top Bar -->
     <?php
-    $currentPage = 'Party Group';
+    $currentPage = 'vehicle';
     include 'layout/top.php'
     ?>
     <!-- END: Top Bar -->
@@ -83,7 +83,7 @@ if ((!isset($_SESSION['user_name']))) {
                                     <th>Vehiclegrp ID</th>
                                     <th>Vehicle No</th>
                                     <th>Driver Name1</th>
-                                    <th>Driver Add2</th>
+                                    <th>Driver Add1</th>
                                     <th>Driver Phno1</th>
                                     <th>Action</th>
                                 </tr>
@@ -145,8 +145,9 @@ if ((!isset($_SESSION['user_name']))) {
                                             <input id="driver_phno" name="driver_phno" type="text"
                                                 class="form-control" placeholder=" Driver Phno">
                                         </div>
+                                        
                                     
-
+                                       
                                 </div>
                             </form>
                             <!-- END: Modal Body -->
@@ -177,7 +178,6 @@ if ((!isset($_SESSION['user_name']))) {
 
 </body>
 <script>
-
 
 
 var dtable = $('#table').DataTable({
