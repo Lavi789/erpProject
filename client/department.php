@@ -48,7 +48,7 @@ if ((!isset($_SESSION['user_name']))) {
     <!-- BEGIN: Top Menu -->
     <?php
     $amenu = "master";
-    include 'layout/masternav.pho'
+    include 'layout/masternav.php'
     ?>
     <!-- END: Top Menu -->
 
