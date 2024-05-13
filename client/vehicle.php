@@ -316,7 +316,7 @@ function load_data(id) {
         method: "GET",
         success: function(res) {
             $("#vehicle_id").val(res.vehicle_id);
-            $("#vehiclegroup_id").val(res.vehiclegroup_id);
+            $("#vehiclegrp_id").val(res.vehiclegrp_id);
             $("#vehicle_no").val(res.vehicle_no);
             $("#driver_name").val(res.driver_name1);
             $("#driver_add").val(res.driver_add1);

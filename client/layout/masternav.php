@@ -171,6 +171,25 @@ function getActive($amenu, $tmenu)
                 
                
             </ul>
+            <li>
+            <a href="javascript:;" class="top-menu <?php getActive($amenu, "report"); ?>">
+                <div class="top-menu__icon">  <i data-lucide="menu"></i> </div>
+                <div class="top-menu__title"> Transport<i data-lucide="chevron-down" class="top-menu__sub-icon"></i> </div>
+            </a>
+            <ul class="">
+                <li>
+                    <a href="vehiclegroup.php" class="top-menu">
+                        <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
+                        <div class="top-menu__title"> Vehicle Group  </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="vehicle.php" class="top-menu">
+                        <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
+                        <div class="top-menu__title"> Vehicle   </div>
+                    </a>
+                </li>
+</ul>
         
                
             
