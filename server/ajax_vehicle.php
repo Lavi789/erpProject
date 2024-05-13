@@ -51,7 +51,11 @@ foreach ($result as $row) {
                 </div>';
 
     $object->vehicle_id    = $id;
-    $object->vehicle_name  = $row['vehicle_name'];
+    $object->vehiclegrp_id  = $row['vehiclegrp_id'];
+    $object->vehicle_no  = $row['vehicle_no'];
+    $object->driver_name  = $row['driver_name1'];
+    $object->driver_add  = $row['driver_add1'];
+    $object->driver_phno  = $row['driver_phno1'];
     $object->action     = $action;
 
     array_push($objArr, $object);

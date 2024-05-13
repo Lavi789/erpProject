@@ -2600,8 +2600,12 @@ $app->group("$base/vehicle", function (Group $group) {
             $sql = "UPDATE vehicle SET vehicle_name=:vehiclegroup_name WHERE vehicle_id=:vehicle_id";
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(':vehicle_id', $parameters['vehicle_id']);
-            $stmt->bindParam(':vehiclegroup_name', $parameters['vehiclegroup_name']);
-         
+            $stmt->bindParam(':vehiclegrp_id', $parameters['vehiclegrp_id']);
+            $stmt->bindParam(':vehicle_no', $parameters['vehicle_no']);
+            $stmt->bindParam(':driver_name', $parameters['driver_name']);
+            $stmt->bindParam(':driver_add', $parameters['driver_add']);
+            $stmt->bindParam(':driver_phno', $parameters['driver_phno']);
+          
             $stmt->execute();
            
             $msg = ($stmt->rowCount() > 0) ? "Success" : "No Update";
