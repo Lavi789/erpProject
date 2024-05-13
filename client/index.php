@@ -63,7 +63,7 @@ require_once '../server/config/db.php';
                                 
                             </div>
                         </div>
-                        <div class="text-3xl font-small leading-8 mt-6">Master</div>
+                        <div class="text-xl font-small leading-8 mt-6">Master</div>
                         <a href="masterindex.php"><div class="text-base text-slate-500 mt-1">open</div></a>
                         
                     </div>
@@ -78,7 +78,7 @@ require_once '../server/config/db.php';
                                 
                             </div>
                         </div>
-                        <div class="text-3xl font-small leading-8 mt-6">Sales</div>
+                        <div class="text-xl font-small leading-8 mt-6">Sales</div>
                         <div class="text-base text-slate-500 mt-1">open</div>
                     </div>
                 </div>
@@ -92,7 +92,7 @@ require_once '../server/config/db.php';
                                
                             </div>
                         </div>
-                        <div class="text-3xl font-small leading-8 mt-6">Purchase</div>
+                        <div class="text-xl font-small leading-8 mt-6">Purchase</div>
                         <div class="text-base text-slate-500 mt-1">open</div>
                     </div>
                 </div>
@@ -106,7 +106,7 @@ require_once '../server/config/db.php';
                                 
                             </div>
                         </div>
-                        <div class="text-3xl font-small leading-8 mt-6">Material</div>
+                        <div class="text-xl font-small leading-8 mt-6">Material</div>
                         <div class="text-base text-slate-500 mt-1">open</div>
                     </div>
                 </div>
@@ -120,7 +120,7 @@ require_once '../server/config/db.php';
                                
                             </div>
                         </div>
-                        <div class="text-3xl font-small leading-8 mt-6">Excise</div>
+                        <div class="text-xl font-small leading-8 mt-6">Excise</div>
                         <div class="text-base text-slate-500 mt-1">open</div>
                     </div>
                 </div>
@@ -134,7 +134,7 @@ require_once '../server/config/db.php';
                                
                             </div>
                         </div>
-                        <div class="text-3xl font-small leading-8 mt-6">HRMS</div>
+                        <div class="text-xl font-small leading-8 mt-6">HRMS</div>
                         <div class="text-base text-slate-500 mt-1">open</div>
                     </div>
                 </div>
@@ -148,7 +148,7 @@ require_once '../server/config/db.php';
                                
                             </div>
                         </div>
-                        <div class="text-3xl font-small leading-8 mt-6">FNA</div>
+                        <div class="text-xl font-small leading-8 mt-6">FNA</div>
                         <div class="text-base text-slate-500 mt-1">open</div>
                     </div>
                 </div>
@@ -162,7 +162,7 @@ require_once '../server/config/db.php';
                                 
                             </div>
                         </div>
-                        <div class="text-3xl font-small leading-8 mt-6">Prodcution</div>
+                        <div class="text-xl font-small leading-8 mt-6">Prodcution</div>
                         <div class="text-base text-slate-500 mt-1">open</div>
                     </div>
                 </div>
@@ -176,7 +176,7 @@ require_once '../server/config/db.php';
                                
                             </div>
                         </div>
-                        <div class="text-3xl font-small leading-8 mt-6">Quality</div>
+                        <div class="text-xl font-small leading-8 mt-6">Quality</div>
                         <div class="text-base text-slate-500 mt-1">open</div>
                     </div>
                 </div>
@@ -190,7 +190,7 @@ require_once '../server/config/db.php';
                                
                             </div>
                         </div>
-                        <div class="text-3xl font-small leading-8 mt-6">MIS</div>
+                        <div class="text-xl font-small leading-8 mt-6">MIS</div>
                         <div class="text-base text-slate-500 mt-1">open</div>
                     </div>
                 </div>
@@ -204,7 +204,7 @@ require_once '../server/config/db.php';
                                 
                             </div>
                         </div>
-                        <div class="text-3xl font-small leading-8 mt-6">Administration</div>
+                        <div class="text-xl font-small leading-8 mt-6">Administration</div>
                         <div class="text-base text-slate-500 mt-1">open</div>
                     </div>
                 </div>
@@ -215,10 +215,10 @@ require_once '../server/config/db.php';
                         <div class="flex">
                             <i data-lucide="menu" class="report-box__icon text-success"></i>
                             <div class="ml-auto">
-                                <div class="report-box__indicator bg-success tooltip cursor-pointer" title="22% Higher than last month"> 22% <i data-lucide="chevron-up" class="w-4 h-4 ml-0.5"></i> </div>
+                              
                             </div>
                         </div>
-                        <div class="text-3xl font-small leading-8 mt-6">Skyla</div>
+                        <div class="text-xl font-small leading-8 mt-6">Skyla</div>
                         <div class="text-base text-slate-500 mt-1">open</div>
                     </div>
                 </div>
