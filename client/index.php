@@ -218,7 +218,7 @@ require_once '../server/config/db.php';
                               
                             </div>
                         </div>
-                        <div class="text-xl font-small leading-8 mt-6">Skyla</div>
+                        <div class="text-xl font-small leading-8 mt-6">Others</div>
                         <div class="text-base text-slate-500 mt-1">open</div>
                     </div>
                 </div>
