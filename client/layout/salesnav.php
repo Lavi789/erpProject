@@ -82,55 +82,56 @@ function getActive($amenu, $tmenu)
                 <li>
                     <a href="bank.php" class="top-menu">
                         <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
-                        <div class="top-menu__title"> Bank </div>
+                        <div class="top-menu__title"> Order</div>
                     </a>
                 </li>
                 <li>
                     <a href="bank.php" class="top-menu">
-                        <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
-                        <div class="top-menu__title"> HSN/SAC </div>
+                        <div class="top-menu__icon"> Collection Of RC <i data-lucide="file-text"></i> </div>
+                        <div class="top-menu__title"> </div>
                     </a>
                 </li>
                 <li>
                     <a href="unit.php" class="top-menu">
                         <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
-                        <div class="top-menu__title"> Unit </div>
+                        <div class="top-menu__title"> IRN SUPPLIMENTRY BILL </div>
                     </a>
                 </li>
                 <li>
                     <a href="department.php" class="top-menu">
                         <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
-                        <div class="top-menu__title"> Department </div>
+                        <div class="top-menu__title"> IRN CREDIT NOTE
+                         </div>
                     </a>
                 </li>
                 <li>
                     <a href="machine.php" class="top-menu">
                         <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
-                        <div class="top-menu__title"> Machine </div>
+                        <div class="top-menu__title"> Delivery challan </div>
                     </a>
                 </li>
                 <li>
                     <a href="process.php" class="top-menu">
                         <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
-                        <div class="top-menu__title"> Process</div>
+                        <div class="top-menu__title"> Stock Transfer</div>
                     </a>
                 </li>
                 <li>
                     <a href=".php" class="top-menu">
                         <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
-                        <div class="top-menu__title"> BOM </div>
+                        <div class="top-menu__title">Rejection</div>
                     </a>
                 </li>
                 <li>
                     <a href="shift.php" class="top-menu">
                         <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
-                        <div class="top-menu__title"> Shift </div>
+                        <div class="top-menu__title"> Gate pass</div>
                     </a>
                 </li>
                 <li>
                     <a href="bank.php" class="top-menu">
                         <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
-                        <div class="top-menu__title"> A/C Head Stock</div>
+                        <div class="top-menu__title"> GIN</div>
                     </a>
                 </li>
                
@@ -142,7 +143,7 @@ function getActive($amenu, $tmenu)
 
             <a href="javascript:;" class="top-menu <?php getActive($amenu, "report"); ?>">
                 <div class="top-menu__icon"> <i data-lucide="menu"></i> </div>
-                <div class="top-menu__title"> Location<i data-lucide="chevron-down" class="top-menu__sub-icon"></i> </div>
+                <div class="top-menu__title"> Schedule<i data-lucide="chevron-down" class="top-menu__sub-icon"></i> </div>
             </a>
             <ul class="">
                 <li>
@@ -174,7 +175,7 @@ function getActive($amenu, $tmenu)
             <li>
             <a href="javascript:;" class="top-menu <?php getActive($amenu, "report"); ?>">
                 <div class="top-menu__icon">  <i data-lucide="menu"></i> </div>
-                <div class="top-menu__title"> Transport<i data-lucide="chevron-down" class="top-menu__sub-icon"></i> </div>
+                <div class="top-menu__title"> Schedule<i data-lucide="chevron-down" class="top-menu__sub-icon"></i> </div>
             </a>
             <ul class="">
                 <li>
@@ -197,7 +198,7 @@ function getActive($amenu, $tmenu)
         <li>
             <a href="javascript:;" class="top-menu <?php getActive($amenu, "report"); ?>">
                 <div class="top-menu__icon">  <i data-lucide="menu"></i> </div>
-                <div class="top-menu__title"> Vendor<i data-lucide="chevron-down" class="top-menu__sub-icon"></i> </div>
+                <div class="top-menu__title"> Supplimentry Bill<i data-lucide="chevron-down" class="top-menu__sub-icon"></i> </div>
             </a>
             <ul class="">
                 <li>
@@ -231,7 +232,7 @@ function getActive($amenu, $tmenu)
         <li>
             <a href="javascript:;" class="top-menu <?php getActive($amenu, "report"); ?>">
                 <div class="top-menu__icon">  <i data-lucide="menu"></i> </div>
-                <div class="top-menu__title"> Utility<i data-lucide="chevron-down" class="top-menu__sub-icon"></i> </div>
+                <div class="top-menu__title"> Invoice<i data-lucide="chevron-down" class="top-menu__sub-icon"></i> </div>
             </a>
             <ul class="">
                 <li>
@@ -312,31 +313,180 @@ function getActive($amenu, $tmenu)
                 <li>
                     <a href="partylistreport.php" class="top-menu">
                         <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
-                        <div class="top-menu__title"> Party List  </div>
+                        <div class="top-menu__title"> Order </div>
                     </a>
                 </li>
                 <li>
                     <a href="itemgroupreport.php" class="top-menu">
                         <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
-                        <div class="top-menu__title"> Group Wise Item List </div>
+                        <div class="top-menu__title"> Schedule </div>
                     </a>
                 </li>
                 <li>
                     <a href="vendoritemlist.php" class="top-menu">
                         <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
-                        <div class="top-menu__title"> Vendor Item List </div>
+                        <div class="top-menu__title"> Collection RC</div>
                     </a>
                 </li>
                 <li>
                     <a href="productionbom.php" class="top-menu">
                         <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
-                        <div class="top-menu__title"> Production BOM</div>
+                        <div class="top-menu__title"> Invoice</div>
                     </a>
                 </li>
                 <li>
                     <a href="contractorbom.php" class="top-menu">
                         <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
-                        <div class="top-menu__title"> Job contractor Bom</div>
+                        <div class="top-menu__title"> Rejection</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="contractorbom.php" class="top-menu">
+                        <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
+                        <div class="top-menu__title"> VAT Debit Note</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="contractorbom.php" class="top-menu">
+                        <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
+                        <div class="top-menu__title"> Lorry Receipt</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="contractorbom.php" class="top-menu">
+                        <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
+                        <div class="top-menu__title"> Sales Gate Pass</div>
+                    </a>
+                </li>
+                
+               
+            </ul>
+        </li>
+
+        <li>
+            <a href="javascript:;" class="top-menu <?php getActive($amenu, "report"); ?>">
+                <div class="top-menu__icon">  <i data-lucide="menu"></i> </div>
+                <div class="top-menu__title"> UTILITY <i data-lucide="chevron-down" class="top-menu__sub-icon"></i> </div>
+            </a>
+            <ul class="">
+                <li>
+                    <a href="partylistreport.php" class="top-menu">
+                        <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
+                        <div class="top-menu__title"> Data Updation</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="itemgroupreport.php" class="top-menu">
+                        <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
+                        <div class="top-menu__title"> SRM (General) File Generation </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="vendoritemlist.php" class="top-menu">
+                        <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
+                        <div class="top-menu__title"> SRM (Mashop) File Generation </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="productionbom.php" class="top-menu">
+                        <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
+                        <div class="top-menu__title"> API Password Updation </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="contractorbom.php" class="top-menu">
+                        <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
+                        <div class="top-menu__title"> General Challan Printing </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="contractorbom.php" class="top-menu">
+                        <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
+                        <div class="top-menu__title"> Mashop Challan Printing </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="contractorbom.php" class="top-menu">
+                        <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
+                        <div class="top-menu__title"> Daily Schedule Amendment</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="contractorbom.php" class="top-menu">
+                        <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
+                        <div class="top-menu__title"> Road Permit</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="contractorbom.php" class="top-menu">
+                        <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
+                        <div class="top-menu__title"> E-way Bill</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="contractorbom.php" class="top-menu">
+                        <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
+                        <div class="top-menu__title"> E-way Bill(jobwork)</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="contractorbom.php" class="top-menu">
+                        <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
+                        <div class="top-menu__title"> E-Invoice(General)</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="contractorbom.php" class="top-menu">
+                        <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
+                        <div class="top-menu__title"> E-Invoice(Mashop)</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="contractorbom.php" class="top-menu">
+                        <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
+                        <div class="top-menu__title"> E-Invoice(Jobwork)</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="contractorbom.php" class="top-menu">
+                        <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
+                        <div class="top-menu__title"> E-Invoice(Supplimentr Bill)</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="contractorbom.php" class="top-menu">
+                        <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
+                        <div class="top-menu__title"> E-Invoice(Supplementay Bill Mashop)</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="contractorbom.php" class="top-menu">
+                        <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
+                        <div class="top-menu__title"> E-Invoice(upplementary Bill Jobwork)</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="contractorbom.php" class="top-menu">
+                        <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
+                        <div class="top-menu__title"> E-Invoice(Credit Note Jobwork)</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="contractorbom.php" class="top-menu">
+                        <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
+                        <div class="top-menu__title">Insert No</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="contractorbom.php" class="top-menu">
+                        <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
+                        <div class="top-menu__title"> Supplimentary Bill Printing </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="contractorbom.php" class="top-menu">
+                        <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
+                        <div class="top-menu__title"> Credit Note Printing</div>
                     </a>
                 </li>
                 
