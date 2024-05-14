@@ -248,7 +248,7 @@ function getActive($amenu, $tmenu)
                     </a>
                 </li>
                 <li>
-                    <a href="itemwiserate.php" class="top-menu">
+                    <a href="itemrate.php" class="top-menu">
                         <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
                         <div class="top-menu__title"> Item Wise Rate </div>
                     </a>
