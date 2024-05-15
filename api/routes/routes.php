@@ -999,7 +999,7 @@ $app->group("$base/machine", function (Group $group) {
             $conn = new DB;
             $conn = $conn->connect();
 
-            $sql = "INSERT INTO machine (m_name,short_name,m_no, make,location,nature_work,dept_name,controller) VALUES (:m_name, :short_name,:m_no, :make,:location, :nature_work, :dept_name, :controller)";
+            $sql = "INSERT INTO machine (m_name,short_name,m_no,make,location,nature_work,dept_name,controller) VALUES (:m_name, :short_name,:m_no, :make,:location, :nature_work, :dept_name, :controller)";
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(':m_name', $parameters['m_name']);
             $stmt->bindParam(':short_name', $parameters['short_name']);
@@ -2576,4 +2576,155 @@ $app->group("$base/make", function (Group $group) {
 });
 /*
     END: REST API for vehicle group
+*/
+
+// *
+//     BEIGN: REST API for unit
+// */
+$app->group("$base/unit", function (Group $group) {
+    $group->get("", function (Request $request, Response $response) {
+        try {
+            $conn = new DB;
+            $conn = $conn->connect();
+
+            $sql = "SELECT * FROM unit";
+            $stmt = $conn->query($sql);
+            $data = $stmt->fetchAll(PDO::FETCH_OBJ);
+            $conn = null;
+
+            $status = 200;
+        } catch (PDOException $e) {
+            $data = array("status" => "Error", "msg" => $e->getMessage());
+            $status = 400;
+        }
+
+        $output = json_encode($data);
+
+        $response->getBody()->write($output);
+        return $response->withHeader('Content-type', 'application/json')
+            ->withStatus($status);
+    });
+
+    $group->get("/{id}", function (Request $request, Response $response, array $args) {
+        try {
+            $unit_id= $args['id'];
+
+            $conn = new DB;
+            $conn = $conn->connect();
+
+            $sql = "SELECT * FROM unit WHERE unit_id=:unit_id";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':unit_id', $unit_id);
+            $stmt->execute();
+            $data = $stmt->fetch(PDO::FETCH_OBJ);
+
+            $conn = null;
+
+            $status = 200;
+        } catch (PDOException $e) {
+            $data = array("status" => "Error", "msg" => $e->getMessage());
+            $status = 400;
+        }
+
+        $output = json_encode($data);
+
+        $response->getBody()->write($output);
+        return $response->withHeader('Content-type', 'application/json')
+            ->withStatus($status);
+    });
+
+    $group->post("", function (Request $request, Response $response) {
+        try {
+            $parameters = $request->getParsedBody();
+
+            $conn = new DB;
+            $conn = $conn->connect();
+
+            $sql = "INSERT INTO unit (unit_name,unit_sname) VALUES (:unit_name,:unit_sname)";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':unit_name', $parameters['unit_name']);
+            $stmt->bindParam(':unit_sname', $parameters['unit_sname']);
+           
+           
+            
+            $stmt->execute();
+
+            $msg = ($stmt->rowCount() > 0) ? "Success" : "No Update";
+            $conn = null;
+
+            $status = 200;
+            $data = array("status" => "Ok", "msg" => $msg, "item" => $parameters);
+        } catch (PDOException $e) {
+            $data = array("status" => "Error", "msg" => $e->getMessage(), "item" => $parameters);
+            $status = 400;
+        }
+
+        $output = json_encode($data);
+
+        $response->getBody()->write($output);
+        return $response->withHeader('Content-type', 'application/json')
+            ->withStatus($status);
+    });
+
+    $group->put("/{id}", function (Request $request, Response $response, array $args) {
+        try {
+            $parameters = $request->getParsedBody();
+
+            $conn = new DB;
+            $conn = $conn->connect();
+
+            $sql = "UPDATE unit SET unit_name=:unit_name,unit_sname=:unit_sname WHERE unit_id=:unit_id";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':unit_id', $parameters['unit_id']);
+            $stmt->bindParam(':unit_name', $parameters['unit_name']);
+            $stmt->bindParam(':unit_sname', $parameters['unit_sname']);
+         
+            $stmt->execute();
+           
+            $msg = ($stmt->rowCount() > 0) ? "Success" : "No Update";
+            $conn = null;
+
+            $status = 200;
+            $data = array("status" => "Ok", "msg" => $msg, "item" => $parameters);
+        } catch (PDOException $e) {
+            $data = array("status" => "Error", "msg" => $e->getMessage(), "item" => $parameters);
+            $status = 400;
+        }
+
+        $output = json_encode($data);
+
+        $response->getBody()->write($output);
+        return $response->withHeader('Content-type', 'application/json')
+            ->withStatus($status);
+    });
+
+    $group->delete("/{id}", function (Request $request, Response $response, array $args) {
+        try {
+            $conn = new DB;
+            $conn = $conn->connect();
+
+            $sql = "DELETE FROM unit WHERE unit_id=:unit_id";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':unit_id', $args['id']);
+            $stmt->execute();
+
+            $msg = ($stmt->rowCount() > 0) ? "Success" : "No Update";
+            $conn = null;
+
+            $status = 200;
+            $data = array("status" => "Ok", "msg" => $msg);
+        } catch (PDOException $e) {
+            $data = array("status" => "Error", "msg" => $e->getMessage());
+            $status = 400;
+        }
+
+        $output = json_encode($data);
+
+        $response->getBody()->write($output);
+        return $response->withHeader('Content-type', 'application/json')
+            ->withStatus($status);
+    });
+});
+/*
+    END: REST API for unit
 */
