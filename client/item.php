@@ -6,6 +6,14 @@ if ((!isset($_SESSION['user_name']))) {
 }
 ?>
 
+<?php
+require_once '../server/config/db.php';
+$stmt = $conn->prepare("SELECT * FROM itemgroup  ");
+$stmt->execute();
+$item = $stmt->fetchAll();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en" class="light">
 
@@ -119,7 +127,18 @@ if ((!isset($_SESSION['user_name']))) {
                                     </div>
                                     <div class="col-span-12 sm:col-span-6">
                                         <label for="itemg_name" class="form-label">Item Group Name</label>
-                                        <input id="itemg_name" name="itemg_name" type="text" class="form-control" placeholder="Item Group Name">
+                                        <div class="col-span-2">
+                            <select name="code" id="code" class="wd-100 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full tom-select">
+                                                        <option >Item Group</option>
+
+                                                <?php foreach ($item as $itemrate) { ?>
+                                        
+                                        <option value="<?= $itemrate['itemg_name'] ?>"><?= $itemrate['itemg_name'] ?></option>
+                                      <?php } ?>
+                            </select>
+                
+                        </div>
+                
                                     </div>
                                     <div class="col-span-12 sm:col-span-6">
                                         <label for="ledger" class="form-label">Ledger</label>

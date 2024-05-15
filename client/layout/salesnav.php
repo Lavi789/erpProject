@@ -87,8 +87,8 @@ function getActive($amenu, $tmenu)
                 </li>
                 <li>
                     <a href="bank.php" class="top-menu">
-                        <div class="top-menu__icon"> Collection Of RC <i data-lucide="file-text"></i> </div>
-                        <div class="top-menu__title"> </div>
+                        <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
+                        <div class="top-menu__title">Collection Of RC  </div>
                     </a>
                 </li>
                 <li>
@@ -142,7 +142,7 @@ function getActive($amenu, $tmenu)
             
 
             <a href="javascript:;" class="top-menu <?php getActive($amenu, "report"); ?>">
-                <div class="top-menu__icon"> <i data-lucide="menu"></i> </div>
+                <div class="top-menu__icon"> <i data-lucide="calendar"></i> </div>
                 <div class="top-menu__title"> Schedule<i data-lucide="chevron-down" class="top-menu__sub-icon"></i> </div>
             </a>
             <ul class="">
@@ -172,7 +172,7 @@ function getActive($amenu, $tmenu)
                 
                
             </ul>
-            <li>
+            <!-- <li>
             <a href="javascript:;" class="top-menu <?php getActive($amenu, "report"); ?>">
                 <div class="top-menu__icon">  <i data-lucide="menu"></i> </div>
                 <div class="top-menu__title"> Schedule<i data-lucide="chevron-down" class="top-menu__sub-icon"></i> </div>
@@ -189,15 +189,15 @@ function getActive($amenu, $tmenu)
                         <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
                         <div class="top-menu__title"> Vehicle   </div>
                     </a>
-                </li>
-</ul>
+                </li> -->
+<!-- </ul> -->
         
                
             
         </li>
         <li>
             <a href="javascript:;" class="top-menu <?php getActive($amenu, "report"); ?>">
-                <div class="top-menu__icon">  <i data-lucide="menu"></i> </div>
+                <div class="top-menu__icon">  <i data-lucide="book"></i> </div>
                 <div class="top-menu__title"> Supplimentry Bill<i data-lucide="chevron-down" class="top-menu__sub-icon"></i> </div>
             </a>
             <ul class="">
@@ -231,7 +231,7 @@ function getActive($amenu, $tmenu)
         </li>
         <li>
             <a href="javascript:;" class="top-menu <?php getActive($amenu, "report"); ?>">
-                <div class="top-menu__icon">  <i data-lucide="menu"></i> </div>
+                <div class="top-menu__icon">  <i data-lucide="library"></i> </div>
                 <div class="top-menu__title"> Invoice<i data-lucide="chevron-down" class="top-menu__sub-icon"></i> </div>
             </a>
             <ul class="">
@@ -306,7 +306,7 @@ function getActive($amenu, $tmenu)
         </li>
         <li>
             <a href="javascript:;" class="top-menu <?php getActive($amenu, "report"); ?>">
-                <div class="top-menu__icon">  <i data-lucide="menu"></i> </div>
+                <div class="top-menu__icon">  <i data-lucide="flag"></i> </div>
                 <div class="top-menu__title"> Report<i data-lucide="chevron-down" class="top-menu__sub-icon"></i> </div>
             </a>
             <ul class="">
@@ -365,8 +365,8 @@ function getActive($amenu, $tmenu)
 
         <li>
             <a href="javascript:;" class="top-menu <?php getActive($amenu, "report"); ?>">
-                <div class="top-menu__icon">  <i data-lucide="menu"></i> </div>
-                <div class="top-menu__title"> UTILITY <i data-lucide="chevron-down" class="top-menu__sub-icon"></i> </div>
+                <div class="top-menu__icon">  <i data-lucide="plus"></i> </div>
+                <div class="top-menu__title"> Utility <i data-lucide="chevron-down" class="top-menu__sub-icon"></i> </div>
             </a>
             <ul class="">
                 <li>

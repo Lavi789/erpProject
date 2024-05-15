@@ -1,13 +1,3 @@
-<?php
-session_start();
-if ((!isset($_SESSION['user_name']))) {
-    header('location:login.php');
-    die('Please Login First...<br><br>Redirectiing in a sec to Login Page');
-}
-
-require_once '../server/config/db.php';
-?>
-
 <!DOCTYPE html>
 <html lang="en" class="light">
 
@@ -21,11 +11,24 @@ require_once '../server/config/db.php';
     <!-- BEGIN: CSS Assets-->
     <link rel="stylesheet" href="dist/css/app.css" />
     <!-- END: CSS Assets-->
+    <!-- <style>
+        .content--top-nav {
+            background-color: #030640; /* Background color for the entire content area */
+            padding: 20px; /* Adjust padding as needed */
+        }
+        .page-title {
+            background-color:#030640; /* Background color for the "Master" div */
+            padding: 8px 12px; /* Adjust padding as needed */
+            border-radius: 4px; /* Optional: Add border-radius for rounded corners */
+            display: inline-block; /* Ensures the background color only covers the text */
+            
+        }
+        .page-title h2 {
+            color: #ffffff;
+        }
+    </style> -->
 </head>
 <!-- END: Head -->
-
-
-      
 
 <body class="py-5 md:py-0">
 
@@ -54,16 +57,17 @@ require_once '../server/config/db.php';
     <div class="content content--top-nav">
         <!-- BEGIN: General Report -->
         <div class="intro-y flex items-center h-10 mt-8">
-            <h2 class="text-lg font-medium truncate mr-5">
-                Master
-            </h2>
+            <div class="page-title">
+                <h2 class="text-lg font-medium  truncate mr-5">
+                    Master
+                </h2>
+            </div>
             <a href="" class="ml-auto flex items-center text-primary"> <i data-lucide="refresh-ccw" class="w-4 h-4 mr-3"></i> Reload Data </a>
         </div>
         
     <!-- Element to animate -->
    <!-- Animated box -->
-   <div class="watermark-container"></div>
-    </div>
+   
     <!-- END: Content -->
 
     <!-- BEGIN: JS Assets-->
