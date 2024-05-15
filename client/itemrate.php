@@ -64,7 +64,7 @@ $item = $stmt->fetchAll();
         <!-- BEGIN: Title -->
         <div class="intro-y flex items-center h-10 mt-8 mb-5">
             <h2 class="text-lg font-medium truncate mr-5">
-               Make
+              Itemrate
             </h2>
             <a href="" class="ml-auto flex items-center text-primary"> <i data-lucide="refresh-ccw" class="w-4 h-4 mr-3"></i> Reload Data </a>
         </div>
@@ -72,9 +72,9 @@ $item = $stmt->fetchAll();
 
         <!-- BEGIN: Add Button -->
            <div class="grid grid-cols-12 text-dark mt-3">
-                        <label class="col-span-1 align-self-center flex items-center " for="code">Item Rate: </label>
+                        <label class="col-span-1 align-self-center flex items-center " for="item">Item Rate: </label>
                         <div class="col-span-2">
-                            <select name="code" id="code" class="wd-100 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full tom-select">
+                            <select name="item" id="item" class="wd-100 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full tom-select">
                                                         <option >Item Group</option>
 
                                                 <?php foreach ($item as $itemrate) { ?>
@@ -94,15 +94,15 @@ $item = $stmt->fetchAll();
             <div class="p-5" id="responsive-table">
                 <div class="preview">
                     <div class="overflow-x-auto">
-                        <table id="table" class="table table-bordered table-striped" style="width:100%" cellpadding="7px">
+                        <table id="table1" class="table table-bordered table-striped" style="width:100%" cellpadding="7px">
                             <thead class="table-dark">
                                 <tr>
-                                    <th>ID</th>
+                                    
                                     <th>Sl No.</th>
                                     <th>Part No</th>
                                     <th>Item Name</th>
-                                    <th>Rate</th>
-                                    <!-- <th>Action</th> -->
+                                    <!-- <th>Rate</th> -->
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                         </table>
@@ -169,35 +169,56 @@ $item = $stmt->fetchAll();
 
 </body>
 <script>
-    var dtable = $('#table').DataTable({
-        "processing": true,
-        "searching": true,
-        "serverSide": true,
-        "ajax": {
-            url: "../server/ajax_make.php",
-            type: "POST"
-        },
-        "columns": [{
-                "data": "make_id",
-                "visible": false
+     document.getElementById('item').addEventListener('change', function() {
+    var selectedOption = this.value;
+    if (selectedOption) {
+        var id = selectedOption.split(' - ')[0];
+        console.log('Selected item:', id);
+        load_search_data(id);
+    }
+});
+
+function load_search_data(id) {
+    if (id) {
+        if ($.fn.DataTable.isDataTable('#table1')) {
+            $('#table1').DataTable().destroy();
+        }
+
+        var dtable = $('#table1').DataTable({
+            "processing": true,
+            "searching": true,
+            "serverSide": true,
+            "ajax": {
+                "url": "../server/ajax_itemrate.php",
+               
             },
-            {
-                "data": "sl_no",
-                render: function(data, type, row, meta) {
-                    return meta.row + meta.settings._iDisplayStart + 1;
-                },
-                "orderable": false
-            },
-            {
-                "data": "make_name"
-            },
-           
-            {
-                // "data": "action",
-                "orderable": false
-            }
-        ]
-    });
+            "columns": [
+                { "data": "item_name" },
+                { "data": "part_no" },
+                { "data": "action" }
+            ],
+            "order": [0, "asc"]
+        });
+    }
+}
+var dtable = $('#table1').DataTable({
+     
+            "processing": true,
+            "searching": true,
+            "serverSide": true,
+            "ajax":  "../server/ajax_itemrate.php",
+            "columns": [
+                { "data": "item_name" },
+                { "data": "part_no" },
+                { "data": "action" }
+                
+            ],
+            "order": [0, "asc"],
+        });
+    
+
+
+
 
     function convertFormToJSON(form) {
         const array = $(form).serializeArray();
@@ -209,125 +230,10 @@ $item = $stmt->fetchAll();
         return json;
     }
 
-    function remove_data(id) {
-        Swal.fire({
-            title: 'Are you sure to Delete?',
-            text: 'You won\'t be able to revert this!',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                $.ajax({
-                    url: '../api/make/' + id,
-                    type: 'DELETE',
-                    dataType: 'json',
-                    contentType: 'application/json',
-                    success: function(data) {
-                        if (data.status == "Ok") {
-                            Swal.fire({
-                                title: data.msg,
-                                icon: 'success',
-                            }).then((result) => {
-                                dtable.draw();
-                            });
-                        } else {
-                            Swal.fire(data.msg, '', 'error');
-                        }
-                    },
-                    error: function(xhr, textStatus, errorThrown) {
-                        Swal.fire('Error', 'An error occurred while deleting the data.', 'error');
-                    }
-                });
+            
+  
 
-            } else {
-                Swal.close();
-            }
-        });
-    }
-
-    function add_data() {
-        $("#btn_save").show();
-        $("#btn_update").hide();
-        $("#frm_user").trigger("reset");
-        $("#modal-title").text('Add Shift');
-    }
-
-    $("#btn_save").on("click", function() {
-        const form = $("#frm_user");
-        const json = convertFormToJSON(form);
-        $.ajax({
-            url: '../api/make',
-            type: 'POST',
-            data: JSON.stringify(json),
-            dataType: 'json',
-            contentType: 'application/json',
-            success: function(data) {
-                if (data.status === "Ok") {
-                    $("#frm_user").trigger('reset');
-                    $("#header-footer-modal-preview").hide();
-                    dtable.draw();
-
-                    Swal.fire(data.msg, '', 'success');
-                } else {
-                    Swal.fire(data.msg, '', 'error');
-                }
-            },
-            error: function(xhr, status, error) {
-                console.error(xhr.responseText);
-
-                Swal.fire('OOPS', '', 'error');
-                // Handle error, if any
-            }
-        });
-    });
-
-    function load_data(id) {
-        $("#btn_save").hide();
-        $("#btn_update").show();
-        $("#modal-title").text('Edit Shift');
-        $.ajax({
-            url: '../api/make/' + id,
-            method: "GET",
-            success: function(res) {
-                $("#make_id").val(res.make_id);
-                $("#make_name").val(res.make_name);
     
-            }
-        });
-    }
-
-    $("#btn_update").on("click", function() {
-        const form = $("#frm_user");
-        const json = convertFormToJSON(form);
-        var id = $("#make_id").val();
-        $.ajax({
-            url: '../api/make/' + id,
-            type: 'PUT',
-            data: JSON.stringify(json),
-            dataType: 'json',
-            contentType: 'application/json',
-            success: function(data) {
-                if (data.status === "Ok") {
-                    $("#frm_user").trigger('reset');
-                    $("#header-footer-modal-preview").hide();
-                    dtable.draw();
-
-                    Swal.fire(data.msg, '', 'success');
-                } else {
-                    Swal.fire(data.msg, '', 'error');
-                }
-            },
-            error: function(xhr, status, error) {
-                console.error(xhr.responseText);
-
-                Swal.fire('OOPS', '', 'error');
-                // Handle error, if any
-            }
-        });
-    });
 </script>
 
 </html>
