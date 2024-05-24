@@ -80,9 +80,9 @@ function getActive($amenu, $tmenu)
             </a>
             <ul class="">
                 <li>
-                    <a href="bank.php" class="top-menu">
+                    <a href="storelocation.php" class="top-menu">
                         <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
-                        <div class="top-menu__title"> Order</div>
+                        <div class="top-menu__title"> Store Location</div>
                     </a>
                 </li>
                 <li>
@@ -149,24 +149,24 @@ function getActive($amenu, $tmenu)
                 <li>
                     <a href="country.php" class="top-menu">
                         <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
-                        <div class="top-menu__title"> Country   </div>
+                        <div class="top-menu__title"> Daily  </div>
                     </a>
                 </li>
                 <li>
                     <a href="state.php" class="top-menu">
                         <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
-                        <div class="top-menu__title"> State</div>
+                        <div class="top-menu__title"> Daily Updation</div>
                     </a>
                 </li>
                 <li>
                     <a href="dist.php" class="top-menu">
                         <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
-                        <div class="top-menu__title"> Dist  </div>
+                        <div class="top-menu__title"> Monthly Updation </div>
                     </a>
                 </li> <li>
                     <a href="city.php" class="top-menu">
                         <div class="top-menu__icon"> <i data-lucide="file-text"></i> </div>
-                        <div class="top-menu__title"> City  </div>
+                        <div class="top-menu__title"> Amendement </div>
                     </a>
                 </li>
                 

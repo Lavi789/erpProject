@@ -55,15 +55,15 @@ require_once '../server/config/db.php';
         </div>
         <div class="grid grid-cols-8 gap-6 mt-5">
             <div class="col-span-2">
-                <div class="report-box zoom-in">
-                    <div class="box p-5">
-                        <div class="flex">
+                <div class="report-box zoom-in ">
+                    <div class="box p-5 ">
+                        <div class="flex ">
                             <i data-lucide="credit-card" class="report-box__icon text-primary"></i>
                             <div class="ml-auto">
                                 
                             </div>
                         </div>
-                        <div class="text-xl font-small leading-8 mt-6">Master</div>
+                        <div class="text-xl font-small leading-8 mt-6 ">Master</div>
                         <a href="masterindex.php"><div class="text-base text-slate-500 mt-1">open</div></a>
                         
                     </div>
